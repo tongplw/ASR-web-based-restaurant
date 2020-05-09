@@ -1,0 +1,15 @@
+version: '3.3'
+
+services:
+  
+  model:
+    build: model
+    volumes:
+      - ./model:/model
+  
+  web:
+    build: web
+    volumes:
+      - ./web:/server
+    ports:
+      - "8080:8080"
