@@ -2,6 +2,9 @@ version: '3.3'
 
 services:
   
+  kaldi:
+    build: kaldi
+  
   model:
     build: model
     volumes:
@@ -12,4 +15,4 @@ services:
     volumes:
       - ./web:/server
     ports:
-      - "8080:8080"
+      - 8080:8080
