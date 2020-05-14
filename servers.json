@@ -1,8 +1,8 @@
 [
-  {
-    "name": "default",
-    "host": "kaldi",
-    "port": 5050,
-    "samplerate": 8000
-  }
-]
+    {
+      "name": "default",
+      "host": "kaldi",
+      "port": 5050,
+      "samplerate": 16000
+    }
+  ]

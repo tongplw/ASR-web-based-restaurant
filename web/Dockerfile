@@ -1,9 +1,8 @@
 FROM python:3.7
 
-ADD ./web/requirements.txt /tmp/requirements.txt
-RUN pip install -qr /tmp/requirements.txt
-ADD ./web /server
+COPY . server
 WORKDIR /server
+RUN pip install -r requirements.txt
 
 EXPOSE 8080
 

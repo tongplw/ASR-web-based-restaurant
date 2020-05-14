@@ -7,9 +7,9 @@ services:
   
   model:
     build: model
-    volumes:
-      - ./model:/model
-  
+    ports:
+      - 5050:5050
+
   web:
     build: web
     volumes:
