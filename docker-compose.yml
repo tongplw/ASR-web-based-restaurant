@@ -1,12 +1,10 @@
 version: '3.3'
 services:
-  
+
   model:
     build: model
     volumes:
       - ./model/model/:/model
-    ports:
-      - 5050:5050
 
   web:
     build: web
@@ -14,8 +12,3 @@ services:
       - ./web/:/server
     ports:
       - 8080:8080
-    environment:
-      - PYTHONUNBUFFERED=1
-    
-
-
