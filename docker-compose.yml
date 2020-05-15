@@ -1,19 +1,21 @@
 version: '3.3'
-
 services:
-  
-  kaldi:
-    build: kaldi
   
   model:
     build: model
+    volumes:
+      - ./model/model/:/model
     ports:
       - 5050:5050
 
   web:
     build: web
+    volumes:
+      - ./web/:/server
     ports:
       - 8080:8080
     environment:
       - PYTHONUNBUFFERED=1
     
+
+

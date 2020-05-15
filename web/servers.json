@@ -1,7 +1,7 @@
 [
   {
     "name": "default",
-    "host": "localhost",
+    "host": "model",
     "port": 5050,
     "samplerate": 16000
   }
