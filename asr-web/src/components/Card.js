@@ -12,36 +12,43 @@ const useStyles = makeStyles({
   root: {
     maxWidth: 345,
   },
+  font: {
+    fontFamily: 'Comfortaa, cursive',
+  },
+  boldFont: {
+    fontFamily: 'Comfortaa, cursive',
+    fontWeight: 'bold'
+  },
 });
 
-export default function ImgMediaCard() {
+export default function ImgMediaCard(props) {
   const classes = useStyles();
 
   return (
-    <Card className={classes.root}>
+    <Card className={classes.root} >
       <CardActionArea>
         <CardMedia
           component="img"
           alt="Contemplative Reptile"
           height="140"
-          image="/static/images/cards/contemplative-reptile.jpg"
+          image={props.item.image}
           title="Contemplative Reptile"
+          className={classes.boldFont}
         />
         <CardContent>
-          <Typography gutterBottom variant="h5" component="h2">
-            Lizard
+          <Typography gutterBottom variant="h5" component="h2" className={classes.boldFont}>
+          {props.item.name}
           </Typography>
-          <Typography variant="body2" color="textSecondary" component="p">
-            Lizards are a widespread group of squamate reptiles, with over 6,000 species, ranging
-            across all continents except Antarctica
+          <Typography variant="body2" color="textSecondary" component="p" className={classes.font}>
+           {props.item.text}
           </Typography>
         </CardContent>
       </CardActionArea>
       <CardActions>
-        <Button size="small" color="primary">
+        <Button size="small" color="primary" className={classes.font}>
           Share
         </Button>
-        <Button size="small" color="primary">
+        <Button size="small" color="primary" className={classes.font}>
           Learn More
         </Button>
       </CardActions>
