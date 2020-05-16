@@ -1,89 +1,87 @@
-import React, { useState } from 'react';
-import clsx from 'clsx';
-import { fade, makeStyles } from '@material-ui/core/styles';
-import { green } from '@material-ui/core/colors';
-import SearchIcon from '@material-ui/icons/Search';
-import TextField from '@material-ui/core/TextField';
-import IconButton from '@material-ui/core/IconButton';
-import Icon from '@material-ui/core/Icon';
-import Box from '@material-ui/core/Box';
-import { loadCSS } from 'fg-loadcss';
-import Fab from '@material-ui/core/Fab';
-import CircularProgress from '@material-ui/core/CircularProgress';
-import './Search.css';
-import Card from './Card';
+import React, { useState } from "react";
+import clsx from "clsx";
+import { fade, makeStyles } from "@material-ui/core/styles";
+import { green } from "@material-ui/core/colors";
+import SearchIcon from "@material-ui/icons/Search";
+import TextField from "@material-ui/core/TextField";
+import IconButton from "@material-ui/core/IconButton";
+import Icon from "@material-ui/core/Icon";
+import Box from "@material-ui/core/Box";
+import { loadCSS } from "fg-loadcss";
+import Fab from "@material-ui/core/Fab";
+import CircularProgress from "@material-ui/core/CircularProgress";
+import "./Search.css";
+import Card from "./Card";
 
 const useStyles = makeStyles((theme) => ({
-
   root: {
-    '& .MuiTextField-root': {
+    "& .MuiTextField-root": {
       margin: theme.spacing(1),
-      width: '40%',
-      justifyContent: 'center',
+      width: "40%",
+      justifyContent: "center",
     },
   },
   newRoot: {
-    display: 'flex',
-    alignItems: 'center',
-    justifyContent: 'center',
+    display: "flex",
+    alignItems: "center",
+    justifyContent: "center",
   },
   search: {
-    textAlignment: 'center',
-    justifyContent: 'center',
-    padding: 'auto'
+    textAlignment: "center",
+    justifyContent: "center",
+    padding: "auto",
   },
   inputRoot: {
-    color: 'inherit',
+    color: "inherit",
   },
   inputInput: {
     padding: theme.spacing(1, 1, 1, 1),
     // vertical padding + font size from searchIcon
     paddingLeft: `calc(1em + ${theme.spacing(1)}px)`,
-    transition: theme.transitions.create('width'),
-    width: '100%',
-    [theme.breakpoints.up('md')]: {
-      width: '30em',
+    transition: theme.transitions.create("width"),
+    width: "100%",
+    [theme.breakpoints.up("md")]: {
+      width: "30em",
     },
   },
   wrapper: {
-      margin: theme.spacing(1),
-      position: 'relative',
+    margin: theme.spacing(1),
+    position: "relative",
+  },
+  buttonSuccess: {
+    backgroundColor: green[500],
+    "&:hover": {
+      backgroundColor: green[700],
     },
-    buttonSuccess: {
-      backgroundColor: green[500],
-      '&:hover': {
-        backgroundColor: green[700],
-      },
-    },
-    fabProgress: {
-      color: green[500],
-      position: 'absolute',
-      top: -6,
-      left: -6,
-      zIndex: 1,
-    },
-    buttonProgress: {
-      color: green[500],
-      position: 'absolute',
-      top: '50%',
-      left: '50%',
-      marginTop: -12,
-      marginLeft: -12,
-    }
+  },
+  fabProgress: {
+    color: green[500],
+    position: "absolute",
+    top: -6,
+    left: -6,
+    zIndex: 1,
+  },
+  buttonProgress: {
+    color: green[500],
+    position: "absolute",
+    top: "50%",
+    left: "50%",
+    marginTop: -12,
+    marginLeft: -12,
+  },
 }));
 
 const showItem = (item) => {
-  let newItem = item
+  let newItem = item;
   if (item.text.length >= 50) {
-    newItem.text = item.text.slice(0, 50) + '...';
+    newItem.text = item.text.slice(0, 50) + "...";
   }
-    return (
-      <Box p={1} 
-      css={{ wordWrap: 'break-word'}}>
-        <Card item={newItem}/>
-      </Box>
-    )
-}
+  return (
+    <Box p={1} css={{ wordWrap: "break-word" }}>
+      <Card item={newItem} />
+    </Box>
+  );
+};
 
 export default function Search() {
   const [items, setItems] = useState([]);
@@ -109,62 +107,70 @@ export default function Search() {
 
   React.useEffect(() => {
     const node = loadCSS(
-      'https://use.fontawesome.com/releases/v5.12.0/css/all.css',
-      document.querySelector('#font-awesome-css'),
+      "https://use.fontawesome.com/releases/v5.12.0/css/all.css",
+      document.querySelector("#font-awesome-css")
     );
-    setItems(
-      [
-        {
-          name:'samyan steak',
-          text:'good steak',
-          image:'https://img-global.cpcdn.com/recipes/8b8c8c4bd551a902/1200x630cq70/photo.jpg'
-        },
-        {
-          name:'samyan joke',
-          text:'good jokfffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff ffff ffffff fffff ffffffff fffff ffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffe',
-          image:'https://img-global.cpcdn.com/recipes/8b8c8c4bd551a902/1200x630cq70/photo.jpg'
-        },
-        {
-          name:'ganja noodles',
-          text:'good noodles',
-          image:'https://img-global.cpcdn.com/recipes/8b8c8c4bd551a902/1200x630cq70/photo.jpg'
-        },
-        {
-          name:'samyan steak',
-          text:'good steak',
-          image:'https://img-global.cpcdn.com/recipes/8b8c8c4bd551a902/1200x630cq70/photo.jpg'
-        },
-        {
-          name:'samyan steak',
-          text:'good steak',
-          image:'https://img-global.cpcdn.com/recipes/8b8c8c4bd551a902/1200x630cq70/photo.jpg'
-        },
-        {
-          name:'samyan steak',
-          text:'good steak',
-          image:'https://img-global.cpcdn.com/recipes/8b8c8c4bd551a902/1200x630cq70/photo.jpg'
-        },
-        {
-          name:'samyan steak',
-          text:'good steak',
-          image:'https://img-global.cpcdn.com/recipes/8b8c8c4bd551a902/1200x630cq70/photo.jpg'
-        },
-      ]
-    )
+    setItems([
+      {
+        name: "samyan steak",
+        text: "good steak",
+        image:
+          "https://img-global.cpcdn.com/recipes/8b8c8c4bd551a902/1200x630cq70/photo.jpg",
+      },
+      {
+        name: "samyan joke",
+        text:
+          "good jokfffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff ffff ffffff fffff ffffffff fffff ffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffe",
+        image:
+          "https://img-global.cpcdn.com/recipes/8b8c8c4bd551a902/1200x630cq70/photo.jpg",
+      },
+      {
+        name: "ganja noodles",
+        text: "good noodles",
+        image:
+          "https://img-global.cpcdn.com/recipes/8b8c8c4bd551a902/1200x630cq70/photo.jpg",
+      },
+      {
+        name: "samyan steak",
+        text: "good steak",
+        image:
+          "https://img-global.cpcdn.com/recipes/8b8c8c4bd551a902/1200x630cq70/photo.jpg",
+      },
+      {
+        name: "samyan steak",
+        text: "good steak",
+        image:
+          "https://img-global.cpcdn.com/recipes/8b8c8c4bd551a902/1200x630cq70/photo.jpg",
+      },
+      {
+        name: "samyan steak",
+        text: "good steak",
+        image:
+          "https://img-global.cpcdn.com/recipes/8b8c8c4bd551a902/1200x630cq70/photo.jpg",
+      },
+      {
+        name: "samyan steak",
+        text: "good steak",
+        image:
+          "https://img-global.cpcdn.com/recipes/8b8c8c4bd551a902/1200x630cq70/photo.jpg",
+      },
+    ]);
     return () => {
       node.parentNode.removeChild(node);
     };
   }, []);
   return (
     <div>
-      <div id='searchBar'>
-        <h1 id='text'>Speak to order your meal</h1>
-        <div className={classes.search}>    
+      <div id="searchBar">
+        <h1 id="text">Speak to order your meal</h1>
+        <div className={classes.search}>
           <form className={classes.root}>
-            <SearchIcon fontSize="large" style={{ marginTop: 20, marginBottom: 'auto'}}/>
+            <SearchIcon
+              fontSize="large"
+              style={{ marginTop: 20, marginBottom: "auto" }}
+            />
             <TextField id="outlined-basic" label="Search" variant="outlined" />
           </form>
-          
         </div>
         <div className={classes.newRoot}>
           <div className={classes.wrapper}>
@@ -174,13 +180,15 @@ export default function Search() {
               className={buttonClassname}
               onClick={handleButtonClick}
             >
-              <Icon className="fas fa-microphone" style={{ fontSize: 24 }}/>
+              <Icon className="fas fa-microphone" style={{ fontSize: 24 }} />
             </Fab>
-            {loading && <CircularProgress size={68} className={classes.fabProgress} />}
+            {loading && (
+              <CircularProgress size={68} className={classes.fabProgress} />
+            )}
           </div>
         </div>
       </div>
-      <div style={{ width: '100%' }}>
+      <div style={{ width: "100%" }}>
         <Box
           display="flex"
           flexWrap="wrap"
@@ -189,12 +197,16 @@ export default function Search() {
           p={1}
           m={1}
           bgcolor="background.paper"
-          css={{ maxWidth: '100%', height: '100%', overflow:true, justifyContent: 'flex-start'}}
+          css={{
+            maxWidth: "100%",
+            height: "100%",
+            overflow: true,
+            justifyContent: "flex-start",
+          }}
         >
           {items.map((item) => showItem(item))}
         </Box>
       </div>
     </div>
-    
   );
 }
