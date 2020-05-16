@@ -46,10 +46,10 @@ export default function ImgMediaCard(props) {
       </CardActionArea>
       <CardActions>
         <Button size="small" color="primary" className={classes.font}>
-          Share
+          Order
         </Button>
         <Button size="small" color="primary" className={classes.font}>
-          Learn More
+          See More
         </Button>
       </CardActions>
     </Card>

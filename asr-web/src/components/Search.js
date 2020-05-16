@@ -1,55 +1,62 @@
 import React, { useState } from 'react';
+import clsx from 'clsx';
 import { fade, makeStyles } from '@material-ui/core/styles';
+import { green } from '@material-ui/core/colors';
 import SearchIcon from '@material-ui/icons/Search';
-import InputBase from '@material-ui/core/InputBase';
+import TextField from '@material-ui/core/TextField';
 import IconButton from '@material-ui/core/IconButton';
 import Icon from '@material-ui/core/Icon';
 import Box from '@material-ui/core/Box';
 import { loadCSS } from 'fg-loadcss';
+import Fab from '@material-ui/core/Fab';
+import CircularProgress from '@material-ui/core/CircularProgress';
 import './Search.css';
 import Card from './Card';
 
 const useStyles = makeStyles((theme) => ({
-    search: {
-      textAlign: 'center',
-      position: 'relative',
-      borderRadius: theme.shape.borderRadius,
-      backgroundColor: fade(theme.palette.common.white, 0.15),
-      '&:hover': {
-        backgroundColor: fade(theme.palette.common.white, 0.25),
-      },
-      marginRight: 0,
-      marginLeft: 0,
-      width: '100%',
-      [theme.breakpoints.up('sm')]: {
-        marginLeft: 'auto',
-        marginRight: 'auto',
-        width: '40%',
-      },
-    },
-    searchIcon: {
-      padding: theme.spacing(0, 2),
-      height: '100%',
-      position: 'absolute',
-      pointerEvents: 'none',
-      display: 'flex',
-      alignItems: 'center',
+
+  root: {
+    '& .MuiTextField-root': {
+      margin: theme.spacing(1),
+      width: '40%',
       justifyContent: 'center',
     },
-    inputRoot: {
-      color: 'inherit',
+  },
+  newRoot: {
+    display: 'flex',
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
+  wrapper: {
+    margin: theme.spacing(1),
+    position: 'relative',
+  },
+  search: {
+    textAlignment: 'center',
+    justifyContent: 'center',
+    padding: 'auto'
+  },
+  inputRoot: {
+    color: 'inherit',
+  },
+  inputInput: {
+    padding: theme.spacing(1, 1, 1, 1),
+    // vertical padding + font size from searchIcon
+    paddingLeft: `calc(1em + ${theme.spacing(1)}px)`,
+    transition: theme.transitions.create('width'),
+    width: '100%',
+    [theme.breakpoints.up('md')]: {
+      width: '30em',
     },
-    inputInput: {
-      padding: theme.spacing(1, 1, 1, 1),
-      // vertical padding + font size from searchIcon
-      paddingLeft: `calc(1em + ${theme.spacing(1)}px)`,
-      transition: theme.transitions.create('width'),
-      width: '100%',
-      [theme.breakpoints.up('md')]: {
-        width: '100%',
-      },
-    }
-  }));
+    fabProgress: {
+      color: green[500],
+      position: 'absolute',
+      top: -6,
+      left: -6,
+      zIndex: 1,
+    },
+  }
+}));
 
 const showItem = (item) => {
   let newItem = item
@@ -63,9 +70,29 @@ const showItem = (item) => {
       </Box>
     )
 }
+
 export default function Search() {
   const [items, setItems] = useState([]);
+  const [loading, setLoading] = React.useState(false);
+  const [success, setSuccess] = React.useState(false);
+  const timer = React.useRef();
   const classes = useStyles();
+
+  const handleButtonClick = () => {
+    if (!loading) {
+      setSuccess(false);
+      setLoading(true);
+      timer.current = setTimeout(() => {
+        setSuccess(true);
+        setLoading(false);
+      }, 2000);
+    }
+  };
+
+  const buttonClassname = clsx({
+    [classes.buttonSuccess]: success,
+  });
+
   React.useEffect(() => {
     const node = loadCSS(
       'https://use.fontawesome.com/releases/v5.12.0/css/all.css',
@@ -118,21 +145,27 @@ export default function Search() {
     <div>
       <div id='searchBar'>
         <h1 id='text'>Speak to order your meal</h1>
-        <div className={classes.search}>
-          <div className={classes.searchIcon}>
-              <SearchIcon />
-          </div>
-          <InputBase
-              classes={{
-              root: classes.inputRoot,
-              input: classes.inputInput,
-              }}
-              inputProps={{ 'aria-label': 'search' }}
-          />
+        <div className={classes.search}>    
+          <form className={classes.root}>
+            <SearchIcon fontSize="large" style={{ marginTop: 20, marginBottom: 'auto'}}/>
+            <TextField id="outlined-basic" label="Search" variant="outlined" />
+          </form>
+          
         </div>
-        <IconButton style={{ width: 64, height: 64, padding: 10, margin: 40 }}>
-          <Icon className="fas fa-microphone" style={{ fontSize: 24 }}/>
-        </IconButton>
+        
+      </div>
+      <div className={classes.newRoot}>
+        <div className={classes.wrapper}>
+          <Fab
+            aria-label="save"
+            color="primary"
+            className={buttonClassname}
+            onClick={handleButtonClick}
+          >
+            <Icon className="fas fa-microphone" style={{ fontSize: 24 }}/>
+          </Fab>
+          {loading && <CircularProgress size={68} className={classes.fabProgress} />}
+        </div>
       </div>
       <div style={{ width: '100%' }}>
         <Box
