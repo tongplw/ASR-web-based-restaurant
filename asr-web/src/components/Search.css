@@ -1,7 +1,10 @@
 @import url('https://fonts.googleapis.com/css2?family=Comfortaa&display=swap');
 #searchBar {
     text-align: center;
-    background-image: url("bg.jpg");
+    background-image: url("bg.png");
+    background-color: white;
+    background-position: center;
+    background-size: cover;
     height: 60vh;
 }
 #text {

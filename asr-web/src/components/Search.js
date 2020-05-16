@@ -1,17 +1,16 @@
-import React, { useState } from "react";
-import clsx from "clsx";
-import { fade, makeStyles } from "@material-ui/core/styles";
-import { green } from "@material-ui/core/colors";
-import SearchIcon from "@material-ui/icons/Search";
-import TextField from "@material-ui/core/TextField";
-import IconButton from "@material-ui/core/IconButton";
-import Icon from "@material-ui/core/Icon";
-import Box from "@material-ui/core/Box";
-import { loadCSS } from "fg-loadcss";
-import Fab from "@material-ui/core/Fab";
-import CircularProgress from "@material-ui/core/CircularProgress";
-import "./Search.css";
-import Card from "./Card";
+import React, { useState } from "react"
+import clsx from "clsx"
+import { makeStyles } from "@material-ui/core/styles"
+import { green,white } from "@material-ui/core/colors"
+import TextField from "@material-ui/core/TextField"
+import Icon from "@material-ui/core/Icon"
+import Box from "@material-ui/core/Box"
+import { loadCSS } from "fg-loadcss"
+import Fab from "@material-ui/core/Fab"
+import CircularProgress from "@material-ui/core/CircularProgress"
+import Button from "@material-ui/core/Button"
+import "./Search.css"
+import Card from "./Card"
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -69,53 +68,73 @@ const useStyles = makeStyles((theme) => ({
     marginTop: -12,
     marginLeft: -12,
   },
-}));
+}))
 
 const showItem = (item) => {
-  let newItem = item;
+  let newItem = item
   if (item.text.length >= 50) {
-    newItem.text = item.text.slice(0, 50) + "...";
+    newItem.text = item.text.slice(0, 50) + "..."
+  }
+  if (item.text.location >= 50) {
+    newItem.location = item.location.slice(0, 50) + "..."
   }
   return (
     <Box p={1} css={{ wordWrap: "break-word" }}>
       <Card item={newItem} />
     </Box>
-  );
-};
+  )
+}
 
 export default function Search() {
-  const [items, setItems] = useState([]);
-  const [loading, setLoading] = React.useState(false);
-  const [success, setSuccess] = React.useState(false);
-  const timer = React.useRef();
-  const classes = useStyles();
+  const [latitude, setLatitude] = useState(0.0)
+  const [longitude, setLongitude] = useState(0.0)
+  const [items, setItems] = useState([])
+  const [loading, setLoading] = React.useState(false)
+  const [success, setSuccess] = React.useState(false)
+  const timer = React.useRef()
+  const classes = useStyles()
 
-  const handleButtonClick = () => {
+  const handleListenClick = () => {
     if (!loading) {
-      setSuccess(false);
-      setLoading(true);
+      setSuccess(false)
+      setLoading(true)
       timer.current = setTimeout(() => {
-        setSuccess(true);
-        setLoading(false);
-      }, 2000);
+        setSuccess(true)
+        setLoading(false)
+      }, 2000)
     }
-  };
+  }
+
+  const handleSearchClick = () => {
+    console.log("axios")
+    const location = window.navigator && window.navigator.geolocation
+    if (location) {
+      location.getCurrentPosition((position) => {
+        setLatitude(position.coords.latitude)
+        setLongitude(position.coords.longitude)
+        console.log(position.coords.latitude,position.coords.longitude)
+      }, (error) => {
+        console.log("error")
+      })
+    }
+  }
 
   const buttonClassname = clsx({
     [classes.buttonSuccess]: success,
-  });
+  })
 
   React.useEffect(() => {
     const node = loadCSS(
       "https://use.fontawesome.com/releases/v5.12.0/css/all.css",
       document.querySelector("#font-awesome-css")
-    );
+    )
     setItems([
       {
         name: "samyan steak",
         text: "good steak",
         image:
           "https://img-global.cpcdn.com/recipes/8b8c8c4bd551a902/1200x630cq70/photo.jpg",
+        location: "Yommarat Road, Saladaeng, Silom, Bang Rak",
       },
       {
         name: "samyan joke",
@@ -123,53 +142,67 @@ export default function Search() {
           "good jokfffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff ffff ffffff fffff ffffffff fffff ffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffe",
         image:
           "https://img-global.cpcdn.com/recipes/8b8c8c4bd551a902/1200x630cq70/photo.jpg",
+        location: "Yommarat Road, Saladaeng, Silom, Bang Rak",
       },
       {
         name: "ganja noodles",
         text: "good noodles",
         image:
           "https://img-global.cpcdn.com/recipes/8b8c8c4bd551a902/1200x630cq70/photo.jpg",
+        location: "Yommarat Road, Saladaeng, Silom, Bang Rak",
       },
       {
         name: "samyan steak",
         text: "good steak",
         image:
           "https://img-global.cpcdn.com/recipes/8b8c8c4bd551a902/1200x630cq70/photo.jpg",
+        location: "Yommarat Road, Saladaeng, Silom, Bang Rak",
       },
       {
         name: "samyan steak",
         text: "good steak",
         image:
           "https://img-global.cpcdn.com/recipes/8b8c8c4bd551a902/1200x630cq70/photo.jpg",
+        location: "Yommarat Road, Saladaeng, Silom, Bang Rak",
       },
       {
         name: "samyan steak",
         text: "good steak",
         image:
           "https://img-global.cpcdn.com/recipes/8b8c8c4bd551a902/1200x630cq70/photo.jpg",
+        location: "Yommarat Road, Saladaeng, Silom, Bang Rak",
       },
       {
         name: "samyan steak",
         text: "good steak",
         image:
           "https://img-global.cpcdn.com/recipes/8b8c8c4bd551a902/1200x630cq70/photo.jpg",
+        location: "Yommarat Road, Saladaeng, Silom, Bang Rak",
       },
-    ]);
+    ])
     return () => {
-      node.parentNode.removeChild(node);
-    };
-  }, []);
+      node.parentNode.removeChild(node)
+    }
+  }, [])
   return (
     <div>
       <div id="searchBar">
-        <h1 id="text">Speak to order your meal</h1>
+        <h1 id="text">Speak to order your meal.</h1>
         <div className={classes.search}>
           <form className={classes.root}>
-            <SearchIcon
-              fontSize="large"
-              style={{ marginTop: 20, marginBottom: "auto" }}
-            />
-            <TextField id="outlined-basic" label="Search" variant="outlined" />
+            <TextField id="filled-basic" label="Search" variant="filled" />
+            <Button
+              variant="contained"
+              color="default"
+              className={classes.button}
+              startIcon={
+                <Icon className="fas fa-search" style={{ fontSize: 15 }} />
+              }
+              style={{ marginTop: 15 }}
+              onClick={handleSearchClick}
+            >
+              Search
+            </Button>
           </form>
         </div>
         <div className={classes.newRoot}>
@@ -178,7 +211,7 @@ export default function Search() {
               aria-label="save"
               color="primary"
               className={buttonClassname}
-              onClick={handleButtonClick}
+              onClick={handleListenClick}
             >
               <Icon className="fas fa-microphone" style={{ fontSize: 24 }} />
             </Fab>
@@ -208,5 +241,5 @@ export default function Search() {
         </Box>
       </div>
     </div>
-  );
+  )
 }

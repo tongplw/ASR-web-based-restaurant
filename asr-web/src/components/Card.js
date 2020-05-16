@@ -42,6 +42,9 @@ export default function ImgMediaCard(props) {
           <Typography variant="body2" color="textSecondary" component="p" className={classes.font}>
            {props.item.text}
           </Typography>
+          <Typography variant="body2" color="textSecondary" component="p" className={classes.boldFont} style={{ marginTop: 20 }}>
+           {props.item.location}
+          </Typography>
         </CardContent>
       </CardActionArea>
       <CardActions>
