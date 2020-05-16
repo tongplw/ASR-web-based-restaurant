@@ -89,6 +89,7 @@ export default function Search() {
   const [latitude, setLatitude] = useState(0.0);
   const [longitude, setLongitude] = useState(0.0);
   const [items, setItems] = useState([]);
+  const [message, setMessage] = useState("");
   const [loading, setLoading] = React.useState(false);
   const [loadingResult, setLoadingResult] = React.useState(false);
   const [success, setSuccess] = React.useState(false);
@@ -96,13 +97,18 @@ export default function Search() {
   const classes = useStyles();
 
   const handleListenClick = () => {
+    setMessage("Please wait");
     if (!loading) {
       setSuccess(false);
       setLoading(true);
       timer.current = setTimeout(() => {
+        setMessage("Listening");
+      }, 2000);
+      timer.current = setTimeout(() => {
         setSuccess(true);
         setLoading(false);
-      }, 2000);
+        setMessage("Push to speak");
+      }, 5000);
     }
   };
 
@@ -174,6 +180,7 @@ export default function Search() {
           "https://img-global.cpcdn.com/recipes/8b8c8c4bd551a902/1200x630cq70/photo.jpg",
       },
     ]);
+    setMessage("Push to speak");
     return () => {
       node.parentNode.removeChild(node);
     };
@@ -181,7 +188,7 @@ export default function Search() {
   return (
     <div>
       <div id="searchBar">
-        <h1 id="text">Speak to order your meal.</h1>
+        <h1 id="text">{message}</h1>
         <div className={classes.search}>
           <form className={classes.root}>
             <TextField id="filled-basic" label="Search" variant="filled" />
@@ -234,7 +241,13 @@ export default function Search() {
           {!loadingResult && items.map((item) => showItem(item))}
         </Box>
         {loadingResult && (
-          <div style={{ textAlignment: "center", justifyContent: "center", display: 'flex', }}>
+          <div
+            style={{
+              textAlignment: "center",
+              justifyContent: "center",
+              display: "flex",
+            }}
+          >
             <CircularProgress size={68} />
           </div>
         )}
