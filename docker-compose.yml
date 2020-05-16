@@ -10,14 +10,14 @@ services:
       - 3000:3000
     tty: true
 
-  # model:
-  #   build: model
-  #   volumes:
-  #     - ./model/model:/model
+  model:
+    build: model
+    volumes:
+      - ./model/model:/model
 
-  # web:
-  #   build: web
-  #   volumes:
-  #     - ./web:/server
-  #   ports:
-  #     - 8080:8080
+  web:
+    build: web
+    volumes:
+      - ./web:/server
+    ports:
+      - 8080:8080
