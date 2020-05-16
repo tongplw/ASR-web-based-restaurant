@@ -1,6 +1,14 @@
 version: '3.3'
 services:
 
+  node:
+    build: asr-web
+    volumes:
+      - ./asr-web/:/usr/app
+      - /usr/app/node_modules
+    ports:
+      - 3000:3000
+
   model:
     build: model
     volumes:
