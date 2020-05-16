@@ -27,10 +27,6 @@ const useStyles = makeStyles((theme) => ({
     alignItems: 'center',
     justifyContent: 'center',
   },
-  wrapper: {
-    margin: theme.spacing(1),
-    position: 'relative',
-  },
   search: {
     textAlignment: 'center',
     justifyContent: 'center',
@@ -48,6 +44,17 @@ const useStyles = makeStyles((theme) => ({
     [theme.breakpoints.up('md')]: {
       width: '30em',
     },
+  },
+  wrapper: {
+      margin: theme.spacing(1),
+      position: 'relative',
+    },
+    buttonSuccess: {
+      backgroundColor: green[500],
+      '&:hover': {
+        backgroundColor: green[700],
+      },
+    },
     fabProgress: {
       color: green[500],
       position: 'absolute',
@@ -55,7 +62,14 @@ const useStyles = makeStyles((theme) => ({
       left: -6,
       zIndex: 1,
     },
-  }
+    buttonProgress: {
+      color: green[500],
+      position: 'absolute',
+      top: '50%',
+      left: '50%',
+      marginTop: -12,
+      marginLeft: -12,
+    }
 }));
 
 const showItem = (item) => {
@@ -152,19 +166,18 @@ export default function Search() {
           </form>
           
         </div>
-        
-      </div>
-      <div className={classes.newRoot}>
-        <div className={classes.wrapper}>
-          <Fab
-            aria-label="save"
-            color="primary"
-            className={buttonClassname}
-            onClick={handleButtonClick}
-          >
-            <Icon className="fas fa-microphone" style={{ fontSize: 24 }}/>
-          </Fab>
-          {loading && <CircularProgress size={68} className={classes.fabProgress} />}
+        <div className={classes.newRoot}>
+          <div className={classes.wrapper}>
+            <Fab
+              aria-label="save"
+              color="primary"
+              className={buttonClassname}
+              onClick={handleButtonClick}
+            >
+              <Icon className="fas fa-microphone" style={{ fontSize: 24 }}/>
+            </Fab>
+            {loading && <CircularProgress size={68} className={classes.fabProgress} />}
+          </div>
         </div>
       </div>
       <div style={{ width: '100%' }}>
