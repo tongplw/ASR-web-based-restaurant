@@ -16,6 +16,11 @@ const useStyles = makeStyles((theme) => ({
   },
   title: {
     flexGrow: 1,
+    fontFamily: 'Comfortaa, cursive'
+  },
+  leftButton: {
+    fontFamily: 'Comfortaa, cursive',
+    marginRight: 50
   },
 }));
 
@@ -24,16 +29,16 @@ export default function MenuBar() {
 
   return (
     <div className={classes.root}>
-      <AppBar position="static">
+      <AppBar position="static" color='transparent'>
         <Toolbar>
           <IconButton edge="start" className={classes.menuButton} color="inherit" aria-label="menu">
             <MenuIcon />
           </IconButton>
           <Typography variant="h6" className={classes.title}>
-            Foodatory
+            <img src='foodcy.png' alt="Foodcy" style={{width:110, height:40, paddingTop: 15}}/>
           </Typography>
-          <Button color="inherit">About</Button>
-          <Button color="inherit">Login</Button>
+          <Button color="inherit" className={classes.leftButton}>About Us</Button>
+          <Button color="inherit" className={classes.leftButton}>Login</Button>
         </Toolbar>
       </AppBar>
     </div>
