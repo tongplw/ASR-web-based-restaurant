@@ -5,6 +5,7 @@ WORKDIR /usr/src/app
 # install dependency
 COPY package.json .
 RUN npm install
+RUN npm install react-scripts -g
 
 # run content
 COPY . .

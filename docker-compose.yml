@@ -4,20 +4,20 @@ services:
   node:
     build: asr-web
     volumes:
-      - ./asr-web:/app
-      - /app/node_modules
+      - ./asr-web/:/usr/src/app
+      - /usr/src/app/node_modules
     ports:
       - 3000:3000
     tty: true
 
-  # model:
-  #   build: model
-  #   volumes:
-  #     - ./model/model:/model
+  model:
+    build: model
+    volumes:
+      - ./model/model:/model
 
-  # web:
-  #   build: web
-  #   volumes:
-  #     - ./web:/server
-  #   ports:
-  #     - 8080:8080
+  web:
+    build: web
+    volumes:
+      - ./web:/server
+    ports:
+      - 8080:8080
