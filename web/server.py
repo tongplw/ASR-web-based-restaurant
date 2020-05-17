@@ -114,6 +114,12 @@ class table:
         self.foodItems = []
     def setOccupied(self,status) :
         self.isOccupied = status
+        return self.isOccupied
+class respond :
+    def __init__(self) :
+        self.key = "initKey"
+        self.status = False
+        self.value = "initValue"
 
 table1 = table("table1")
 table2 = table("table2")
@@ -124,28 +130,56 @@ table5 = table("table5")
 async def textfield(request) :
     params = await request.json()
     orders = params['orders']
-    mode = "initial"
+    table = params['table']
+    res = respond()
     secondMode = "anything"
     if ("จอง" in orders) and ("โต๊ะ" in orders):
-        mode = "occupied table"
+        res.key = "table"
         if "หนึ่ง" in orders :
-            mode = "occupied table 1"
+            res.value = "table1"
             if (not table1.isOccupied) :
                 table1.setOccupied(True)
-                mode = "occupie table 1 success"
+                res.status = True
             else :
-                mode = "table1 has been occupied"
+                res.status = False
         if "สอง" in orders :
-            mode = "occupied table 2"
+            res.value = "table2"
+            if (not table2.isOccupied) :
+                table2.setOccupied(True)
+                res.status = True
+            else :
+                res.status = False
         if "สาม" in orders :
-            mode = "occupied table 3"
+            res.value = "table3"
+            if (not table3.isOccupied) :
+                table3.setOccupied(True)
+                res.status = True
+            else :
+                res.status = False
         if "สี่" in orders :
-            mode = "occupied table 4"
+            res.value = "table4"
+            if (not table4.isOccupied) :
+                table4.setOccupied(True)
+                res.status = True
+            else :
+                res.status = False
         if "ห้า" in orders :
-            mode = "occupied table 5"
+            res.value = "table5"
+            if (not table5.isOccupied) :
+                table5.setOccupied(True)
+                res.status = True
+            else :
+                res.status = False
     if "เมนู" in orders :
-        mode = "forward to menu page"
-    return web.Response(content_type='text/html', text=str(mode))
+        res.key = "menu"
+        res.status = True
+        res.value = ["menu"]
+    if "ราคา" in orders :
+        res.key = "menu"
+        res.status = True
+        res.value = ["menu"]
+    jsonStr = json.dumps(res.__dict__)
+    return web.Response(content_type='text/html', text=str(jsonStr))
 
 async def debug(request) :
     print("debugging")
