@@ -3,7 +3,6 @@ import json
 import logging
 import ssl
 import sys
-import requests
 
 from pathlib import Path
 from aiohttp import web
@@ -77,36 +76,6 @@ async def offer(request):
             'type': pc.localDescription.type
         }))
 
-async def search(request):
-    params = await request.json()
-    lat = params['lat']
-    lng = params['lng']
-    key = params['key']
-
-    URL = 'https://discovery.deliveryhero.io/search/api/v1/feed'
-    data = {
-        'brand': "foodpanda",
-        'config': "Variant6",
-        'country_code': "th",
-        'customer_id': "",
-        'customer_type': "regular",
-        'include_component_types': ["vendors"],
-        'include_fields': ["feed"],
-        'language_code': "th",
-        'language_id': "6",
-        'limit': 50,
-        'location': {'point': {'latitude': lat, 'longitude': lng}},
-        'offset': 0,
-        'opening_type': "delivery",
-        'platform': "web",
-        'q': key,
-        'session_id': "",
-        'vertical_type': "restaurants"
-	}
-    r = requests.post(URL, json=data)
-    out = r.json()['feed']['items'][0]['items']
-    return web.Response(content_type='text/html', text=str(out))
-
 if __name__ == '__main__':
     parser = argparse.ArgumentParser()
     parser.add_argument('--servers', help='Server configuration JSON')
@@ -125,7 +94,6 @@ if __name__ == '__main__':
 
     app = web.Application()
     app.router.add_get('/', index)
-    app.router.add_get('/search', search)
     app.router.add_post('/offer', offer)
     app.router.add_static('/static/', path=ROOT / 'static', name='static')
 

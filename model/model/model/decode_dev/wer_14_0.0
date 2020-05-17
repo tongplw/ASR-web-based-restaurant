@@ -1,4 +1,0 @@
-compute-wer --text --mode=present ark:data/exp/chain/tdnn1r_sp_online/decode_dev/scoring/test_filt.txt ark,p:- 
-%WER 26.63 [ 510 / 1915, 262 ins, 63 del, 185 sub ] [PARTIAL]
-%SER 72.73 [ 296 / 407 ]
-Scored 407 sentences, 1 not present in hyp.

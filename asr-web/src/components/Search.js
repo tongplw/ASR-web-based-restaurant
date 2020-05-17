@@ -267,8 +267,9 @@ export default function Search() {
   };
 
   const handleSearchClick = () => {
-    let inputForm = document.getElementById("filled-basic");
-    console.log(inputForm);
+    setTextFieldInput(textFiledInput)
+    let inputForm = document.getElementById("filled-basic")
+    console.log(inputForm)
     console.log("axios");
     setLoadingResult(true);
   };
