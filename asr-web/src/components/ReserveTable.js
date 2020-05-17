@@ -86,46 +86,46 @@ const useStyles = makeStyles((theme) => ({
             image:
               "https://ezeesmarthotel.com/assets/images/cloudpos/quick_table_management.png",
           },
-          {
-            tableNo: "6",
-            title: "Available",
-            name: "good steak",
-            status : "free",
-            image:
-              "https://ezeesmarthotel.com/assets/images/cloudpos/quick_table_management.png",
-          },
-          {
-            tableNo: "7",
-            title: "Available",
-            name: "good steak",
-            status : "free",
-            image:
-              "https://ezeesmarthotel.com/assets/images/cloudpos/quick_table_management.png",
-          },
-          {
-            tableNo: "8",
-            title: "Available",
-            name: "good steak",
-            status : "free",
-            image:
-              "https://ezeesmarthotel.com/assets/images/cloudpos/quick_table_management.png",
-          },
-          {
-            tableNo: "9",
-            title: "Unavaiable",
-            name: "good steak",
-            status : "booked",
-            image:
-              "https://ezeesmarthotel.com/assets/images/cloudpos/quick_table_management.png",
-          },
-          {
-            tableNo: "10",
-            title: "Unavaiable",
-            name: "good steak",
-            status : "booked",
-            image:
-              "https://ezeesmarthotel.com/assets/images/cloudpos/quick_table_management.png",
-          },
+        //   {
+        //     tableNo: "6",
+        //     title: "Available",
+        //     name: "good steak",
+        //     status : "free",
+        //     image:
+        //       "https://ezeesmarthotel.com/assets/images/cloudpos/quick_table_management.png",
+        //   },
+        //   {
+        //     tableNo: "7",
+        //     title: "Available",
+        //     name: "good steak",
+        //     status : "free",
+        //     image:
+        //       "https://ezeesmarthotel.com/assets/images/cloudpos/quick_table_management.png",
+        //   },
+        //   {
+        //     tableNo: "8",
+        //     title: "Available",
+        //     name: "good steak",
+        //     status : "free",
+        //     image:
+        //       "https://ezeesmarthotel.com/assets/images/cloudpos/quick_table_management.png",
+        //   },
+        //   {
+        //     tableNo: "9",
+        //     title: "Unavaiable",
+        //     name: "good steak",
+        //     status : "booked",
+        //     image:
+        //       "https://ezeesmarthotel.com/assets/images/cloudpos/quick_table_management.png",
+        //   },
+        //   {
+        //     tableNo: "10",
+        //     title: "Unavaiable",
+        //     name: "good steak",
+        //     status : "booked",
+        //     image:
+        //       "https://ezeesmarthotel.com/assets/images/cloudpos/quick_table_management.png",
+        //   },
         ]);
         setMessage("Push to speak");
         return () => {

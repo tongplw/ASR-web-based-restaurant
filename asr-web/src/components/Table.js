@@ -50,7 +50,12 @@ export default function RecipeReviewCard(props) {
   };
 
   return (
-    <Card className={classes.root}>
+    <Card className={classes.root} style={{
+        maxWidth: "180px",
+        maxHeight: "320px",
+        overflow: true,
+        justifyContent: "flex-start",
+      }}>
       <CardHeader
         avatar={
           <Avatar aria-label="No" className={classes.avatar}>
