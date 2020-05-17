@@ -130,7 +130,7 @@ table5 = table("table5")
 async def textfield(request) :
     params = await request.json()
     orders = params['orders']
-    table = params['table']
+    #table = params['table']
     res = respond()
     secondMode = "anything"
     if ("จอง" in orders) and ("โต๊ะ" in orders):
@@ -180,6 +180,7 @@ async def textfield(request) :
         res.value = ["menu"]
     jsonStr = json.dumps(res.__dict__)
     return web.Response(content_type='text/html', text=str(jsonStr))
+    #return web.json_response(jsonStr)
 
 async def debug(request) :
     print("debugging")
