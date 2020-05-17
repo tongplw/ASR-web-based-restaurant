@@ -245,7 +245,7 @@ export default function Search() {
   };
 
   const handleSearchClick = () => {
-    //setTextFieldInput("searching")
+    setTextFieldInput(textFiledInput)
     let inputForm = document.getElementById("filled-basic")
     console.log(inputForm)
     console.log("axios");
@@ -358,7 +358,7 @@ export default function Search() {
               <Icon className="fas fa-microphone" style={{ fontSize: 24 }} />
             </Fab>
             {loading && (
-              <CircularProgress size={68} className={classes.fabProgress} />
+              <CircularProgress size={68} className={classes.fabProgress} onClick={handleListenClick}/>
             )}
           </div>
         </div>
