@@ -107,6 +107,86 @@ async def search(request):
     out = r.json()['feed']['items'][0]['items']
     return web.Response(content_type='text/html', text=str(out))
 
+class table:
+    def __init__(self,name) :
+        self.name = name
+        self.isOccupied = False
+        self.foodItems = []
+    def setOccupied(self,status) :
+        self.isOccupied = status
+        return self.isOccupied
+class respond :
+    def __init__(self) :
+        self.key = "initKey"
+        self.status = False
+        self.value = "initValue"
+
+table1 = table("table1")
+table2 = table("table2")
+table3 = table("table3")
+table4 = table("table4")
+table5 = table("table5")
+
+async def textfield(request) :
+    params = await request.json()
+    orders = params['orders']
+    #table = params['table']
+    res = respond()
+    secondMode = "anything"
+    if ("จอง" in orders) and ("โต๊ะ" in orders):
+        res.key = "table"
+        if "หนึ่ง" in orders :
+            res.value = "table1"
+            if (not table1.isOccupied) :
+                table1.setOccupied(True)
+                res.status = True
+            else :
+                res.status = False
+        if "สอง" in orders :
+            res.value = "table2"
+            if (not table2.isOccupied) :
+                table2.setOccupied(True)
+                res.status = True
+            else :
+                res.status = False
+        if "สาม" in orders :
+            res.value = "table3"
+            if (not table3.isOccupied) :
+                table3.setOccupied(True)
+                res.status = True
+            else :
+                res.status = False
+        if "สี่" in orders :
+            res.value = "table4"
+            if (not table4.isOccupied) :
+                table4.setOccupied(True)
+                res.status = True
+            else :
+                res.status = False
+        if "ห้า" in orders :
+            res.value = "table5"
+            if (not table5.isOccupied) :
+                table5.setOccupied(True)
+                res.status = True
+            else :
+                res.status = False
+    if "เมนู" in orders :
+        res.key = "menu"
+        res.status = True
+        res.value = ["menu"]
+    if "ราคา" in orders :
+        res.key = "menu"
+        res.status = True
+        res.value = ["menu"]
+    jsonStr = json.dumps(res.__dict__)
+    return web.Response(content_type='text/html', text=str(jsonStr))
+    #return web.json_response(jsonStr)
+
+async def debug(request) :
+    print("debugging")
+    jsonStr = json.dumps(table1.__dict__)
+    return web.Response(content_type='text/html', text=str(jsonStr))
+
 if __name__ == '__main__':
     parser = argparse.ArgumentParser()
     parser.add_argument('--servers', help='Server configuration JSON')
@@ -127,6 +207,10 @@ if __name__ == '__main__':
     app.router.add_get('/', index)
     app.router.add_get('/search', search)
     app.router.add_post('/offer', offer)
+
+    app.router.add_post('/textfield',textfield)
+    app.router.add_get('/debug',debug)
+
     app.router.add_static('/static/', path=ROOT / 'static', name='static')
 
     # Configure default CORS settings.
