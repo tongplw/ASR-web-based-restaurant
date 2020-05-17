@@ -89,127 +89,7 @@ var pc = null;
 var dc = null, dcInterval = null;
 
 // negitiate
-function negotiate() {
-  return pc.createOffer().then(offer => {
-      return pc.setLocalDescription(offer);
-  }).then( () => {
-      return new Promise( (resolve) => {
-          if (pc.iceGatheringState === 'complete') {
-              resolve();
-          } else {
-              function checkState() {
-                  if (pc.iceGatheringState === 'complete') {
-                      pc.removeEventListener('icegatheringstatechange', checkState);
-                      resolve();
-                  }
-              }
 
-              pc.addEventListener('icegatheringstatechange', checkState);
-          }
-      });
-  }).then( async () => {
-      var offer = pc.localDescription;
-      console.log(offer.sdp);
-      return await fetch('http://localhost:8080/offer', {
-          body: JSON.stringify({
-              sdp: offer.sdp,
-              type: offer.type,
-          }),
-          headers: {
-              'Content-Type': 'application/json'
-          },
-          method: 'POST'
-      });
-  }).then((response) => {
-      return response.json();
-  }).then( (answer) => {
-      console.log(answer.sdp);
-      return pc.setRemoteDescription(answer);
-  }).catch( e => {
-      stop()
-      console.log(e);
-  });
-}
-
-// start connection
-function start() {
-  console.log("start");
-  var config = {
-      sdpSemantics: 'unified-plan'
-  };
-
-  pc = new RTCPeerConnection(config);
-
-  var parameters = {"id":69};
-
-  dc = pc.createDataChannel('chat_asr', parameters);
-  dc.onclose = function () {
-      clearInterval(dcInterval);
-      console.log('Closed data channel');
-  };
-  dc.onopen = function () {
-      console.log('Opened data channel');
-  };
-  dc.onmessage = function (evt) {
-      var msg = evt.data;
-      console.log("received:" + msg);
-      if (msg.endsWith('\n')) {
-          console.log("asd");
-      } else if (msg.endsWith('\r')) {
-          console.log("endline");
-      } else {
-          console.log("asd");
-      }
-  };
-
-  pc.oniceconnectionstatechange = function () {
-      if (pc.iceConnectionState == 'disconnected') {
-          console.log('Disconnected');
-      }
-  }
-
-  var constraints = {
-      audio: true,
-      video: false
-  };
-
-  navigator.mediaDevices.getUserMedia(constraints).then( (stream) => {
-      stream.getTracks().forEach(function (track) {
-          pc.addTrack(track, stream);
-      });
-      return negotiate();
-  }, function (err) {
-      console.log('Could not acquire media: ' + err);
-  });
-}
-
-// stop connection
-function stop() {
-
-  // close data channel
-  if (dc) {
-      dc.close();
-  }
-
-  // close transceivers
-  if (pc.getTransceivers) {
-      pc.getTransceivers().forEach(function (transceiver) {
-          if (transceiver.stop) {
-              transceiver.stop();
-          }
-      });
-  }
-
-  // close local audio / video
-  pc.getSenders().forEach(function (sender) {
-      sender.track.stop();
-  });
-
-  // close peer connection
-  setTimeout(function () {
-      pc.close();
-  }, 500);
-}
 
 export default function Search() {
   const [latitude, setLatitude] = useState(0.0);
@@ -219,9 +99,133 @@ export default function Search() {
   const [loading, setLoading] = React.useState(false);
   const [loadingResult, setLoadingResult] = React.useState(false);
   const [success, setSuccess] = React.useState(false);
+  const [textFiledInput , setTextFieldInput] = useState("")
   const timer = React.useRef();
   const classes = useStyles();
-
+  //negotiate
+  function negotiate() {
+    return pc.createOffer().then(offer => {
+        return pc.setLocalDescription(offer);
+    }).then( () => {
+        return new Promise( (resolve) => {
+            if (pc.iceGatheringState === 'complete') {
+                resolve();
+            } else {
+                function checkState() {
+                    if (pc.iceGatheringState === 'complete') {
+                        pc.removeEventListener('icegatheringstatechange', checkState);
+                        resolve();
+                    }
+                }
+  
+                pc.addEventListener('icegatheringstatechange', checkState);
+            }
+        });
+    }).then( async () => {
+        var offer = pc.localDescription;
+        console.log(offer.sdp);
+        return await fetch('http://localhost:8080/offer', {
+            body: JSON.stringify({
+                sdp: offer.sdp,
+                type: offer.type,
+            }),
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            method: 'POST'
+        });
+    }).then((response) => {
+        return response.json();
+    }).then( (answer) => {
+        console.log(answer.sdp);
+        return pc.setRemoteDescription(answer);
+    }).catch( e => {
+        stop()
+        console.log(e);
+    });
+  }
+  
+  // start connection
+  function start() {
+    
+    console.log("start");
+    var config = {
+        sdpSemantics: 'unified-plan'
+    };
+    
+    pc = new RTCPeerConnection(config);
+  
+    var parameters = {"id":69};
+  
+    dc = pc.createDataChannel('chat_asr', parameters);
+    dc.onclose = function () {
+        clearInterval(dcInterval);
+        console.log('Closed data channel');
+    };
+    dc.onopen = function () {
+        console.log('Opened data channel');
+    };
+    dc.onmessage = function (evt) {
+        var msg = evt.data;
+        console.log("received:" + msg);
+        setTextFieldInput(msg)
+        if (msg.endsWith('\n')) {
+            console.log("asd");
+        } else if (msg.endsWith('\r')) {
+            console.log("endline");
+        } else {
+            console.log("asd");
+        }
+    };
+  
+    pc.oniceconnectionstatechange = function () {
+        if (pc.iceConnectionState == 'disconnected') {
+            console.log('Disconnected');
+        }
+    }
+  
+    var constraints = {
+        audio: true,
+        video: false
+    };
+  
+    navigator.mediaDevices.getUserMedia(constraints).then( (stream) => {
+        stream.getTracks().forEach(function (track) {
+            pc.addTrack(track, stream);
+        });
+        return negotiate();
+    }, function (err) {
+        console.log('Could not acquire media: ' + err);
+    });
+  }
+  
+  // stop connection
+  function stop() {
+  
+    // close data channel
+    if (dc) {
+        dc.close();
+    }
+  
+    // close transceivers
+    if (pc.getTransceivers) {
+        pc.getTransceivers().forEach(function (transceiver) {
+            if (transceiver.stop) {
+                transceiver.stop();
+            }
+        });
+    }
+  
+    // close local audio / video
+    pc.getSenders().forEach(function (sender) {
+        sender.track.stop();
+    });
+  
+    // close peer connection
+    setTimeout(function () {
+        pc.close();
+    }, 500);
+  }
   const handleListenClick = () => {
     setMessage("Please wait");
     if (!loading) {
@@ -241,6 +245,9 @@ export default function Search() {
   };
 
   const handleSearchClick = () => {
+    //setTextFieldInput("searching")
+    let inputForm = document.getElementById("filled-basic")
+    console.log(inputForm)
     console.log("axios");
     setLoadingResult(true);
     const location = window.navigator && window.navigator.geolocation;
@@ -254,6 +261,11 @@ export default function Search() {
     }
   };
 
+  const onTextFieldChange =(e) => {
+    
+    console.log(e)
+  }
+
   const buttonClassname = clsx({
     [classes.buttonSuccess]: success,
   });
@@ -263,6 +275,7 @@ export default function Search() {
       "https://use.fontawesome.com/releases/v5.12.0/css/all.css",
       document.querySelector("#font-awesome-css")
     );
+    
     setItems([
       {
         name: "samyan steak",
@@ -319,7 +332,7 @@ export default function Search() {
         <h1 id="text">{message}</h1>
         <div className={classes.search}>
           <form className={classes.root}>
-            <TextField id="filled-basic" label="Search" variant="filled" />
+            <TextField id="filled-basic" label="Search" variant="filled" onChange={(e)=>onTextFieldChange(e.target.value)} value={textFiledInput}/>
             <Button
               variant="contained"
               color="default"
