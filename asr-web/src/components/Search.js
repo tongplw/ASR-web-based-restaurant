@@ -99,7 +99,7 @@ export default function Search() {
   const [loading, setLoading] = React.useState(false);
   const [loadingResult, setLoadingResult] = React.useState(false);
   const [success, setSuccess] = React.useState(false);
-  const [textFiledInput , setTextFieldInput] = useState("")
+  const [textFiledInput , setTextFieldInput] = useState()
   const timer = React.useRef();
   const classes = useStyles();
   //negotiate
