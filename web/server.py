@@ -107,6 +107,51 @@ async def search(request):
     out = r.json()['feed']['items'][0]['items']
     return web.Response(content_type='text/html', text=str(out))
 
+class table:
+    def __init__(self,name) :
+        self.name = name
+        self.isOccupied = False
+        self.foodItems = []
+    def setOccupied(self,status) :
+        self.isOccupied = status
+
+table1 = table("table1")
+table2 = table("table2")
+table3 = table("table3")
+table4 = table("table4")
+table5 = table("table5")
+
+async def textfield(request) :
+    params = await request.json()
+    orders = params['orders']
+    mode = "initial"
+    secondMode = "anything"
+    if ("จอง" in orders) and ("โต๊ะ" in orders):
+        mode = "occupied table"
+        if "หนึ่ง" in orders :
+            mode = "occupied table 1"
+            if (not table1.isOccupied) :
+                table1.setOccupied(True)
+                mode = "occupie table 1 success"
+            else :
+                mode = "table1 has been occupied"
+        if "สอง" in orders :
+            mode = "occupied table 2"
+        if "สาม" in orders :
+            mode = "occupied table 3"
+        if "สี่" in orders :
+            mode = "occupied table 4"
+        if "ห้า" in orders :
+            mode = "occupied table 5"
+    if "เมนู" in orders :
+        mode = "forward to menu page"
+    return web.Response(content_type='text/html', text=str(mode))
+
+async def debug(request) :
+    print("debugging")
+    jsonStr = json.dumps(table1.__dict__)
+    return web.Response(content_type='text/html', text=str(jsonStr))
+
 if __name__ == '__main__':
     parser = argparse.ArgumentParser()
     parser.add_argument('--servers', help='Server configuration JSON')
@@ -127,6 +172,10 @@ if __name__ == '__main__':
     app.router.add_get('/', index)
     app.router.add_get('/search', search)
     app.router.add_post('/offer', offer)
+
+    app.router.add_post('/textfield',textfield)
+    app.router.add_get('/debug',debug)
+
     app.router.add_static('/static/', path=ROOT / 'static', name='static')
 
     # Configure default CORS settings.
