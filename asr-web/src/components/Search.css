@@ -5,11 +5,11 @@
     background-color: white;
     background-position: center;
     background-size: cover;
-    height: 60vh;
+    height: 45vh;
 }
 #text {
     margin: 0;
-    padding: 120px 0 120px 0;
+    padding: 60px 0 60px 0;
     font-size: 25px;
     font-family: 'Comfortaa', cursive;
 }
