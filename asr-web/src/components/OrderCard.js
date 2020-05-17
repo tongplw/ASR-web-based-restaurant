@@ -1,8 +1,7 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { makeStyles } from "@material-ui/core/styles";
 import clsx from "clsx";
 import Card from "@material-ui/core/Card";
-import CardHeader from "@material-ui/core/CardHeader";
 import CardMedia from "@material-ui/core/CardMedia";
 import CardContent from "@material-ui/core/CardContent";
 import CardActions from "@material-ui/core/CardActions";
@@ -13,7 +12,6 @@ import Typography from "@material-ui/core/Typography";
 import FavoriteIcon from "@material-ui/icons/Favorite";
 import Icon from "@material-ui/core/Icon";
 import ExpandMoreIcon from "@material-ui/icons/ExpandMore";
-import MoreVertIcon from "@material-ui/icons/MoreVert";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -37,21 +35,60 @@ const useStyles = makeStyles((theme) => ({
   },
   font: {
     fontFamily: "Comfortaa, cursive",
+    margin: 10,
   },
   boldFont: {
     fontFamily: "Comfortaa, cursive",
     fontWeight: "bold",
-    margin: 10
+    margin: 10,
   },
 }));
 
 export default function OrderCard(props) {
+
+  const calculateTimeLeft = () => {
+    const difference = +props.item.addTime + props.item.makeTime - +new Date();
+    let timeLeft = {};
+
+    if (difference > 0) {
+      timeLeft = {
+        days: Math.floor(difference / (1000 * 60 * 60 * 24)),
+        hours: Math.floor((difference / (1000 * 60 * 60)) % 24),
+        minutes: Math.floor((difference / 1000 / 60) % 60),
+        seconds: Math.floor((difference / 1000) % 60),
+      };
+    }
+
+    return timeLeft;
+  };
+
   const classes = useStyles();
   const [expanded, setExpanded] = React.useState(false);
+  const [timeLeft, setTimeLeft] = useState(calculateTimeLeft());
 
   const handleExpandClick = () => {
     setExpanded(!expanded);
   };
+
+  useEffect(() => {
+    setTimeout(() => {
+      setTimeLeft(calculateTimeLeft());
+    }, 1000);
+  });
+
+  const timerComponents = [];
+
+  Object.keys(timeLeft).forEach((interval) => {
+    if (!timeLeft[interval]) {
+      return;
+    }
+
+    timerComponents.push(
+      <span>
+        {timeLeft[interval]} {interval}{" "}
+      </span>
+    );
+  });
 
   return (
     <Card className={classes.root}>
@@ -65,11 +102,11 @@ export default function OrderCard(props) {
       </Typography>
       <Typography
         gutterBottom
-        variant="h5"
+        variant="h6"
         component="h2"
         className={classes.font}
       >
-        
+        {timerComponents.length ? timerComponents : <span>Time's up!</span>}
       </Typography>
       <CardMedia
         className={classes.media}

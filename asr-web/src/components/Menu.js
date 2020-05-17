@@ -50,8 +50,8 @@ export default function Menu(props) {
         image:
           "https://img-global.cpcdn.com/recipes/8b8c8c4bd551a902/1200x630cq70/photo.jpg",
         price: "99.-",
-        addTime: new Date(),
-        makeTime: 600
+        addTime: new Date(2020,4,17,21,31),
+        makeTime: 600000
       },
       {
         name: "samyan joke",
@@ -60,8 +60,8 @@ export default function Menu(props) {
         image:
           "https://img-global.cpcdn.com/recipes/8b8c8c4bd551a902/1200x630cq70/photo.jpg",
         price: "99.-",
-        addTime: new Date(),
-        makeTime: 500
+        addTime: new Date(2020,4,17,21,31),
+        makeTime: 300000
       },
     ]);
     setMenuItems([
