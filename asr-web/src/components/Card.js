@@ -11,8 +11,8 @@ import Backdrop from "@material-ui/core/Backdrop";
 
 const useStyles = makeStyles((theme) => ({
   root: {
-    maxWidth: 345,
-    minWidth: 345,
+    width: 345,
+    height: 345,
   },
   backdropCard: {
     maxWidth: 600,
@@ -67,7 +67,8 @@ export default function MenuCard(props) {
             component="p"
             className={classes.font}
           >
-            {props.item.text.length >= 50 && props.item.text.substring(0, 50) + "..."}
+            {props.item.text.length >= 50 &&
+              props.item.text.substring(0, 50) + "..."}
             {props.item.text.length < 50 && props.item.text}
           </Typography>
           <Typography

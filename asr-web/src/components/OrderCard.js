@@ -7,12 +7,11 @@ import CardMedia from "@material-ui/core/CardMedia";
 import CardContent from "@material-ui/core/CardContent";
 import CardActions from "@material-ui/core/CardActions";
 import Collapse from "@material-ui/core/Collapse";
-import Avatar from "@material-ui/core/Avatar";
+import DeleteIcon from "@material-ui/icons/Delete";
 import IconButton from "@material-ui/core/IconButton";
 import Typography from "@material-ui/core/Typography";
-import { red } from "@material-ui/core/colors";
 import FavoriteIcon from "@material-ui/icons/Favorite";
-import ShareIcon from "@material-ui/icons/Share";
+import Icon from "@material-ui/core/Icon";
 import ExpandMoreIcon from "@material-ui/icons/ExpandMore";
 import MoreVertIcon from "@material-ui/icons/MoreVert";
 
@@ -42,6 +41,7 @@ const useStyles = makeStyles((theme) => ({
   boldFont: {
     fontFamily: "Comfortaa, cursive",
     fontWeight: "bold",
+    margin: 10
   },
 }));
 
@@ -55,10 +55,25 @@ export default function OrderCard(props) {
 
   return (
     <Card className={classes.root}>
-      <CardHeader title={props.item.name} subheader="September 14, 2016" />
+      <Typography
+        gutterBottom
+        variant="h5"
+        component="h2"
+        className={classes.boldFont}
+      >
+        {props.item.name}
+      </Typography>
+      <Typography
+        gutterBottom
+        variant="h5"
+        component="h2"
+        className={classes.font}
+      >
+        
+      </Typography>
       <CardMedia
         className={classes.media}
-        image="/static/images/cards/paella.jpg"
+        image={props.item.image}
         title="Paella dish"
       />
       <CardContent>
@@ -77,7 +92,10 @@ export default function OrderCard(props) {
           <FavoriteIcon />
         </IconButton>
         <IconButton aria-label="share">
-          <ShareIcon />
+          <Icon className="fas fa-check-double" />
+        </IconButton>
+        <IconButton aria-label="calcel">
+          <DeleteIcon />
         </IconButton>
         <IconButton
           className={clsx(classes.expand, {

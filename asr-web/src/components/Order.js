@@ -106,7 +106,7 @@ export default function Menu(props) {
             justifyContent: "flex-start",
           }}
         >
-          {!props.loadingResult && items.map((item) => showItem(item))}
+          {items.map((item) => showItem(item))}
         </Box>
   );
 }

@@ -9,22 +9,19 @@ import CircularProgress from "@material-ui/core/CircularProgress";
 import Button from "@material-ui/core/Button";
 import "./Search.css";
 import Menu from "./Menu";
-import AppBar from '@material-ui/core/AppBar';
-import Tabs from '@material-ui/core/Tabs';
-import Tab from '@material-ui/core/Tab';
-import Typography from '@material-ui/core/Typography';
-import Box from '@material-ui/core/Box';
-import PropTypes from 'prop-types';
+import AppBar from "@material-ui/core/AppBar";
+import Tabs from "@material-ui/core/Tabs";
+import Tab from "@material-ui/core/Tab";
+import Typography from "@material-ui/core/Typography";
+import Box from "@material-ui/core/Box";
+import PropTypes from "prop-types";
+import ReserveTable from './ReserveTable'
 
 function TabPanel(props) {
   const { children, value, index, ...other } = props;
 
   return (
-    <div
-      role="tabpanel"
-      hidden={value !== index}
-      {...other}
-    >
+    <div role="tabpanel" hidden={value !== index} {...other}>
       {value === index && (
         <div p={3}>
           <Typography>{children}</Typography>
@@ -43,7 +40,7 @@ TabPanel.propTypes = {
 function a11yProps(index) {
   return {
     id: `scrollable-force-tab-${index}`,
-    'aria-controls': `scrollable-force-tabpanel-${index}`,
+    "aria-controls": `scrollable-force-tabpanel-${index}`,
   };
 }
 
@@ -349,20 +346,45 @@ export default function Search() {
             textColor="primary"
             centered
           >
-            <Tab label="Booking" icon={<Icon className="fas fa-chair" style={{ fontSize: 24 }} />} {...a11yProps(0)} />
-            <Tab label="Menu" icon={<Icon className="fas fa-book-open" style={{ fontSize: 24 }} />} {...a11yProps(1)} />
-            <Tab  label="Order" icon={<Icon className="fas fa-clipboard-list" style={{ fontSize: 24 }} />} {...a11yProps(2)} />
-            <Tab label="Billing" icon={<Icon className="fas fa-money-bill" style={{ fontSize: 24 }} />} {...a11yProps(3)} />
+            <Tab
+              label="Booking"
+              icon={<Icon className="fas fa-chair" style={{ fontSize: 24 }} />}
+              {...a11yProps(0)}
+            />
+            <Tab
+              label="Menu"
+              icon={
+                <Icon className="fas fa-book-open" style={{ fontSize: 24 }} />
+              }
+              {...a11yProps(1)}
+            />
+            <Tab
+              label="Order"
+              icon={
+                <Icon
+                  className="fas fa-clipboard-list"
+                  style={{ fontSize: 24 }}
+                />
+              }
+              {...a11yProps(2)}
+            />
+            <Tab
+              label="Billing"
+              icon={
+                <Icon className="fas fa-money-bill" style={{ fontSize: 24 }} />
+              }
+              {...a11yProps(3)}
+            />
           </Tabs>
         </AppBar>
         <TabPanel value={value} index={0}>
-          Item One
+          <ReserveTable />
         </TabPanel>
         <TabPanel value={value} index={1}>
-          <Menu loadingResult={loadingResult} state='menu'/>
+          <Menu loadingResult={loadingResult} state="menu" />
         </TabPanel>
         <TabPanel value={value} index={2}>
-        <Menu loadingResult={loadingResult} state='order'/>
+          <Menu loadingResult={loadingResult} state="order" />
         </TabPanel>
         <TabPanel value={value} index={3}>
           Item Four

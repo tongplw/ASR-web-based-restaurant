@@ -19,17 +19,9 @@ const useStyles = makeStyles((theme) => ({
   }));
 
   const showItem = (item) => {
-    let newItem = item;
-    if(item.status === "booked"){
-        return (
-            <Box p={1} css={{ wordWrap: "break-word" }}>
-              <TableRed item={newItem} />
-            </Box>
-          );
-    }
     return (
       <Box p={1} css={{ wordWrap: "break-word" }}>
-        <Table item={newItem} />
+        <Table item={item} />
       </Box>
     );
   };
@@ -50,7 +42,7 @@ const useStyles = makeStyles((theme) => ({
             tableNo: "1",
             title: "Available",
             name: "sweet Table",
-            status : "free",
+            status : true,
             image:
               "https://ezeesmarthotel.com/assets/images/cloudpos/quick_table_management.png",
           },
@@ -58,7 +50,7 @@ const useStyles = makeStyles((theme) => ({
             tableNo: "2",
             title: "Unavaiable",
             name: "good steak",
-            status : "booked",
+            status : false,
             image:
               "https://ezeesmarthotel.com/assets/images/cloudpos/quick_table_management.png",
           },
@@ -66,7 +58,7 @@ const useStyles = makeStyles((theme) => ({
             tableNo: "3",
             title: "Available",
             name: "good steak",
-            status : "free",
+            status : true,
             image:
               "https://ezeesmarthotel.com/assets/images/cloudpos/quick_table_management.png",
           },
@@ -74,7 +66,7 @@ const useStyles = makeStyles((theme) => ({
             tableNo: "4",
             title: "Available",
             name: "good steak",
-            status : "free",
+            status : true,
             image:
               "https://ezeesmarthotel.com/assets/images/cloudpos/quick_table_management.png",
           },
@@ -82,50 +74,10 @@ const useStyles = makeStyles((theme) => ({
             tableNo: "5",
             title: "Unavaiable",
             name: "good steak",
-            status : "booked",
+            status : false,
             image:
               "https://ezeesmarthotel.com/assets/images/cloudpos/quick_table_management.png",
           },
-        //   {
-        //     tableNo: "6",
-        //     title: "Available",
-        //     name: "good steak",
-        //     status : "free",
-        //     image:
-        //       "https://ezeesmarthotel.com/assets/images/cloudpos/quick_table_management.png",
-        //   },
-        //   {
-        //     tableNo: "7",
-        //     title: "Available",
-        //     name: "good steak",
-        //     status : "free",
-        //     image:
-        //       "https://ezeesmarthotel.com/assets/images/cloudpos/quick_table_management.png",
-        //   },
-        //   {
-        //     tableNo: "8",
-        //     title: "Available",
-        //     name: "good steak",
-        //     status : "free",
-        //     image:
-        //       "https://ezeesmarthotel.com/assets/images/cloudpos/quick_table_management.png",
-        //   },
-        //   {
-        //     tableNo: "9",
-        //     title: "Unavaiable",
-        //     name: "good steak",
-        //     status : "booked",
-        //     image:
-        //       "https://ezeesmarthotel.com/assets/images/cloudpos/quick_table_management.png",
-        //   },
-        //   {
-        //     tableNo: "10",
-        //     title: "Unavaiable",
-        //     name: "good steak",
-        //     status : "booked",
-        //     image:
-        //       "https://ezeesmarthotel.com/assets/images/cloudpos/quick_table_management.png",
-        //   },
         ]);
         setMessage("Push to speak");
         return () => {
@@ -146,7 +98,7 @@ const useStyles = makeStyles((theme) => ({
             maxWidth: "100%",
             height: "100%",
             overflow: true,
-            justifyContent: "flex-start",
+            justifyContent: "space-evenly",
           }}
         >
           {items.map((item) => showItem(item))}
