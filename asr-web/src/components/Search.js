@@ -16,6 +16,7 @@ import Tab from "@material-ui/core/Tab";
 import Typography from "@material-ui/core/Typography";
 import PropTypes from "prop-types";
 import ReserveTable from './ReserveTable'
+import axios from 'axios';
 
 function TabPanel(props) {
   const { children, value, index, ...other } = props;
@@ -111,6 +112,7 @@ export default function Search() {
   const [loadingResult, setLoadingResult] = React.useState(false);
   const [success, setSuccess] = React.useState(false);
   const [textFiledInput, setTextFieldInput] = useState();
+  const [textField, setTextField] = useState();
   const timer = React.useRef();
   const classes = useStyles();
   const [value, setValue] = React.useState(0);
@@ -192,7 +194,10 @@ export default function Search() {
     dc.onmessage = function (evt) {
       var msg = evt.data;
       console.log("received:" + msg);
-      if (msg.length > 1) setTextFieldInput(msg);
+      if (msg.length > 1) {
+        setTextFieldInput(msg);
+        setTextField(msg)
+      }
       if (msg.endsWith("\n")) {
         console.log("asd");
       } else if (msg.endsWith("\r")) {
@@ -269,13 +274,20 @@ export default function Search() {
   const handleSearchClick = () => {
     setTextFieldInput(textFiledInput)
     let inputForm = document.getElementById("filled-basic")
-    console.log(inputForm)
-    console.log("axios");
+    console.log(`textField : ${textField}`);
+    let sendData = {
+      "orders" : textField
+    }
+    axios.post(`http://localhost:8080/textfield`, sendData).then(res => {
+        //console.log(res);
+        console.log(res.data);
+    })
     setLoadingResult(true);
   };
 
   const onTextFieldChange = (e) => {
     console.log(e);
+    setTextField(e)
   };
 
   useEffect(() => {
@@ -298,7 +310,7 @@ export default function Search() {
             <TextField
               id="filled-basic"
               variant="filled"
-              onChange={(e) => onTextFieldChange(e.target.placeholder)}
+              onChange={(e) => onTextFieldChange(e.target.value)}
               value={textFiledInput}
             />
             <Button
