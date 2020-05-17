@@ -15,6 +15,7 @@ import Tab from '@material-ui/core/Tab';
 import Typography from '@material-ui/core/Typography';
 import Box from '@material-ui/core/Box';
 import PropTypes from 'prop-types';
+import axios from 'axios';
 
 function TabPanel(props) {
   const { children, value, index, ...other } = props;
@@ -114,6 +115,7 @@ export default function Search() {
   const [loadingResult, setLoadingResult] = React.useState(false);
   const [success, setSuccess] = React.useState(false);
   const [textFiledInput, setTextFieldInput] = useState();
+  const [textField, setTextField] = useState();
   const timer = React.useRef();
   const classes = useStyles();
   const [value, setValue] = React.useState(0);
@@ -195,7 +197,10 @@ export default function Search() {
     dc.onmessage = function (evt) {
       var msg = evt.data;
       console.log("received:" + msg);
-      if (msg.length > 1) setTextFieldInput(msg);
+      if (msg.length > 1) {
+        setTextFieldInput(msg);
+        setTextField(msg)
+      }
       if (msg.endsWith("\n")) {
         console.log("asd");
       } else if (msg.endsWith("\r")) {
@@ -270,9 +275,15 @@ export default function Search() {
   };
 
   const handleSearchClick = () => {
-    let inputForm = document.getElementById("filled-basic");
-    console.log(inputForm);
+    console.log(`textField : ${textField}`);
     console.log("axios");
+    let sendData = {
+      "orders" : textField
+    }
+    axios.post(`http://localhost:8080/textfield`, sendData).then(res => {
+        //console.log(res);
+        console.log(res.data);
+    })
     setLoadingResult(true);
     const location = window.navigator && window.navigator.geolocation;
     if (location) {
@@ -287,6 +298,7 @@ export default function Search() {
 
   const onTextFieldChange = (e) => {
     console.log(e);
+    setTextField(e)
   };
 
   React.useEffect(() => {
@@ -308,7 +320,7 @@ export default function Search() {
             <TextField
               id="filled-basic"
               variant="filled"
-              onChange={(e) => onTextFieldChange(e.target.placeholder)}
+              onChange={(e) => onTextFieldChange(e.target.value)}
               value={textFiledInput}
             />
             <Button
