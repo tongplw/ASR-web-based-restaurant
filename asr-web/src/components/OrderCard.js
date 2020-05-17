@@ -106,7 +106,7 @@ export default function OrderCard(props) {
         component="h2"
         className={classes.font}
       >
-        {timerComponents.length ? timerComponents : <span>Time's up!</span>}
+        {timerComponents.length ? timerComponents : <span>Your order is ready!</span>}
       </Typography>
       <CardMedia
         className={classes.media}

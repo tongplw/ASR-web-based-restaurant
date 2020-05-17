@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { makeStyles } from "@material-ui/core/styles";
 import { green, white } from "@material-ui/core/colors";
 import TextField from "@material-ui/core/TextField";
@@ -9,11 +9,11 @@ import CircularProgress from "@material-ui/core/CircularProgress";
 import Button from "@material-ui/core/Button";
 import "./Search.css";
 import Menu from "./Menu";
+import Billing from "./Billing";
 import AppBar from "@material-ui/core/AppBar";
 import Tabs from "@material-ui/core/Tabs";
 import Tab from "@material-ui/core/Tab";
 import Typography from "@material-ui/core/Typography";
-import Box from "@material-ui/core/Box";
 import PropTypes from "prop-types";
 import ReserveTable from './ReserveTable'
 
@@ -271,22 +271,13 @@ export default function Search() {
     console.log(inputForm);
     console.log("axios");
     setLoadingResult(true);
-    const location = window.navigator && window.navigator.geolocation;
-    if (location) {
-      location.getCurrentPosition((position) => {
-        setLatitude(position.coords.latitude);
-        setLongitude(position.coords.longitude);
-        setLoadingResult(false);
-        console.log(position.coords.latitude, position.coords.longitude);
-      });
-    }
   };
 
   const onTextFieldChange = (e) => {
     console.log(e);
   };
 
-  React.useEffect(() => {
+  useEffect(() => {
     const node = loadCSS(
       "https://use.fontawesome.com/releases/v5.12.0/css/all.css",
       document.querySelector("#font-awesome-css")
@@ -296,9 +287,10 @@ export default function Search() {
       node.parentNode.removeChild(node);
     };
   }, []);
+  
   return (
     <div>
-      <div id="searchBar">
+      <div id="searchBar" style={{ width: "100%", height: 400}}>
         <h1 id="text">{message}</h1>
         <div className={classes.search}>
           <form className={classes.root}>
@@ -313,12 +305,12 @@ export default function Search() {
               color="default"
               className={classes.button}
               startIcon={
-                <Icon className="fas fa-search" style={{ fontSize: 15 }} />
+                <Icon className="fas fa-check" style={{ fontSize: 15 }} />
               }
               style={{ marginTop: 15 }}
               onClick={handleSearchClick}
             >
-              Search
+              Submit
             </Button>
           </form>
         </div>
@@ -337,7 +329,7 @@ export default function Search() {
           </div>
         </div>
       </div>
-      <div style={{ width: "100%" }}>
+      <div style={{ width: "100%", minHeight: 400}}>
         <AppBar position="static" color="default">
           <Tabs
             value={value}
@@ -371,7 +363,7 @@ export default function Search() {
             <Tab
               label="Billing"
               icon={
-                <Icon className="fas fa-money-bill" style={{ fontSize: 24 }} />
+                <Icon className="fas fa-dollar-sign" style={{ fontSize: 24 }} />
               }
               {...a11yProps(3)}
             />
@@ -381,25 +373,14 @@ export default function Search() {
           <ReserveTable />
         </TabPanel>
         <TabPanel value={value} index={1}>
-          <Menu loadingResult={loadingResult} state="menu" />
+          <Menu state="menu" />
         </TabPanel>
         <TabPanel value={value} index={2}>
-          <Menu loadingResult={loadingResult} state="order" />
+          <Menu state="order" />
         </TabPanel>
         <TabPanel value={value} index={3}>
-          Item Four
+          <Billing />
         </TabPanel>
-        {loadingResult && (
-          <div
-            style={{
-              textAlignment: "center",
-              justifyContent: "center",
-              display: "flex",
-            }}
-          >
-            <CircularProgress size={68} />
-          </div>
-        )}
       </div>
     </div>
   );

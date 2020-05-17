@@ -8,6 +8,8 @@ import CardMedia from "@material-ui/core/CardMedia";
 import Button from "@material-ui/core/Button";
 import Typography from "@material-ui/core/Typography";
 import Backdrop from "@material-ui/core/Backdrop";
+import TextField from '@material-ui/core/TextField';
+import MenuItem from '@material-ui/core/MenuItem';
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -31,9 +33,37 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
+const currencies = [
+  {
+    value: 1,
+    label: '1',
+  },
+  {
+    value: 2,
+    label: '2',
+  },
+  {
+    value: 3,
+    label: '3',
+  },
+  {
+    value: 4,
+    label: '4',
+  },
+  {
+    value: 5,
+    label: '5',
+  },
+];
+
 export default function MenuCard(props) {
   const classes = useStyles();
   const [open, setOpen] = React.useState(false);
+  const [currency, setCurrency] = React.useState(1);
+
+  const handleChange = (event) => {
+    setCurrency(event.target.value);
+  };
   const handleClose = () => {
     setOpen(false);
   };
@@ -83,6 +113,20 @@ export default function MenuCard(props) {
         </CardContent>
       </CardActionArea>
       <CardActions>
+        <TextField
+          id="outlined-select-number"
+          select
+          value={currency}
+          onChange={handleChange}
+          variant="outlined"
+          size="small"
+        >
+          {currencies.map((option) => (
+            <MenuItem key={option.value} value={option.value}>
+              {option.label}
+            </MenuItem>
+          ))}
+        </TextField>
         <Button size="small" color="primary" className={classes.font}>
           Order
         </Button>

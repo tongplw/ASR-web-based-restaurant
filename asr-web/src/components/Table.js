@@ -14,9 +14,10 @@ import Icon from "@material-ui/core/Icon";
 const useStyles = makeStyles((theme) => ({
   root: {
     width: 250,
-    height: 200,
+    height: 280,
     overflow: true,
     justifyContent: "flex-start",
+    fontFamily: "Comfortaa, cursive",
   },
   media: {
     height: 0,
@@ -38,17 +39,13 @@ const useStyles = makeStyles((theme) => ({
   green: {
     backgroundColor: green[500],
   },
+  font: {
+    fontFamily: "Comfortaa, cursive",
+  },
 }));
 
 export default function RecipeReviewCard(props) {
   const classes = useStyles();
-  const [expanded, setExpanded] = React.useState(false);
-
-  const handleExpandClick = () => {
-    setExpanded(!expanded);
-  };
-  console.log(props.item.status);
-
   if (props.item.status) {
     return (
       <Card className={classes.root}>
@@ -63,12 +60,11 @@ export default function RecipeReviewCard(props) {
               <Icon className="fas fa-check" />
             </IconButton>
           }
-          title={props.item.title}
         />
         <CardMedia className={classes.media} image="table.jpg" />
         <CardContent>
-          <Typography variant="body2" color="textSecondary" component="p">
-            {/* {props.item.name} */}
+          <Typography variant="h5" color="primary" component="p" className={classes.font}>
+            {props.item.title}
           </Typography>
         </CardContent>
       </Card>
@@ -82,12 +78,11 @@ export default function RecipeReviewCard(props) {
               {props.item.tableNo}
             </Avatar>
           }
-          title={props.item.title}
         />
         <CardMedia className={classes.media} image="table.jpg" />
         <CardContent>
-          <Typography variant="body2" color="textSecondary" component="p">
-            {/* {props.item.name} */}
+          <Typography variant="h5" color="primary" component="p" className={classes.font}>
+            {props.item.title}
           </Typography>
         </CardContent>
       </Card>
