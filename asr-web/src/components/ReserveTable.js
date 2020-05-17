@@ -3,7 +3,7 @@ import clsx from 'clsx';
 import { makeStyles } from '@material-ui/core/styles';
 import Box from "@material-ui/core/Box";
 import Table from './Table'
-import TableRed from './tableRed'
+import TableRed from './TableRed'
 import { loadCSS } from "fg-loadcss";
 
 const useStyles = makeStyles((theme) => ({
@@ -132,9 +132,26 @@ const useStyles = makeStyles((theme) => ({
           node.parentNode.removeChild(node);
         };
       }, []);
-    return (
-      <div className={classes.root}>
+    return (       
+      <div className={classes.root} style={{ width: "100%" }}>
+          <Box
+          display="flex"
+          flexWrap="wrap"
+          alignContent="flex-start"
+          alignItems="flex-start"
+          p={1}
+          m={1}
+          bgcolor="background.paper"
+          css={{
+            maxWidth: "100%",
+            height: "100%",
+            overflow: true,
+            justifyContent: "flex-start",
+          }}
+        >
           {items.map((item) => showItem(item))}
+        </Box>
+          
       </div>
     );
   }
