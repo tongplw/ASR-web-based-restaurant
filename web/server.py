@@ -10,6 +10,7 @@ from aiohttp import web
 from aiohttp.web_exceptions import HTTPServiceUnavailable
 from aiortc import RTCSessionDescription, RTCPeerConnection
 from kaldi import KaldiSink, kaldi_server_queue
+import aiohttp_cors
 
 ROOT = Path(__file__).parent
 
@@ -32,6 +33,9 @@ async def offer(request):
     kaldi_server = await kaldi_server_queue.get()
     if not kaldi_server:
         raise HTTPServiceUnavailable()
+
+    # if not kaldi_server:
+    #     raise HTTPGatewayTimeout()
 
     params = await request.json()
     offer = RTCSessionDescription(
@@ -124,6 +128,19 @@ if __name__ == '__main__':
     app.router.add_get('/search', search)
     app.router.add_post('/offer', offer)
     app.router.add_static('/static/', path=ROOT / 'static', name='static')
+
+    # Configure default CORS settings.
+    cors = aiohttp_cors.setup(app, defaults={
+        "*": aiohttp_cors.ResourceOptions(
+                allow_credentials=True,
+                expose_headers="*",
+                allow_headers="*",
+            )
+    })
+
+    # Configure CORS on all routes.
+    for route in list(app.router.routes()):
+        cors.add(route)
 
     kaldi_server_queue.load(args.servers)
 

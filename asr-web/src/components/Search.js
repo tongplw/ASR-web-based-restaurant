@@ -85,6 +85,132 @@ const showItem = (item) => {
   );
 };
 
+var pc = null;
+var dc = null, dcInterval = null;
+
+// negitiate
+function negotiate() {
+  return pc.createOffer().then(offer => {
+      return pc.setLocalDescription(offer);
+  }).then( () => {
+      return new Promise( (resolve) => {
+          if (pc.iceGatheringState === 'complete') {
+              resolve();
+          } else {
+              function checkState() {
+                  if (pc.iceGatheringState === 'complete') {
+                      pc.removeEventListener('icegatheringstatechange', checkState);
+                      resolve();
+                  }
+              }
+
+              pc.addEventListener('icegatheringstatechange', checkState);
+          }
+      });
+  }).then( async () => {
+      var offer = pc.localDescription;
+      console.log(offer.sdp);
+      return await fetch('http://localhost:8080/offer', {
+          body: JSON.stringify({
+              sdp: offer.sdp,
+              type: offer.type,
+          }),
+          headers: {
+              'Content-Type': 'application/json'
+          },
+          method: 'POST'
+      });
+  }).then((response) => {
+      return response.json();
+  }).then( (answer) => {
+      console.log(answer.sdp);
+      return pc.setRemoteDescription(answer);
+  }).catch( e => {
+      stop()
+      console.log(e);
+  });
+}
+
+// start connection
+function start() {
+  console.log("start");
+  var config = {
+      sdpSemantics: 'unified-plan'
+  };
+
+  pc = new RTCPeerConnection(config);
+
+  var parameters = {"id":69};
+
+  dc = pc.createDataChannel('chat_asr', parameters);
+  dc.onclose = function () {
+      clearInterval(dcInterval);
+      console.log('Closed data channel');
+  };
+  dc.onopen = function () {
+      console.log('Opened data channel');
+  };
+  dc.onmessage = function (evt) {
+      var msg = evt.data;
+      console.log("received:" + msg);
+      if (msg.endsWith('\n')) {
+          console.log("asd");
+      } else if (msg.endsWith('\r')) {
+          console.log("endline");
+      } else {
+          console.log("asd");
+      }
+  };
+
+  pc.oniceconnectionstatechange = function () {
+      if (pc.iceConnectionState == 'disconnected') {
+          console.log('Disconnected');
+      }
+  }
+
+  var constraints = {
+      audio: true,
+      video: false
+  };
+
+  navigator.mediaDevices.getUserMedia(constraints).then( (stream) => {
+      stream.getTracks().forEach(function (track) {
+          pc.addTrack(track, stream);
+      });
+      return negotiate();
+  }, function (err) {
+      console.log('Could not acquire media: ' + err);
+  });
+}
+
+// stop connection
+function stop() {
+
+  // close data channel
+  if (dc) {
+      dc.close();
+  }
+
+  // close transceivers
+  if (pc.getTransceivers) {
+      pc.getTransceivers().forEach(function (transceiver) {
+          if (transceiver.stop) {
+              transceiver.stop();
+          }
+      });
+  }
+
+  // close local audio / video
+  pc.getSenders().forEach(function (sender) {
+      sender.track.stop();
+  });
+
+  // close peer connection
+  setTimeout(function () {
+      pc.close();
+  }, 500);
+}
+
 export default function Search() {
   const [latitude, setLatitude] = useState(0.0);
   const [longitude, setLongitude] = useState(0.0);
@@ -99,10 +225,16 @@ export default function Search() {
     if (!loading) {
       setSuccess(false);
       setLoading(true);
-      timer.current = setTimeout(() => {
-        setSuccess(true);
-        setLoading(false);
-      }, 2000);
+      start();
+      // timer.current = setTimeout(() => {
+      //   setSuccess(true);
+      //   setLoading(false);
+      // }, 2000);
+    }
+    else if(loading){
+      setSuccess(true);
+      setLoading(false);
+      stop();
     }
   };
 
