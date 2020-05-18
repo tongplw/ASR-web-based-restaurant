@@ -85,6 +85,14 @@ export default function MenuCard(props) {
     console.log("axios update table");
     window.location.assign("/");
   };
+  React.useEffect(() => {
+    if(props.command === "order") {
+      setOpenOrder(true)
+    }
+    else if(props.command === "more") {
+      setOpen(true)
+    }
+  },[]);
   return (
     <Card className={classes.root}>
       <CardActionArea>
