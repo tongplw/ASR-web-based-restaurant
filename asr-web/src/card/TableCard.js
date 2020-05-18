@@ -184,7 +184,7 @@ export default function RecipeReviewCard(props) {
                   component="h2"
                   className={classes.boldFont}
                 >
-                  โต๊ะนี้ถูกจองแล้ว {props.item.tableNo}
+                  โต๊ะนี้ถูกจองแล้ว
                 </Typography>                
               </CardContent>
             </CardActionArea>
