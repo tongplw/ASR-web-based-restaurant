@@ -232,9 +232,19 @@ async def textfield(request) :
         res.status = True
         res.value = ["menu"]
     if "ราคา" in orders :
-        res.key = "menu"
+        res.key = "price"
         res.status = True
-        res.value = ["menu"]
+        res.value = ["price"]
+    if "ให้" in orders :
+        if ( "ดาว" in orders ) or ( "คะแนน" in orders ) :   
+            res.key = "star"
+            res.status = True
+            res.value = ["star"]
+    if ("คิด" in orders) or ("จ่าย" in orders) or ("เก็บ" in orders) :
+        if ( "ตัง" in orders ) or ( "เงิน" in orders ) :   
+            res.key = "bill"
+            res.status = True
+            res.value = ["bill"]
     jsonStr = json.dumps(res.__dict__,ensure_ascii=False)
     return web.Response(content_type='text/html', text=str(jsonStr))
     #return web.json_response(jsonStr)
