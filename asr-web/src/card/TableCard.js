@@ -81,7 +81,7 @@ export default function RecipeReviewCard(props) {
   }
   React.useEffect(() => {
     setOpen(props.openBackdrop)
-  });
+  },[]);
   if (props.item.status) {
     return (
       <Card className={classes.root}>
