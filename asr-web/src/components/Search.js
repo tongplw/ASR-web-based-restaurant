@@ -114,7 +114,7 @@ export default function Search() {
   const [menuItems, setMenuItems] = useState([])
   const [orderItems, setOrderItems] = useState([])
   const [tableItems, setTableItems] = useState([])
-  const [tableNo, settableNo] = useState(0)
+  const [tableNo, setTableNo] = useState(0)
   const [menuName, setMenuName] = useState("")
   const [menuCommand, setMenuCommand] = useState("")
 
@@ -259,6 +259,9 @@ export default function Search() {
     }, 500)
   }
   const handleListenClick = () => {
+    console.log(`tableNo_outAxios : ${tableNo}`)
+    //setValue(0)
+    //setTableNo(4)
     if (!loading) {
       setMessage("Please wait")
       setLoading(true)
@@ -274,8 +277,15 @@ export default function Search() {
       }
       axios.post(`http://localhost:8080/textfield`, sendData).then((res) => {
         //console.log(res)
-        console.log(res.data)
-      })
+        console.log(res.data);
+        let message =res.data
+        if (message.key === "table") {
+          //console.log("table command",message.tableNo)
+          setValue(0)
+          setTableNo(4)
+          console.log(`tableNo_inAxios : ${tableNo}`)
+        }
+      });
     }
   }
 
