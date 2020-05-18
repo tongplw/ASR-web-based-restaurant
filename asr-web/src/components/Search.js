@@ -474,7 +474,7 @@ export default function Search() {
           </Tabs>
         </AppBar>
         <TabPanel value={value} index={0}>
-          <ReserveTable tableItems={tableItems} tableNo={tableNo}/>
+          <ReserveTable tableItems={tableItems} tableNo={tableNo} setTableNo={setTableNo}/>
         </TabPanel>
         <TabPanel value={value} index={1}>
           <Menu state="menu" menuItems={menuItems} menuName={menuName} menuCommand={menuCommand}/>

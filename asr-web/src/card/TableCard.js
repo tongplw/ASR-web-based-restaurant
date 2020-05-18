@@ -71,16 +71,19 @@ export default function RecipeReviewCard(props) {
   const [open, setOpen] = React.useState(false);
   const handleClose = () => {
     setOpen(false);
+    if (props.setTableNo) {
+      props.setTableNo(0);
+    }
   };
   const handleToggle = () => {
     setOpen(!open);
   };
   const handleBook = () => {
     console.log("axios update table");
-    window.location.assign('/')
-  }
+    window.location.assign("/");
+  };
   React.useEffect(() => {
-    setOpen(props.openBackdrop)
+    setOpen(props.openBackdrop);
   });
   if (props.item.status) {
     return (
@@ -124,25 +127,26 @@ export default function RecipeReviewCard(props) {
                 >
                   ยืนยันที่จะจองโต๊ะที่ {props.item.tableNo}
                 </Typography>
-                <div style={{display: "flex", justifyContent: "space-evenly"}}>
+                <div
+                  style={{ display: "flex", justifyContent: "space-evenly" }}
+                >
                   <Button
-                  size="medium"
-                  color="primary"
-                  className={classes.font}
-                  onClick={handleBook}
-                >
-                  ใช่
-                </Button>
-                <Button
-                  size="medium"
-                  color="primary"
-                  className={classes.font}
-                  onClick={handleClose}
-                >
-                  ไม่
-                </Button>
+                    size="medium"
+                    color="primary"
+                    className={classes.font}
+                    onClick={handleBook}
+                  >
+                    ใช่
+                  </Button>
+                  <Button
+                    size="medium"
+                    color="primary"
+                    className={classes.font}
+                    onClick={handleClose}
+                  >
+                    ไม่
+                  </Button>
                 </div>
-                
               </CardContent>
             </CardActionArea>
           </Card>
@@ -185,7 +189,7 @@ export default function RecipeReviewCard(props) {
                   className={classes.boldFont}
                 >
                   โต๊ะนี้ถูกจองแล้ว
-                </Typography>                
+                </Typography>
               </CardContent>
             </CardActionArea>
           </Card>

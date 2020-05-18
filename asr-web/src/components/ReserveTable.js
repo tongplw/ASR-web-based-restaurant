@@ -22,7 +22,7 @@ export default function ReserveTable(props) {
     if (item.tableNo === props.tableNo) {
       return (
         <Box p={1} css={{ wordWrap: "break-word" }}>
-          <Table item={item} openBackdrop={true}/>
+          <Table item={item} openBackdrop={true} setTableNo={props.setTableNo}/>
         </Box>
       );
     } else {
