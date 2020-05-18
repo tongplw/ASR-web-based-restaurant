@@ -1,0 +1,5 @@
+# cat data/exp/chain/tdnn1r_sp_online/decode_dev/scoring/14.0.5.tra | utils/int2sym.pl -f 2- data/exp/chain/tree_a_sp/graph/words.txt | sed s:\<UNK\>::g | compute-wer --text --mode=present ark:data/exp/chain/tdnn1r_sp_online/decode_dev/scoring/test_filt.txt ark,p:- >& data/exp/chain/tdnn1r_sp_online/decode_dev/wer_14_0.5 
+# Started at Thu May 14 15:32:24 UTC 2020
+#
+# Accounting: time=1 threads=1
+# Ended (code 0) at Thu May 14 15:32:25 UTC 2020, elapsed time 1 seconds

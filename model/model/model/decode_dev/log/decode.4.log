@@ -1,0 +1,250 @@
+# online2-wav-nnet3-latgen-faster --do-endpointing=false --frames-per-chunk=20 --extra-left-context-initial=0 --online=true --frame-subsampling-factor=3 --config=data/exp/chain/tdnn1r_sp_online/conf/online.conf --min-active=200 --max-active=7000 --beam=15.0 --lattice-beam=6.0 --acoustic-scale=1.0 --word-symbol-table=data/exp/chain/tree_a_sp/graph/words.txt data/exp/chain/tdnn1r_sp_online/final.mdl data/exp/chain/tree_a_sp/graph/HCLG.fst ark:data/train/split4/4/spk2utt "ark,s,cs:wav-copy scp,p:data/train/split4/4/wav.scp ark:- |" "ark:|lattice-scale --acoustic-scale=10.0 ark:- ark:- | gzip -c >data/exp/chain/tdnn1r_sp_online/decode_dev/lat.4.gz" 
+# Started at Thu May 14 15:29:32 UTC 2020
+#
+online2-wav-nnet3-latgen-faster --do-endpointing=false --frames-per-chunk=20 --extra-left-context-initial=0 --online=true --frame-subsampling-factor=3 --config=data/exp/chain/tdnn1r_sp_online/conf/online.conf --min-active=200 --max-active=7000 --beam=15.0 --lattice-beam=6.0 --acoustic-scale=1.0 --word-symbol-table=data/exp/chain/tree_a_sp/graph/words.txt data/exp/chain/tdnn1r_sp_online/final.mdl data/exp/chain/tree_a_sp/graph/HCLG.fst ark:data/train/split4/4/spk2utt 'ark,s,cs:wav-copy scp,p:data/train/split4/4/wav.scp ark:- |' 'ark:|lattice-scale --acoustic-scale=10.0 ark:- ark:- | gzip -c >data/exp/chain/tdnn1r_sp_online/decode_dev/lat.4.gz' 
+LOG (online2-wav-nnet3-latgen-faster[5.5.0~1494-e5a5]:ComputeDerivedVars():ivector-extractor.cc:183) Computing derived variables for iVector extractor
+LOG (online2-wav-nnet3-latgen-faster[5.5.0~1494-e5a5]:ComputeDerivedVars():ivector-extractor.cc:204) Done.
+LOG (online2-wav-nnet3-latgen-faster[5.5.0~1494-e5a5]:RemoveOrphanNodes():nnet-nnet.cc:948) Removed 1 orphan nodes.
+LOG (online2-wav-nnet3-latgen-faster[5.5.0~1494-e5a5]:RemoveOrphanComponents():nnet-nnet.cc:847) Removing 2 orphan components.
+LOG (online2-wav-nnet3-latgen-faster[5.5.0~1494-e5a5]:Collapse():nnet-utils.cc:1472) Added 1 components, removed 2
+LOG (online2-wav-nnet3-latgen-faster[5.5.0~1494-e5a5]:CompileLooped():nnet-compile-looped.cc:345) Spent 0.022212 seconds in looped compilation.
+wav-copy scp,p:data/train/split4/4/wav.scp ark:- 
+WARNING (wav-copy[5.5.0~1494-e5a5]:Read():wave-reader.cc:260) Expected 57682 bytes in RIFF chunk, but after first data block there will be 36 + 57586 bytes (we do not support reading multiple data chunks).
+lattice-scale --acoustic-scale=10.0 ark:- ark:- 
+WARNING (wav-copy[5.5.0~1494-e5a5]:Read():wave-reader.cc:260) Expected 117868 bytes in RIFF chunk, but after first data block there will be 36 + 117772 bytes (we do not support reading multiple data chunks).
+M6030416021_0000 โกวาจี 
+LOG (online2-wav-nnet3-latgen-faster[5.5.0~1494-e5a5]:main():online2-wav-nnet3-latgen-faster.cc:296) Decoded utterance M6030416021_0000
+WARNING (wav-copy[5.5.0~1494-e5a5]:Read():wave-reader.cc:260) Expected 82944 bytes in RIFF chunk, but after first data block there will be 36 + 82848 bytes (we do not support reading multiple data chunks).
+M6030416021_0001 โกวาจี ต่อ ราดหน้า หนึ่ง จาน 
+LOG (online2-wav-nnet3-latgen-faster[5.5.0~1494-e5a5]:main():online2-wav-nnet3-latgen-faster.cc:296) Decoded utterance M6030416021_0001
+WARNING (wav-copy[5.5.0~1494-e5a5]:Read():wave-reader.cc:260) Expected 101892 bytes in RIFF chunk, but after first data block there will be 36 + 101796 bytes (we do not support reading multiple data chunks).
+M6030416021_0003 ส้มตำ ติด เม็ด ครึ่ง 
+LOG (online2-wav-nnet3-latgen-faster[5.5.0~1494-e5a5]:main():online2-wav-nnet3-latgen-faster.cc:296) Decoded utterance M6030416021_0003
+WARNING (wav-copy[5.5.0~1494-e5a5]:Read():wave-reader.cc:260) Expected 99662 bytes in RIFF chunk, but after first data block there will be 36 + 99566 bytes (we do not support reading multiple data chunks).
+M6030416021_0004 เอา ข้าว ผัด หมู ไข่ดาว จาน นึง 
+LOG (online2-wav-nnet3-latgen-faster[5.5.0~1494-e5a5]:main():online2-wav-nnet3-latgen-faster.cc:296) Decoded utterance M6030416021_0004
+WARNING (wav-copy[5.5.0~1494-e5a5]:Read():wave-reader.cc:260) Expected 87402 bytes in RIFF chunk, but after first data block there will be 36 + 87306 bytes (we do not support reading multiple data chunks).
+M6030416021_0005 เอา คั่ว ไก่ ใส่ หมู จาน 
+LOG (online2-wav-nnet3-latgen-faster[5.5.0~1494-e5a5]:main():online2-wav-nnet3-latgen-faster.cc:296) Decoded utterance M6030416021_0005
+WARNING (wav-copy[5.5.0~1494-e5a5]:Read():wave-reader.cc:260) Expected 112666 bytes in RIFF chunk, but after first data block there will be 36 + 112570 bytes (we do not support reading multiple data chunks).
+M6030416021_0007 น้ำแข็ง เปล่า แก้ว นึง 
+LOG (online2-wav-nnet3-latgen-faster[5.5.0~1494-e5a5]:main():online2-wav-nnet3-latgen-faster.cc:296) Decoded utterance M6030416021_0007
+WARNING (wav-copy[5.5.0~1494-e5a5]:Read():wave-reader.cc:260) Expected 75886 bytes in RIFF chunk, but after first data block there will be 36 + 75790 bytes (we do not support reading multiple data chunks).
+M6030416021_0008 น้ำ เปล่า หนึ่ง น้ำแข็ง สอง 
+LOG (online2-wav-nnet3-latgen-faster[5.5.0~1494-e5a5]:main():online2-wav-nnet3-latgen-faster.cc:296) Decoded utterance M6030416021_0008
+WARNING (wav-copy[5.5.0~1494-e5a5]:Read():wave-reader.cc:260) Expected 55824 bytes in RIFF chunk, but after first data block there will be 36 + 55728 bytes (we do not support reading multiple data chunks).
+WARNING (wav-copy[5.5.0~1494-e5a5]:Read():wave-reader.cc:260) Expected 81460 bytes in RIFF chunk, but after first data block there will be 36 + 81364 bytes (we do not support reading multiple data chunks).
+M6030416021_0010 ขอ หลอด หน่อย 
+LOG (online2-wav-nnet3-latgen-faster[5.5.0~1494-e5a5]:main():online2-wav-nnet3-latgen-faster.cc:296) Decoded utterance M6030416021_0010
+M6030416021_0012 สาม โต๊ะ เที่ยง ครึ่ง 
+LOG (online2-wav-nnet3-latgen-faster[5.5.0~1494-e5a5]:main():online2-wav-nnet3-latgen-faster.cc:296) Decoded utterance M6030416021_0012
+WARNING (wav-copy[5.5.0~1494-e5a5]:Read():wave-reader.cc:260) Expected 81458 bytes in RIFF chunk, but after first data block there will be 36 + 81362 bytes (we do not support reading multiple data chunks).
+M6030416021_0015 ขอ นั่ง ตรง นั้น มา บ้าง 
+LOG (online2-wav-nnet3-latgen-faster[5.5.0~1494-e5a5]:main():online2-wav-nnet3-latgen-faster.cc:296) Decoded utterance M6030416021_0015
+WARNING (wav-copy[5.5.0~1494-e5a5]:Read():wave-reader.cc:260) Expected 62510 bytes in RIFF chunk, but after first data block there will be 36 + 62414 bytes (we do not support reading multiple data chunks).
+WARNING (wav-copy[5.5.0~1494-e5a5]:Read():wave-reader.cc:260) Expected 76258 bytes in RIFF chunk, but after first data block there will be 36 + 76162 bytes (we do not support reading multiple data chunks).
+M6030416021_0016 ขอ นั่ง ติด กระจก นะ 
+LOG (online2-wav-nnet3-latgen-faster[5.5.0~1494-e5a5]:main():online2-wav-nnet3-latgen-faster.cc:296) Decoded utterance M6030416021_0016
+M6030416021_0017 ขอ นั่ง ใต้ แอร์ นะ 
+LOG (online2-wav-nnet3-latgen-faster[5.5.0~1494-e5a5]:main():online2-wav-nnet3-latgen-faster.cc:296) Decoded utterance M6030416021_0017
+WARNING (wav-copy[5.5.0~1494-e5a5]:Read():wave-reader.cc:260) Expected 61398 bytes in RIFF chunk, but after first data block there will be 36 + 61302 bytes (we do not support reading multiple data chunks).
+WARNING (wav-copy[5.5.0~1494-e5a5]:Read():wave-reader.cc:260) Expected 46164 bytes in RIFF chunk, but after first data block there will be 36 + 46068 bytes (we do not support reading multiple data chunks).
+M6030416021_0019 ขอ ย้าย ไป โต๊ะ นั่น นะ 
+LOG (online2-wav-nnet3-latgen-faster[5.5.0~1494-e5a5]:main():online2-wav-nnet3-latgen-faster.cc:296) Decoded utterance M6030416021_0019
+WARNING (wav-copy[5.5.0~1494-e5a5]:Read():wave-reader.cc:260) Expected 65110 bytes in RIFF chunk, but after first data block there will be 36 + 65014 bytes (we do not support reading multiple data chunks).
+M6030416021_0020 เอา ลูก ป้า ไป ไหน 
+LOG (online2-wav-nnet3-latgen-faster[5.5.0~1494-e5a5]:main():online2-wav-nnet3-latgen-faster.cc:296) Decoded utterance M6030416021_0020
+WARNING (wav-copy[5.5.0~1494-e5a5]:Read():wave-reader.cc:260) Expected 94090 bytes in RIFF chunk, but after first data block there will be 36 + 93994 bytes (we do not support reading multiple data chunks).
+M6030416021_0021 น่า กิน จัง 
+LOG (online2-wav-nnet3-latgen-faster[5.5.0~1494-e5a5]:main():online2-wav-nnet3-latgen-faster.cc:296) Decoded utterance M6030416021_0021
+M6030416021_0024 ขอ เครื่อง ปรุง หน่อย 
+LOG (online2-wav-nnet3-latgen-faster[5.5.0~1494-e5a5]:main():online2-wav-nnet3-latgen-faster.cc:296) Decoded utterance M6030416021_0024
+WARNING (wav-copy[5.5.0~1494-e5a5]:Read():wave-reader.cc:260) Expected 120096 bytes in RIFF chunk, but after first data block there will be 36 + 120000 bytes (we do not support reading multiple data chunks).
+M6030416021_0026 มี น้ำจิ้ม สุกี้ ไหม 
+LOG (online2-wav-nnet3-latgen-faster[5.5.0~1494-e5a5]:main():online2-wav-nnet3-latgen-faster.cc:296) Decoded utterance M6030416021_0026
+WARNING (wav-copy[5.5.0~1494-e5a5]:Read():wave-reader.cc:260) Expected 95948 bytes in RIFF chunk, but after first data block there will be 36 + 95852 bytes (we do not support reading multiple data chunks).
+M6030416021_0027 เอา ซอส มะเขือเทศ ให้ หน่อย จาก 
+LOG (online2-wav-nnet3-latgen-faster[5.5.0~1494-e5a5]:main():online2-wav-nnet3-latgen-faster.cc:296) Decoded utterance M6030416021_0027
+WARNING (wav-copy[5.5.0~1494-e5a5]:Read():wave-reader.cc:260) Expected 69942 bytes in RIFF chunk, but after first data block there will be 36 + 69846 bytes (we do not support reading multiple data chunks).
+M6030416021_0028 ขอ น้ำจิ้ม เพิ่ม หน่อย ครับ 
+LOG (online2-wav-nnet3-latgen-faster[5.5.0~1494-e5a5]:main():online2-wav-nnet3-latgen-faster.cc:296) Decoded utterance M6030416021_0028
+WARNING (wav-copy[5.5.0~1494-e5a5]:Read():wave-reader.cc:260) Expected 68454 bytes in RIFF chunk, but after first data block there will be 36 + 68358 bytes (we do not support reading multiple data chunks).
+M6030416021_0029 เอา จะ เสร็จ หรือ ยัง 
+LOG (online2-wav-nnet3-latgen-faster[5.5.0~1494-e5a5]:main():online2-wav-nnet3-latgen-faster.cc:296) Decoded utterance M6030416021_0029
+WARNING (wav-copy[5.5.0~1494-e5a5]:Read():wave-reader.cc:260) Expected 69570 bytes in RIFF chunk, but after first data block there will be 36 + 69474 bytes (we do not support reading multiple data chunks).
+M6030416021_0030 ขอ อะไร ได้ บ้าง 
+LOG (online2-wav-nnet3-latgen-faster[5.5.0~1494-e5a5]:main():online2-wav-nnet3-latgen-faster.cc:296) Decoded utterance M6030416021_0030
+WARNING (wav-copy[5.5.0~1494-e5a5]:Read():wave-reader.cc:260) Expected 63998 bytes in RIFF chunk, but after first data block there will be 36 + 63902 bytes (we do not support reading multiple data chunks).
+WARNING (wav-copy[5.5.0~1494-e5a5]:Read():wave-reader.cc:260) Expected 80344 bytes in RIFF chunk, but after first data block there will be 36 + 80248 bytes (we do not support reading multiple data chunks).
+M6030416021_0033 เอา เมื่อ ไร จะ เสร็จ 
+LOG (online2-wav-nnet3-latgen-faster[5.5.0~1494-e5a5]:main():online2-wav-nnet3-latgen-faster.cc:296) Decoded utterance M6030416021_0033
+M6030416021_0034 เอา รอ นาน จัง 
+LOG (online2-wav-nnet3-latgen-faster[5.5.0~1494-e5a5]:main():online2-wav-nnet3-latgen-faster.cc:296) Decoded utterance M6030416021_0034
+WARNING (wav-copy[5.5.0~1494-e5a5]:Read():wave-reader.cc:260) Expected 71428 bytes in RIFF chunk, but after first data block there will be 36 + 71332 bytes (we do not support reading multiple data chunks).
+M6030416021_0035 เอา ไม่ กิน แล้ว บ้าง 
+LOG (online2-wav-nnet3-latgen-faster[5.5.0~1494-e5a5]:main():online2-wav-nnet3-latgen-faster.cc:296) Decoded utterance M6030416021_0035
+WARNING (wav-copy[5.5.0~1494-e5a5]:Read():wave-reader.cc:260) Expected 67714 bytes in RIFF chunk, but after first data block there will be 36 + 67618 bytes (we do not support reading multiple data chunks).
+M6030416021_0036 ขอ เปลี่ยน เมนู 
+LOG (online2-wav-nnet3-latgen-faster[5.5.0~1494-e5a5]:main():online2-wav-nnet3-latgen-faster.cc:296) Decoded utterance M6030416021_0036
+WARNING (wav-copy[5.5.0~1494-e5a5]:Read():wave-reader.cc:260) Expected 98920 bytes in RIFF chunk, but after first data block there will be 36 + 98824 bytes (we do not support reading multiple data chunks).
+M6030416021_0037 ไม่ เอา แล้ว ครับ 
+LOG (online2-wav-nnet3-latgen-faster[5.5.0~1494-e5a5]:main():online2-wav-nnet3-latgen-faster.cc:296) Decoded utterance M6030416021_0037
+WARNING (wav-copy[5.5.0~1494-e5a5]:Read():wave-reader.cc:260) Expected 75514 bytes in RIFF chunk, but after first data block there will be 36 + 75418 bytes (we do not support reading multiple data chunks).
+M6030416021_0038 ปลูก ข้าว อยู่ ล้าง เลย ครับ 
+LOG (online2-wav-nnet3-latgen-faster[5.5.0~1494-e5a5]:main():online2-wav-nnet3-latgen-faster.cc:296) Decoded utterance M6030416021_0038
+WARNING (wav-copy[5.5.0~1494-e5a5]:Read():wave-reader.cc:260) Expected 79230 bytes in RIFF chunk, but after first data block there will be 36 + 79134 bytes (we do not support reading multiple data chunks).
+M6030416021_0039 เอา ย้าย ไป โต๊ะ สาม นะ ครับ 
+LOG (online2-wav-nnet3-latgen-faster[5.5.0~1494-e5a5]:main():online2-wav-nnet3-latgen-faster.cc:296) Decoded utterance M6030416021_0039
+WARNING (wav-copy[5.5.0~1494-e5a5]:Read():wave-reader.cc:260) Expected 123812 bytes in RIFF chunk, but after first data block there will be 36 + 123716 bytes (we do not support reading multiple data chunks).
+M6030416021_0040 ขอ ย้าย ไป โต๊ะ สอง นะ 
+LOG (online2-wav-nnet3-latgen-faster[5.5.0~1494-e5a5]:main():online2-wav-nnet3-latgen-faster.cc:296) Decoded utterance M6030416021_0040
+WARNING (wav-copy[5.5.0~1494-e5a5]:Read():wave-reader.cc:260) Expected 61396 bytes in RIFF chunk, but after first data block there will be 36 + 61300 bytes (we do not support reading multiple data chunks).
+WARNING (wav-copy[5.5.0~1494-e5a5]:Read():wave-reader.cc:260) Expected 60654 bytes in RIFF chunk, but after first data block there will be 36 + 60558 bytes (we do not support reading multiple data chunks).
+M6030416021_0041 เอา โต๊ะ ตัว นั้น มา ต่อ ได้ ไหม 
+LOG (online2-wav-nnet3-latgen-faster[5.5.0~1494-e5a5]:main():online2-wav-nnet3-latgen-faster.cc:296) Decoded utterance M6030416021_0041
+WARNING (wav-copy[5.5.0~1494-e5a5]:Read():wave-reader.cc:260) Expected 76258 bytes in RIFF chunk, but after first data block there will be 36 + 76162 bytes (we do not support reading multiple data chunks).
+M6030416021_0044 เก็บ ตัง ด้วย 
+LOG (online2-wav-nnet3-latgen-faster[5.5.0~1494-e5a5]:main():online2-wav-nnet3-latgen-faster.cc:296) Decoded utterance M6030416021_0044
+M6030416021_0046 เอา ทิป ไป 
+LOG (online2-wav-nnet3-latgen-faster[5.5.0~1494-e5a5]:main():online2-wav-nnet3-latgen-faster.cc:296) Decoded utterance M6030416021_0046
+WARNING (wav-copy[5.5.0~1494-e5a5]:Read():wave-reader.cc:260) Expected 104864 bytes in RIFF chunk, but after first data block there will be 36 + 104768 bytes (we do not support reading multiple data chunks).
+M6030416021_0047 สแกน จ่าย ได้ ป่ะ 
+LOG (online2-wav-nnet3-latgen-faster[5.5.0~1494-e5a5]:main():online2-wav-nnet3-latgen-faster.cc:296) Decoded utterance M6030416021_0047
+WARNING (wav-copy[5.5.0~1494-e5a5]:Read():wave-reader.cc:260) Expected 66226 bytes in RIFF chunk, but after first data block there will be 36 + 66130 bytes (we do not support reading multiple data chunks).
+M6030416021_0048 มี โปรโมชัน ไร ไหม 
+LOG (online2-wav-nnet3-latgen-faster[5.5.0~1494-e5a5]:main():online2-wav-nnet3-latgen-faster.cc:296) Decoded utterance M6030416021_0048
+WARNING (wav-copy[5.5.0~1494-e5a5]:Read():wave-reader.cc:260) Expected 98178 bytes in RIFF chunk, but after first data block there will be 36 + 98082 bytes (we do not support reading multiple data chunks).
+M6030416021_0050 รสชาติ แย่ มาก 
+LOG (online2-wav-nnet3-latgen-faster[5.5.0~1494-e5a5]:main():online2-wav-nnet3-latgen-faster.cc:296) Decoded utterance M6030416021_0050
+WARNING (wav-copy[5.5.0~1494-e5a5]:Read():wave-reader.cc:260) Expected 71056 bytes in RIFF chunk, but after first data block there will be 36 + 70960 bytes (we do not support reading multiple data chunks).
+M6030416021_0051 ปลา เค็ม เหม็น คาว 
+LOG (online2-wav-nnet3-latgen-faster[5.5.0~1494-e5a5]:main():online2-wav-nnet3-latgen-faster.cc:296) Decoded utterance M6030416021_0051
+WARNING (wav-copy[5.5.0~1494-e5a5]:Read():wave-reader.cc:260) Expected 121212 bytes in RIFF chunk, but after first data block there will be 36 + 121116 bytes (we do not support reading multiple data chunks).
+M6030416021_0052 ปลูก เกิน ไป ครับ 
+LOG (online2-wav-nnet3-latgen-faster[5.5.0~1494-e5a5]:main():online2-wav-nnet3-latgen-faster.cc:296) Decoded utterance M6030416021_0052
+WARNING (wav-copy[5.5.0~1494-e5a5]:Read():wave-reader.cc:260) Expected 62884 bytes in RIFF chunk, but after first data block there will be 36 + 62788 bytes (we do not support reading multiple data chunks).
+WARNING (wav-copy[5.5.0~1494-e5a5]:Read():wave-reader.cc:260) Expected 65484 bytes in RIFF chunk, but after first data block there will be 36 + 65388 bytes (we do not support reading multiple data chunks).
+M6030416021_0053 เอา วัน นี้ อร่อย มาก เลย ครับ 
+LOG (online2-wav-nnet3-latgen-faster[5.5.0~1494-e5a5]:main():online2-wav-nnet3-latgen-faster.cc:296) Decoded utterance M6030416021_0053
+WARNING (wav-copy[5.5.0~1494-e5a5]:Read():wave-reader.cc:260) Expected 144618 bytes in RIFF chunk, but after first data block there will be 36 + 144522 bytes (we do not support reading multiple data chunks).
+M6030416021_0054 ติด ไว้ ก่อน ครับ 
+LOG (online2-wav-nnet3-latgen-faster[5.5.0~1494-e5a5]:main():online2-wav-nnet3-latgen-faster.cc:296) Decoded utterance M6030416021_0054
+M6030416021_0055 พัน ห้า พอ ไหม 
+LOG (online2-wav-nnet3-latgen-faster[5.5.0~1494-e5a5]:main():online2-wav-nnet3-latgen-faster.cc:296) Decoded utterance M6030416021_0055
+WARNING (wav-copy[5.5.0~1494-e5a5]:Read():wave-reader.cc:260) Expected 69570 bytes in RIFF chunk, but after first data block there will be 36 + 69474 bytes (we do not support reading multiple data chunks).
+M6030416021_0056 กิน ครึ่ง จาน ราคา ครึ่ง เดียว ได้ ไหม 
+LOG (online2-wav-nnet3-latgen-faster[5.5.0~1494-e5a5]:main():online2-wav-nnet3-latgen-faster.cc:296) Decoded utterance M6030416021_0056
+WARNING (wav-copy[5.5.0~1494-e5a5]:Read():wave-reader.cc:260) Expected 88146 bytes in RIFF chunk, but after first data block there will be 36 + 88050 bytes (we do not support reading multiple data chunks).
+M6030416021_0058 ตัง จาน ได้ ไหม 
+LOG (online2-wav-nnet3-latgen-faster[5.5.0~1494-e5a5]:main():online2-wav-nnet3-latgen-faster.cc:296) Decoded utterance M6030416021_0058
+WARNING (wav-copy[5.5.0~1494-e5a5]:Read():wave-reader.cc:260) Expected 106722 bytes in RIFF chunk, but after first data block there will be 36 + 106626 bytes (we do not support reading multiple data chunks).
+M6030416021_0059 ขอ กระเพราหมูสับ เท่าไร 
+LOG (online2-wav-nnet3-latgen-faster[5.5.0~1494-e5a5]:main():online2-wav-nnet3-latgen-faster.cc:296) Decoded utterance M6030416021_0059
+WARNING (wav-copy[5.5.0~1494-e5a5]:Read():wave-reader.cc:260) Expected 82572 bytes in RIFF chunk, but after first data block there will be 36 + 82476 bytes (we do not support reading multiple data chunks).
+M6030416021_0060 ต้มยำ กุ้ง เสร็จ มาก ไม่ บ้าง 
+LOG (online2-wav-nnet3-latgen-faster[5.5.0~1494-e5a5]:main():online2-wav-nnet3-latgen-faster.cc:296) Decoded utterance M6030416021_0060
+WARNING (wav-copy[5.5.0~1494-e5a5]:Read():wave-reader.cc:260) Expected 67712 bytes in RIFF chunk, but after first data block there will be 36 + 67616 bytes (we do not support reading multiple data chunks).
+M6030416021_0061 โอน จ่าย ได้ ไหม ครับ 
+LOG (online2-wav-nnet3-latgen-faster[5.5.0~1494-e5a5]:main():online2-wav-nnet3-latgen-faster.cc:296) Decoded utterance M6030416021_0061
+WARNING (wav-copy[5.5.0~1494-e5a5]:Read():wave-reader.cc:260) Expected 85174 bytes in RIFF chunk, but after first data block there will be 36 + 85078 bytes (we do not support reading multiple data chunks).
+M6030416021_0062 มี พร้อม เพย์ ซื้อ ไหม 
+LOG (online2-wav-nnet3-latgen-faster[5.5.0~1494-e5a5]:main():online2-wav-nnet3-latgen-faster.cc:296) Decoded utterance M6030416021_0062
+WARNING (wav-copy[5.5.0~1494-e5a5]:Read():wave-reader.cc:260) Expected 71056 bytes in RIFF chunk, but after first data block there will be 36 + 70960 bytes (we do not support reading multiple data chunks).
+M6030416021_0063 เมนู นี้ อร่อย ไหม 
+LOG (online2-wav-nnet3-latgen-faster[5.5.0~1494-e5a5]:main():online2-wav-nnet3-latgen-faster.cc:296) Decoded utterance M6030416021_0063
+WARNING (wav-copy[5.5.0~1494-e5a5]:Read():wave-reader.cc:260) Expected 88146 bytes in RIFF chunk, but after first data block there will be 36 + 88050 bytes (we do not support reading multiple data chunks).
+M6030416021_0064 ช้อน กลาง พลีส บ้าง 
+LOG (online2-wav-nnet3-latgen-faster[5.5.0~1494-e5a5]:main():online2-wav-nnet3-latgen-faster.cc:296) Decoded utterance M6030416021_0064
+WARNING (wav-copy[5.5.0~1494-e5a5]:Read():wave-reader.cc:260) Expected 62882 bytes in RIFF chunk, but after first data block there will be 36 + 62786 bytes (we do not support reading multiple data chunks).
+WARNING (wav-copy[5.5.0~1494-e5a5]:Read():wave-reader.cc:260) Expected 68456 bytes in RIFF chunk, but after first data block there will be 36 + 68360 bytes (we do not support reading multiple data chunks).
+M6030416021_0065 ขอ ทิชชู่ เพิ่ม หน่อย 
+LOG (online2-wav-nnet3-latgen-faster[5.5.0~1494-e5a5]:main():online2-wav-nnet3-latgen-faster.cc:296) Decoded utterance M6030416021_0065
+M6030416021_0066 ตะเกียบ หมด ครับ 
+LOG (online2-wav-nnet3-latgen-faster[5.5.0~1494-e5a5]:main():online2-wav-nnet3-latgen-faster.cc:296) Decoded utterance M6030416021_0066
+WARNING (wav-copy[5.5.0~1494-e5a5]:Read():wave-reader.cc:260) Expected 70684 bytes in RIFF chunk, but after first data block there will be 36 + 70588 bytes (we do not support reading multiple data chunks).
+M6030416021_0067 ขอ มีด อัน นึง 
+LOG (online2-wav-nnet3-latgen-faster[5.5.0~1494-e5a5]:main():online2-wav-nnet3-latgen-faster.cc:296) Decoded utterance M6030416021_0067
+WARNING (wav-copy[5.5.0~1494-e5a5]:Read():wave-reader.cc:260) Expected 103008 bytes in RIFF chunk, but after first data block there will be 36 + 102912 bytes (we do not support reading multiple data chunks).
+M6030416021_0070 ขอ เมนู หน่อย สิ 
+LOG (online2-wav-nnet3-latgen-faster[5.5.0~1494-e5a5]:main():online2-wav-nnet3-latgen-faster.cc:296) Decoded utterance M6030416021_0070
+WARNING (wav-copy[5.5.0~1494-e5a5]:Read():wave-reader.cc:260) Expected 126414 bytes in RIFF chunk, but after first data block there will be 36 + 126318 bytes (we do not support reading multiple data chunks).
+M6030416021_0071 ขอ ร้าน นี้ มี ขอ ว่าง ไหม 
+LOG (online2-wav-nnet3-latgen-faster[5.5.0~1494-e5a5]:main():online2-wav-nnet3-latgen-faster.cc:296) Decoded utterance M6030416021_0071
+WARNING (wav-copy[5.5.0~1494-e5a5]:Read():wave-reader.cc:260) Expected 82946 bytes in RIFF chunk, but after first data block there will be 36 + 82850 bytes (we do not support reading multiple data chunks).
+M6030416021_0073 เอา ห้าม ไอ ระหว่าง ทำ อาหาร นะ 
+LOG (online2-wav-nnet3-latgen-faster[5.5.0~1494-e5a5]:main():online2-wav-nnet3-latgen-faster.cc:296) Decoded utterance M6030416021_0073
+WARNING (wav-copy[5.5.0~1494-e5a5]:Read():wave-reader.cc:260) Expected 121582 bytes in RIFF chunk, but after first data block there will be 36 + 121486 bytes (we do not support reading multiple data chunks).
+M6030416021_0074 รับ เด็ก เสิร์ฟ ว่าง ไหม 
+LOG (online2-wav-nnet3-latgen-faster[5.5.0~1494-e5a5]:main():online2-wav-nnet3-latgen-faster.cc:296) Decoded utterance M6030416021_0074
+WARNING (wav-copy[5.5.0~1494-e5a5]:Read():wave-reader.cc:260) Expected 106350 bytes in RIFF chunk, but after first data block there will be 36 + 106254 bytes (we do not support reading multiple data chunks).
+M6030416021_0075 อยาก สมัคร งาน ต้อง อายุ เท่าไร 
+LOG (online2-wav-nnet3-latgen-faster[5.5.0~1494-e5a5]:main():online2-wav-nnet3-latgen-faster.cc:296) Decoded utterance M6030416021_0075
+WARNING (wav-copy[5.5.0~1494-e5a5]:Read():wave-reader.cc:260) Expected 139786 bytes in RIFF chunk, but after first data block there will be 36 + 139690 bytes (we do not support reading multiple data chunks).
+M6030416021_0076 ขอ ยัง ไม่ เกณฑ์ ทหาร บ้าง รับ ไหม 
+LOG (online2-wav-nnet3-latgen-faster[5.5.0~1494-e5a5]:main():online2-wav-nnet3-latgen-faster.cc:296) Decoded utterance M6030416021_0076
+WARNING (wav-copy[5.5.0~1494-e5a5]:Read():wave-reader.cc:260) Expected 85916 bytes in RIFF chunk, but after first data block there will be 36 + 85820 bytes (we do not support reading multiple data chunks).
+M6030416021_0077 ไม่ มี ตัง ล้าง จาน แทน ได้ ไหม 
+LOG (online2-wav-nnet3-latgen-faster[5.5.0~1494-e5a5]:main():online2-wav-nnet3-latgen-faster.cc:296) Decoded utterance M6030416021_0077
+WARNING (wav-copy[5.5.0~1494-e5a5]:Read():wave-reader.cc:260) Expected 131242 bytes in RIFF chunk, but after first data block there will be 36 + 131146 bytes (we do not support reading multiple data chunks).
+M6030416021_0079 ขาย เฟรนไชน์ ขาย ไหม 
+LOG (online2-wav-nnet3-latgen-faster[5.5.0~1494-e5a5]:main():online2-wav-nnet3-latgen-faster.cc:296) Decoded utterance M6030416021_0079
+WARNING (wav-copy[5.5.0~1494-e5a5]:Read():wave-reader.cc:260) Expected 126784 bytes in RIFF chunk, but after first data block there will be 36 + 126688 bytes (we do not support reading multiple data chunks).
+M6030416021_0080 ขอ อยาก เปิด สาขา บ้าง ต้อง ทำ ไง 
+LOG (online2-wav-nnet3-latgen-faster[5.5.0~1494-e5a5]:main():online2-wav-nnet3-latgen-faster.cc:296) Decoded utterance M6030416021_0080
+WARNING (wav-copy[5.5.0~1494-e5a5]:Read():wave-reader.cc:260) Expected 82944 bytes in RIFF chunk, but after first data block there will be 36 + 82848 bytes (we do not support reading multiple data chunks).
+M6030416021_0081 โต๊ะ สวย จัง อยาก ได้ ขาย ไหม 
+LOG (online2-wav-nnet3-latgen-faster[5.5.0~1494-e5a5]:main():online2-wav-nnet3-latgen-faster.cc:296) Decoded utterance M6030416021_0081
+WARNING (wav-copy[5.5.0~1494-e5a5]:Read():wave-reader.cc:260) Expected 87404 bytes in RIFF chunk, but after first data block there will be 36 + 87308 bytes (we do not support reading multiple data chunks).
+M6030416021_0083 ก๋วยเตี๋ยว ขาย ดี ไหม 
+LOG (online2-wav-nnet3-latgen-faster[5.5.0~1494-e5a5]:main():online2-wav-nnet3-latgen-faster.cc:296) Decoded utterance M6030416021_0083
+WARNING (wav-copy[5.5.0~1494-e5a5]:Read():wave-reader.cc:260) Expected 107836 bytes in RIFF chunk, but after first data block there will be 36 + 107740 bytes (we do not support reading multiple data chunks).
+M6030416021_0084 เศรษฐกิจ เป็น ไง บ้าง 
+LOG (online2-wav-nnet3-latgen-faster[5.5.0~1494-e5a5]:main():online2-wav-nnet3-latgen-faster.cc:296) Decoded utterance M6030416021_0084
+WARNING (wav-copy[5.5.0~1494-e5a5]:Read():wave-reader.cc:260) Expected 107466 bytes in RIFF chunk, but after first data block there will be 36 + 107370 bytes (we do not support reading multiple data chunks).
+M6030416021_0085 ขาย อาหาร รายได้ ดี ไหม 
+LOG (online2-wav-nnet3-latgen-faster[5.5.0~1494-e5a5]:main():online2-wav-nnet3-latgen-faster.cc:296) Decoded utterance M6030416021_0085
+WARNING (wav-copy[5.5.0~1494-e5a5]:Read():wave-reader.cc:260) Expected 83688 bytes in RIFF chunk, but after first data block there will be 36 + 83592 bytes (we do not support reading multiple data chunks).
+M6030416021_0086 ขอ วัน นึง ขาย ได้ เยอะ เปล่า 
+LOG (online2-wav-nnet3-latgen-faster[5.5.0~1494-e5a5]:main():online2-wav-nnet3-latgen-faster.cc:296) Decoded utterance M6030416021_0086
+WARNING (wav-copy[5.5.0~1494-e5a5]:Read():wave-reader.cc:260) Expected 95204 bytes in RIFF chunk, but after first data block there will be 36 + 95108 bytes (we do not support reading multiple data chunks).
+M6030416021_0087 เปลี่ยน นายก ได้ ไหม 
+LOG (online2-wav-nnet3-latgen-faster[5.5.0~1494-e5a5]:main():online2-wav-nnet3-latgen-faster.cc:296) Decoded utterance M6030416021_0087
+WARNING (wav-copy[5.5.0~1494-e5a5]:Read():wave-reader.cc:260) Expected 105608 bytes in RIFF chunk, but after first data block there will be 36 + 105512 bytes (we do not support reading multiple data chunks).
+M6030416021_0088 ใช้ หมู ยอ จาก ที่ ไหน 
+LOG (online2-wav-nnet3-latgen-faster[5.5.0~1494-e5a5]:main():online2-wav-nnet3-latgen-faster.cc:296) Decoded utterance M6030416021_0088
+WARNING (wav-copy[5.5.0~1494-e5a5]:Read():wave-reader.cc:260) Expected 84802 bytes in RIFF chunk, but after first data block there will be 36 + 84706 bytes (we do not support reading multiple data chunks).
+M6030416021_0090 สาม หมูกรอบ ยังไง เหรอ ครับ 
+LOG (online2-wav-nnet3-latgen-faster[5.5.0~1494-e5a5]:main():online2-wav-nnet3-latgen-faster.cc:296) Decoded utterance M6030416021_0090
+WARNING (wav-copy[5.5.0~1494-e5a5]:Read():wave-reader.cc:260) Expected 74400 bytes in RIFF chunk, but after first data block there will be 36 + 74304 bytes (we do not support reading multiple data chunks).
+M6030416021_0091 ใส่ ผงชูรส หรือ เปล่า 
+LOG (online2-wav-nnet3-latgen-faster[5.5.0~1494-e5a5]:main():online2-wav-nnet3-latgen-faster.cc:296) Decoded utterance M6030416021_0091
+WARNING (wav-copy[5.5.0~1494-e5a5]:Read():wave-reader.cc:260) Expected 197536 bytes in RIFF chunk, but after first data block there will be 36 + 197440 bytes (we do not support reading multiple data chunks).
+M6030416021_0092 ใส่ หมู หรือ เปล่า 
+LOG (online2-wav-nnet3-latgen-faster[5.5.0~1494-e5a5]:main():online2-wav-nnet3-latgen-faster.cc:296) Decoded utterance M6030416021_0092
+WARNING (wav-copy[5.5.0~1494-e5a5]:Read():wave-reader.cc:260) Expected 116752 bytes in RIFF chunk, but after first data block there will be 36 + 116656 bytes (we do not support reading multiple data chunks).
+M6030416021_0094 ปลูก เอา ปลูก กล้วย ทอด จาน นึง 
+LOG (online2-wav-nnet3-latgen-faster[5.5.0~1494-e5a5]:main():online2-wav-nnet3-latgen-faster.cc:296) Decoded utterance M6030416021_0094
+WARNING (wav-copy[5.5.0~1494-e5a5]:Read():wave-reader.cc:260) Expected 94834 bytes in RIFF chunk, but after first data block there will be 36 + 94738 bytes (we do not support reading multiple data chunks).
+M6030416021_0095 สาม บัวลอย ไข่หวาน ได้ ไหม 
+LOG (online2-wav-nnet3-latgen-faster[5.5.0~1494-e5a5]:main():online2-wav-nnet3-latgen-faster.cc:296) Decoded utterance M6030416021_0095
+WARNING (wav-copy[5.5.0~1494-e5a5]:Read():wave-reader.cc:260) Expected 125670 bytes in RIFF chunk, but after first data block there will be 36 + 125574 bytes (we do not support reading multiple data chunks).
+M6030416021_0097 มา ส่ง ที่ ขอ ให้ หน่อย 
+LOG (online2-wav-nnet3-latgen-faster[5.5.0~1494-e5a5]:main():online2-wav-nnet3-latgen-faster.cc:296) Decoded utterance M6030416021_0097
+WARNING (wav-copy[5.5.0~1494-e5a5]:Read():wave-reader.cc:260) Expected 88146 bytes in RIFF chunk, but after first data block there will be 36 + 88050 bytes (we do not support reading multiple data chunks).
+M6030416021_0098 มา ส่ง ให้ ที่ บ้าน ได้ ไหม ครับ 
+LOG (online2-wav-nnet3-latgen-faster[5.5.0~1494-e5a5]:main():online2-wav-nnet3-latgen-faster.cc:296) Decoded utterance M6030416021_0098
+WARNING (wav-copy[5.5.0~1494-e5a5]:Read():wave-reader.cc:260) Expected 116382 bytes in RIFF chunk, but after first data block there will be 36 + 116286 bytes (we do not support reading multiple data chunks).
+M6030416021_0099 เดี๋ยว ลง ไป เอา ครับ 
+LOG (online2-wav-nnet3-latgen-faster[5.5.0~1494-e5a5]:main():online2-wav-nnet3-latgen-faster.cc:296) Decoded utterance M6030416021_0099
+LOG (wav-copy[5.5.0~1494-e5a5]:main():wav-copy.cc:68) Copied 76 wave files
+M6030416021_0100 ขอ เดี๋ยว เดิน ไป เอา ที่ ร้าน นะ 
+LOG (online2-wav-nnet3-latgen-faster[5.5.0~1494-e5a5]:main():online2-wav-nnet3-latgen-faster.cc:296) Decoded utterance M6030416021_0100
+LOG (online2-wav-nnet3-latgen-faster[5.5.0~1494-e5a5]:Print():online-timing.cc:36) Timing stats: real-time factor was 1.01043 (note: this cannot be less than one.)
+LOG (online2-wav-nnet3-latgen-faster[5.5.0~1494-e5a5]:Print():online-timing.cc:38) Average delay was 0.0292711 seconds.
+LOG (online2-wav-nnet3-latgen-faster[5.5.0~1494-e5a5]:Print():online-timing.cc:42) Percentage of time spent idling was 96.5718
+LOG (online2-wav-nnet3-latgen-faster[5.5.0~1494-e5a5]:Print():online-timing.cc:44) Longest delay was 0.114457 seconds for utterance 'M6030416021_0071'
+LOG (online2-wav-nnet3-latgen-faster[5.5.0~1494-e5a5]:main():online2-wav-nnet3-latgen-faster.cc:302) Decoded 76 utterances, 0 with errors.
+LOG (online2-wav-nnet3-latgen-faster[5.5.0~1494-e5a5]:main():online2-wav-nnet3-latgen-faster.cc:304) Overall likelihood per frame was 1.14462 per frame over 7087 frames.
+LOG (lattice-scale[5.5.0~1494-e5a5]:main():lattice-scale.cc:107) Done 76 lattices.
+# Accounting: time=10 threads=1
+# Ended (code 0) at Thu May 14 15:29:42 UTC 2020, elapsed time 10 seconds
