@@ -1,11 +1,15 @@
-FROM node:9
+FROM node:alpine
 
 WORKDIR /usr/src/app
 
 # install dependency
 COPY package.json .
+
+RUN rm -Rf node_modules
+
 RUN npm install
 RUN npm install react-scripts -g
+RUN npm install axios --save -g
 
 # run content
 COPY . .
