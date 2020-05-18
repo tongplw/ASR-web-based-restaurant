@@ -170,6 +170,26 @@ export default function RecipeReviewCard(props) {
             {props.item.title}
           </Typography>
         </CardContent>
+        <Backdrop
+          className={classes.backdrop}
+          open={open}
+          onClick={handleClose}
+        >
+          <Card className={classes.backdropCard}>
+            <CardActionArea>
+              <CardContent>
+                <Typography
+                  gutterBottom
+                  variant="h5"
+                  component="h2"
+                  className={classes.boldFont}
+                >
+                  โต๊ะนี้ถูกจองแล้ว {props.item.tableNo}
+                </Typography>                
+              </CardContent>
+            </CardActionArea>
+          </Card>
+        </Backdrop>
       </Card>
     );
   }
