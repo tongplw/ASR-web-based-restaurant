@@ -1,0 +1,216 @@
+!SIL !SIL SIL_S
+<eps> <eps> SIL
+กระจก กระจก kr_B a_I c_I o_I k^_E
+กระเพรา กระเพรา kr_B a_I ph_I ee_I r_I aa_E
+กระเพราหมูสับ กระเพราหมูสับ kr_B a_I phr_I aa_I m_I uu_I s_I a_I p^_E
+กลาง กลาง kl_B aa_I ng^_E
+กล้วย กล้วย kl_B uua_I j^_E
+กิน กิน k_B i_I n^_E
+กี่ กี่ k_B ii_E
+กุ้ง กุ้ง k_B u_I ng^_E
+ก็ ก็ k_B @@_E
+ก่อน ก่อน k_B @@_I n^_E
+ก๋วยเตี๋ยว ก๋วยเตี๋ยว k_B uua_I j^_I t_I iia_I w^_E
+ขวด ขวด kh_B uua_I t^_E
+ขอ ขอ kh_B @@_E
+ขาด ขาด kh_B aa_I t^_E
+ขาย ขาย kh_B aa_I j^_E
+ข้าว ข้าว kh_B aa_I w^_E
+คน คน kh_B o_I n^_E
+ครับ ครับ khr_B a_I p^_E
+ครึ่ง ครึ่ง khr_B v_I ng^_E
+คั่ว คั่ว kh_B uua_E
+คาว คาว kh_B aa_I w^_E
+งาน งาน ng_B aa_I n^_E
+จอง จอง c_B @@_I ng^_E
+จะ จะ c_B a_E
+จัง จัง c_B a_I ng^_E
+จาก จาก c_B aa_I k^_E
+จาน จาน c_B aa_I n^_E
+จีน จีน c_B ii_I n^_E
+จ่าย จ่าย c_B aa_I j^_E
+จ้า จ้า c_B a_I w^_E
+ชั้น ชั้น ch_B a_I n^_E
+ชิม ชิม ch_B i_I m^_E
+ช้อน ช้อน ch_B @@_I n^_E
+ซอส ซอส s_B @@_I t^_E
+ซื้อ ซื้อ s_B vv_E
+ดี ดี d_B ii_E
+ด้วย ด้วย d_B uua_I j^_E
+ตรง ตรง tr_B o_I ng^_E
+ตะเกียบ ตะเกียบ t_B a_I k_I iia_I p^_E
+ตัง ตัง t_B a_I ng^_E
+ตัว ตัว t_B uua_E
+ติด ติด t_B i_I t^_E
+ต่อ ต่อ t_B @@_E
+ต้มยำ ต้มยำ t_B m_I a_I j_I a_I m^_E
+ต้อง ต้อง t_B @_I ng^_E
+ถัง ถัง th_B a_I ng^_E
+ทหาร ทหาร th_B a_I h_I aa_I n^_E
+ทอด ทอด th_B @@_I t^_E
+ทอน ทอน th_B @@_I n^_E
+ทำ ทำ th_B a_I m^_E
+ทิชชู่ ทิชชู่ th_B i_I ch_I ch_I uu_E
+ทิป ทิป th_B i_I p^_E
+ที่ ที่ th_B ii_E
+ทุ่ม ทุ่ม th_B u_I m^_E
+นก นก n_B o_I k^_E
+นะ นะ n_B a_E
+นั่ง นั่ง n_B a_I ng^_E
+นั่น นั่น n_B a_I n^_E
+นั้น นั้น n_B a_I n^_E
+นาน นาน n_B aa_I n^_E
+นายก นายก n_B aa_I j_I o_I k^_E
+นี้ นี้ n_B ii_E
+นึง นึง n_B v_I ng^_E
+น่า น่า n_B aa_E
+น้ำ น้ำ n_B aa_I m^_E
+น้ำจิ้ม น้ำจิ้ม n_B aa_I m^_I c_I i_I x_I m^_E
+น้ำตาล น้ำตาล n_B aa_I m^_I t_I aa_I n^_E
+น้ำแข็ง น้ำแข็ง n_B aa_I m^_I kh_I x_I ng^_E
+บน บน b_B o_I n^_E
+บัตร บัตร b_B a_I t^_E
+บัวลอย บัวลอย b_B uua_I l_I @@_I j^_E
+บ่อย บ่อย b_B @@_I j^_E
+บ้าง บ้าง b_B aa_I ng^_E
+บ้าน บ้าน b_B aa_I n^_E
+ปรุง ปรุง pr_B u_I ng^_E
+ปลา ปลา pl_B aa_E
+ปลูก ปลูก pl_B uu_I k^_E
+ป่ะ ป่ะ p_B a_E
+ป้า ป้า p_B aa_E
+ผงชูรส ผงชูรส ph_B o_I ng^_I ch_I uu_I r_I o_I t^_E
+ผัด ผัด ph_B a_I t^_E
+พริก พริก phr_B i_I k^_E
+พร้อม พร้อม phr_B @@_I m^_E
+พลีส พลีส phl_B ii_I t^_E
+พอ พอ ph_B @@_E
+พัน พัน ph_B a_I n^_E
+พ่วง พ่วง ph_B uua_I ng^_E
+มะเขือเทศ มะเขือเทศ m_B a_I kh_I vva_I th_I ee_I t^_E
+มั้ย มั้ย m_B a_E
+มา มา m_B aa_E
+มาก มาก m_B aa_I k^_E
+มี มี m_B ii_E
+มีด มีด m_B ii_I t^_E
+มือ มือ m_B vv_E
+ยอ ยอ j_B @@_E
+ยัง ยัง j_B a_I ng^_E
+ยังไง ยังไง j_B a_I ng^_I ng_I a_I j^_E
+ย้าย ย้าย j_B aa_I j^_E
+รสชาติ รสชาติ r_B o_I t^_I ch_I aa_I t^_E
+รอ รอ r_B @@_E
+ระหว่าง ระหว่าง r_B a_I w_I aa_I ng^_E
+รับ รับ r_B a_I p^_E
+ราคา ราคา r_B aa_I kh_I aa_E
+ราดหน้า ราดหน้า r_B aa_I t^_I n_I aa_E
+รายได้ รายได้ r_B aa_I j^_I d_I aa_I j^_E
+ร้าน ร้าน r_B aa_I n^_E
+ลง ลง l_B o_I ng^_E
+ลูก ลูก l_B uu_I k^_E
+ลูกชิ้น ลูกชิ้น l_B uu_I k^_I ch_I i_I n^_E
+ล้าง ล้าง l_B aa_I ng^_E
+วัน วัน w_B a_I n^_E
+ว่าง ว่าง w_B aa_I ng^_E
+สมัคร สมัคร s_B a_I m_I a_I k^_E
+สวย สวย s_B uua_I j^_E
+สอง สอง s_B @@_I ng^_E
+สาขา สาขา s_B aa_I kh_I aa_E
+สาม สาม s_B aa_I m^_E
+สิ สิ s_B i_E
+สิบ สิบ s_B i_I p^_E
+สี่ สี่ s_B ii_E
+สุกี้ สุกี้ s_B u_I k_I ii_E
+สแกน สแกน s_B a_I j^_I k_I xx_I n^_E
+ส่ง ส่ง s_B o_I ng^_E
+ส้มตำ ส้มตำ s_B e_I m^_I t_I a_I m^_E
+หนึ่ง หนึ่ง n_B v_I ng^_E
+หน่อย หน่อย n_B @_I j^_E
+หมด หมด m_B o_I t^_E
+หมู หมู m_B uu_E
+หมูกรอบ หมูกรอบ m_B uu_I kr_I @@_I p^_E
+หรอ หรอ r_B qq_E
+หรือ หรือ r_B vv_E
+หลอด หลอด l_B @@_I t^_E
+หอ หอ h_B @@_E
+หิว หิว h_B i_I w^_E
+ห้อง ห้อง h_B @_I ng^_E
+ห้า ห้า h_B aa_E
+ห้าม ห้าม h_B aa_I m^_E
+อยาก อยาก j_B aa_I k^_E
+อยู่ อยู่ j_B uu_E
+อร่อย อร่อย z_B a_I r_I @_I j^_E
+อะ อะ z_B a_E
+อะไร อะไร z_B a_I r_I a_I j^_E
+อัน อัน z_B a_I n^_E
+อายุ อายุ z_B aa_I j_I u_E
+อาหาร อาหาร z_B aa_I h_I aa_I n^_E
+อีก อีก z_B ii_I k^_E
+เกณฑ์ เกณฑ์ k_B ee_I n^_E
+เกิน เกิน k_B qq_I n^_E
+เก็บ เก็บ k_B e_I p^_E
+เก้าอี้ เก้าอี้ k_B a_I w^_I z_I ii_E
+เครดิต เครดิต khr_B ee_I d_I i_I t^_E
+เครื่อง เครื่อง khr_B vva_I ng^_E
+เค็ม เค็ม kh_B e_I m^_E
+เดิน เดิน d_B qq_I n^_E
+เดียว เดียว d_B iia_I w^_E
+เดี๋ยว เดี๋ยว d_B iia_I w^_E
+เด็ก เด็ก d_B e_I k^_E
+เที่ยง เที่ยง th_B iia_I ng^_E
+เท่าไร เท่าไร th_B a_I w^_I r_I a_I j^_E
+เปลี่ยน เปลี่ยน pl_B iia_I n^_E
+เปล่า เปล่า pl_B aa_I w^_E
+เปิด เปิด p_B qq_I t^_E
+เป็น เป็น p_B e_I n^_E
+เพนกวิน เพนกวิน ph_B o_I n^_I kw_I qq_I n^_E
+เพย์ เพย์ ph_B ee_E
+เพิ่ม เพิ่ม ph_B qq_I m^_E
+เฟรนช์ฟรายส์ เฟรนช์ฟรายส์ f_B xx_I n^_I fr_I aa_I j^_E
+เฟรนไชน์ เฟรนไชน์ f_B xx_I n^_I oo_I t^_E
+เมนู เมนู m_B a_I n_I uu_E
+เมื่อ เมื่อ m_B vva_E
+เม็ด เม็ด m_B e_I t^_E
+เยอะ เยอะ j_B q_E
+เลย เลย l_B qq_I j^_E
+เศรษฐกิจ เศรษฐกิจ s_B ee_I t^_I th_I a_I k_I i_I t^_E
+เสริม เสริม s_B qq_I m^_E
+เสร็จ เสร็จ s_B e_I t^_E
+เสิร์ฟ เสิร์ฟ s_B ee_I qq_I f^_E
+เหมือน เหมือน m_B vva_I n^_E
+เหม็น เหม็น m_B e_I n^_E
+เหรอ เหรอ r_B qq_E
+เอา เอา z_B a_I w^_E
+แก้ว แก้ว k_B xx_I w^_E
+แทน แทน th_B xx_I n^_E
+แบ่ง แบ่ง b_B x_I ng^_E
+แปด แปด p_B xx_I t^_E
+แยก แยก j_B xx_I k^_E
+แย่ แย่ j_B xx_E
+แล้ว แล้ว l_B xx_I w^_E
+แอร์ แอร์ z_B xx_E
+โกวาจี โกวาจี k_B oo_I w_I aa_I c_I ii_E
+โควิด โควิด kh_B oo_I qq_I t^_E
+โค้ก โค้ก kh_B k^_E
+โต๊ะ โต๊ะ t_B o_E
+โปรโมชัน โปรโมชัน pr_B oo_I m_I oo_I ch_I a_I n^_E
+โมง โมง m_B oo_I ng^_E
+โอน โอน z_B oo_I n^_E
+ใช้ ใช้ ch_B a_I j^_E
+ใต้ ใต้ t_B aa_I j^_E
+ใส่ ใส่ s_B a_I j^_E
+ให้ ให้ h_B a_I j^_E
+ไก่ ไก่ k_B a_I j^_E
+ไข่ดาว ไข่ดาว kh_B a_I j^_I d_I aa_I w^_E
+ไข่หวาน ไข่หวาน kh_B a_I j^_I w_I aa_I n^_E
+ไง ไง ng_B a_I j^_E
+ได้ ได้ d_B aa_I j^_E
+ไป ไป p_B a_I j^_E
+ไม่ ไม่ m_B a_I j^_E
+ไม้ ไม้ m_B aa_I j^_E
+ไร ไร r_B a_I j^_E
+ไว้ ไว้ w_B a_I j^_E
+ไส้ ไส้ s_B a_I j^_E
+ไหน ไหน n_B a_I j^_E
+ไหม ไหม m_B a_I j^_E
+ไอ ไอ z_B a_I j^_E
