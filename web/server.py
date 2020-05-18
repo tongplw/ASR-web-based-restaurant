@@ -220,7 +220,7 @@ async def textfield(request) :
             res.image = "https://img-global.cpcdn.com/recipes/8b8c8c4bd551a902/1200x630cq70/photo.jpg"
             res.price = "99.-"
             res.addTime = str(x)
-            res.makeTime = 600000
+            res.makeTime = 300000
         if "หนึ่ง" in orders : res.amount = 1
         if "สอง" in orders : res.amount = 2
         if "สาม" in orders : res.amount = 3
