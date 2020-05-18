@@ -49,7 +49,7 @@ const useStyles = makeStyles((theme) => ({
   root: {
     "& .MuiTextField-root": {
       margin: theme.spacing(1),
-      width: "40%",
+      width: "35%",
       justifyContent: "center",
     },
   },
@@ -104,12 +104,9 @@ var dc = null,
 // negitiate
 
 export default function Search() {
-  const [latitude, setLatitude] = useState(0.0);
-  const [longitude, setLongitude] = useState(0.0);
   const [items, setItems] = useState([]);
   const [message, setMessage] = useState("");
   const [loading, setLoading] = React.useState(false);
-  const [loadingResult, setLoadingResult] = React.useState(false);
   const [success, setSuccess] = React.useState(false);
   const [textFiledInput, setTextFieldInput] = useState();
   const [textField, setTextField] = useState();
@@ -282,7 +279,6 @@ export default function Search() {
         //console.log(res);
         console.log(res.data);
     })
-    setLoadingResult(true);
   };
 
   const onTextFieldChange = (e) => {

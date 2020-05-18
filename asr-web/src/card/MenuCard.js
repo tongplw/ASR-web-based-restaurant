@@ -21,9 +21,13 @@ const useStyles = makeStyles((theme) => ({
     maxHeight: 600,
   },
   font: {
-    fontFamily: "Comfortaa, cursive",
+    fontFamily: 'Mitr, sans-serif',
   },
   boldFont: {
+    fontFamily: 'Mitr, sans-serif',
+    fontWeight: "bold",
+  },
+  buttonFont: {
     fontFamily: "Comfortaa, cursive",
     fontWeight: "bold",
   },
@@ -97,9 +101,9 @@ export default function MenuCard(props) {
             component="p"
             className={classes.font}
           >
-            {props.item.text.length >= 50 &&
-              props.item.text.substring(0, 50) + "..."}
-            {props.item.text.length < 50 && props.item.text}
+            {props.item.text.length >= 40 &&
+              props.item.text.substring(0, 40) + "..."}
+            {props.item.text.length < 40 && props.item.text}
           </Typography>
           <Typography
             variant="body2"
@@ -127,13 +131,13 @@ export default function MenuCard(props) {
             </MenuItem>
           ))}
         </TextField>
-        <Button size="small" color="primary" className={classes.font}>
+        <Button size="small" color="primary" className={classes.buttonFont}>
           Order
         </Button>
         <Button
           size="small"
           color="primary"
-          className={classes.font}
+          className={classes.buttonFont}
           onClick={handleToggle}
         >
           See More
@@ -148,7 +152,6 @@ export default function MenuCard(props) {
               <CardMedia
                 component="img"
                 alt="Contemplative Reptile"
-                height="140"
                 image={props.item.image}
                 title="Contemplative Reptile"
                 className={classes.boldFont}

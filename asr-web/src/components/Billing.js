@@ -7,8 +7,9 @@ import FormControl from "@material-ui/core/FormControl";
 import InputLabel from "@material-ui/core/InputLabel";
 import Icon from "@material-ui/core/Icon";
 import Button from "@material-ui/core/Button";
-import MiniCard from "./MiniCard";
+import MiniCard from "../card/MiniCard";
 import Box from "@material-ui/core/Box";
+import Divider from '@material-ui/core/Divider';
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -41,6 +42,11 @@ const useStyles = makeStyles((theme) => ({
   button: {
     margin: theme.spacing(1),
   },
+  fontHeader: {
+    fontFamily: "Comfortaa",
+    fontSize: 30,
+    margin: 10,
+  },
 }));
 
 const showOrderItem = (item) => {
@@ -58,6 +64,7 @@ export default function LayoutTextFields() {
   const [month, setMonth] = React.useState(0);
   const [year, setYear] = React.useState(0);
   const [orderItems, setOrderItems] = useState([]);
+  const [totalPrice, setTotalPrice] = useState(0);
   const handlePaymentChange = (event) => {
     setPayment(event.target.value);
   };
@@ -67,6 +74,13 @@ export default function LayoutTextFields() {
   const handleYearChange = (event) => {
     setYear(event.target.value);
   };
+  const calculateTotalPrice = () => {
+    let sum = 0;
+    for (let i = 0; i < orderItems.length; i++) {
+      sum += orderItems[i].price * orderItems[i].amount;
+    }
+    setTotalPrice(sum);
+  };
   useEffect(() => {
     setOrderItems([
       {
@@ -74,9 +88,10 @@ export default function LayoutTextFields() {
         text: "good steak",
         image:
           "https://img-global.cpcdn.com/recipes/8b8c8c4bd551a902/1200x630cq70/photo.jpg",
-        price: "99.-",
+        price: 99,
         addTime: new Date(2020, 4, 17, 21, 31),
         makeTime: 600000,
+        amount: 1,
       },
       {
         name: "samyan joke",
@@ -84,16 +99,22 @@ export default function LayoutTextFields() {
           "good jokfffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff ffff ffffff fffff ffffffff fffff ffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffe",
         image:
           "https://img-global.cpcdn.com/recipes/8b8c8c4bd551a902/1200x630cq70/photo.jpg",
-        price: "99.-",
+        price: 99,
         addTime: new Date(2020, 4, 17, 21, 31),
         makeTime: 300000,
+        amount: 2,
       },
     ]);
   }, []);
 
+  useEffect(() => {
+    calculateTotalPrice();
+  });
+
   return (
     <div className={classes.root}>
       <div className={classes.showPart}>
+        <h3 className={classes.fontHeader}>Total price {totalPrice}.-</h3>
         <Box
           display="flex"
           flexWrap="wrap"
@@ -112,8 +133,10 @@ export default function LayoutTextFields() {
           {orderItems.map((item) => showOrderItem(item))}
         </Box>
       </div>
+      <Divider orientation="vertical" flexItem />
       <div className={classes.part} style={{ flexDirection: "column" }}>
         <div>
+        <h3 className={classes.fontHeader}>Payment information</h3>
           <FormControl className={classes.formControl}>
             <InputLabel id="demo-simple-select-label">Payment</InputLabel>
             <Select
@@ -216,7 +239,7 @@ export default function LayoutTextFields() {
               <Icon className="fas fa-coins" style={{ fontSize: 24 }} />
             }
           >
-            Pay
+            Pay {totalPrice}.-
           </Button>
         </div>
       </div>

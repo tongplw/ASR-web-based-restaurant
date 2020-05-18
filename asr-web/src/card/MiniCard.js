@@ -13,8 +13,8 @@ import MenuItem from '@material-ui/core/MenuItem';
 
 const useStyles = makeStyles((theme) => ({
   root: {
-    width: 200,
-    height: 250,
+    width: 300,
+    height: 100,
   },
   font: {
     fontFamily: "Comfortaa, cursive",
@@ -55,29 +55,11 @@ const currencies = [
 export default function MenuCard(props) {
   const classes = useStyles();
   const [open, setOpen] = React.useState(false);
-  const [currency, setCurrency] = React.useState(1);
-
-  const handleChange = (event) => {
-    setCurrency(event.target.value);
-  };
-  const handleClose = () => {
-    setOpen(false);
-  };
-  const handleToggle = () => {
-    setOpen(!open);
-  };
 
   return (
     <Card className={classes.root}>
       <CardActionArea>
-        <CardMedia
-          component="img"
-          alt="Contemplative Reptile"
-          height="140"
-          image={props.item.image}
-          title="Contemplative Reptile"
-          className={classes.boldFont}
-        />
+        
         <CardContent>
           <Typography
             gutterBottom
@@ -85,7 +67,7 @@ export default function MenuCard(props) {
             component="h2"
             className={classes.boldFont}
           >
-            {props.item.name}
+            {props.item.name} x {props.item.amount}
           </Typography>
           <Typography
             variant="body2"
@@ -94,7 +76,7 @@ export default function MenuCard(props) {
             className={classes.boldFont}
             style={{ fontSize: 24, marginTop: 10 }}
           >
-            {props.item.price}
+            {parseInt(props.item.price) * parseInt(props.item.amount)}.-
           </Typography>
         </CardContent>
       </CardActionArea>

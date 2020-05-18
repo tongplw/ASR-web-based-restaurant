@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { makeStyles } from '@material-ui/core/styles';
 import Box from "@material-ui/core/Box";
-import Table from './Table'
+import Table from '../card/TableCard'
 import { loadCSS } from "fg-loadcss";
 
 const useStyles = makeStyles((theme) => ({

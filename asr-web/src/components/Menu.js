@@ -3,8 +3,8 @@ import { makeStyles } from "@material-ui/core/styles";
 import Box from "@material-ui/core/Box";
 import { loadCSS } from "fg-loadcss";
 import "./Search.css";
-import Card from "./Card";
-import OrderCard from "./OrderCard";
+import Card from "../card/MenuCard";
+import OrderCard from "../card/OrderCard";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -51,7 +51,8 @@ export default function Menu(props) {
           "https://img-global.cpcdn.com/recipes/8b8c8c4bd551a902/1200x630cq70/photo.jpg",
         price: "99.-",
         addTime: new Date(2020,4,17,21,31),
-        makeTime: 600000
+        makeTime: 600000,
+        amount:1
       },
       {
         name: "samyan joke",
@@ -61,58 +62,45 @@ export default function Menu(props) {
           "https://img-global.cpcdn.com/recipes/8b8c8c4bd551a902/1200x630cq70/photo.jpg",
         price: "99.-",
         addTime: new Date(2020,4,17,21,31),
-        makeTime: 300000
+        makeTime: 300000,
+        amount:2
       },
     ]);
     setMenuItems([
       {
-        name: "samyan steak",
-        text: "good steak",
+        name: "กะเพราหมูสับ",
+        text: " หมูสับร่วนผัดกับใบกะเพราหอมติดจมูก ราดบนข้าวสวยร้อน ๆ พร้อมไข่ดาว",
         image:
-          "https://img-global.cpcdn.com/recipes/8b8c8c4bd551a902/1200x630cq70/photo.jpg",
-        price: "99.-",
+          "https://img.pptvhd36.com/contents/H/y/cd32a0364b7a.jpg",
+        price: "79.-",
       },
       {
-        name: "samyan joke",
+        name: "ข้าวไข่เจียวหมูสับ",
         text:
           "good jokfffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff ffff ffffff fffff ffffffff fffff ffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffe",
         image:
-          "https://img-global.cpcdn.com/recipes/8b8c8c4bd551a902/1200x630cq70/photo.jpg",
-        price: "99.-",
+          "https://upic.me/i/dz/img-0671.jpg",
+        price: "59.-",
       },
       {
-        name: "ganja noodles",
+        name: "ข้าวผัดหมู",
         text: "good noodles",
         image:
-          "https://img-global.cpcdn.com/recipes/8b8c8c4bd551a902/1200x630cq70/photo.jpg",
+          "https://lh3.googleusercontent.com/proxy/vW6hGNnGC3SUpxy2ZtQiJG2DvCLNxrPQ0nixM42FptStZTrhPuBttcylguB8VLihi0W7Mqzm954MrPUvQdwCRTGhLOS_J4X-IF-9N9mylJN13cLWlg",
+        price: "79.-",
+      },
+      {
+        name: "ข้าวหมูกรอบ",
+        text: "good steak",
+        image:
+          "https://lh3.googleusercontent.com/proxy/xpOemdxrVPdwKo8vHDyBFV1MYgLkTf1GoMRyE5zQOBKPffqFSkgUrqpEWCzykBfc-jb-7cBy6BcYcmAZwu26ux6Bo6TR9KJvq90P8ci1ePEKkLRHucz9VbMRagL6OJAnyOnMoZya",
         price: "99.-",
       },
       {
-        name: "samyan steak",
+        name: "ก๋วยเตี๋ยว",
         text: "good steak",
         image:
-          "https://img-global.cpcdn.com/recipes/8b8c8c4bd551a902/1200x630cq70/photo.jpg",
-        price: "99.-",
-      },
-      {
-        name: "samyan steak",
-        text: "good steak",
-        image:
-          "https://img-global.cpcdn.com/recipes/8b8c8c4bd551a902/1200x630cq70/photo.jpg",
-        price: "99.-",
-      },
-      {
-        name: "samyan steak",
-        text: "good steak",
-        image:
-          "https://img-global.cpcdn.com/recipes/8b8c8c4bd551a902/1200x630cq70/photo.jpg",
-        price: "99.-",
-      },
-      {
-        name: "samyan steak",
-        text: "good steak",
-        image:
-          "https://img-global.cpcdn.com/recipes/8b8c8c4bd551a902/1200x630cq70/photo.jpg",
+          "https://lh3.googleusercontent.com/proxy/82npm7nCiq0E8bHx-JAqZaVeNCJBL-_urPw4easjzAYpIO1PZvLQ0MmNhCbqZXqqS3pPwBCDKZdJaJsDzcagd_WtNmGDvjg9n6jJerj2ptfOEgtbbBST",
         price: "99.-",
       },
     ]);

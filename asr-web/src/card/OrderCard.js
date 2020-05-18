@@ -12,6 +12,8 @@ import Typography from "@material-ui/core/Typography";
 import FavoriteIcon from "@material-ui/icons/Favorite";
 import Icon from "@material-ui/core/Icon";
 import ExpandMoreIcon from "@material-ui/icons/ExpandMore";
+import ThankYouCard from "./ThankYouCard"
+import Backdrop from "@material-ui/core/Backdrop";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -42,6 +44,10 @@ const useStyles = makeStyles((theme) => ({
     fontWeight: "bold",
     margin: 10,
   },
+  backdrop: {
+    zIndex: theme.zIndex.drawer + 1,
+    color: "#fff",
+  },
 }));
 
 export default function OrderCard(props) {
@@ -64,11 +70,22 @@ export default function OrderCard(props) {
 
   const classes = useStyles();
   const [expanded, setExpanded] = React.useState(false);
+  const [open, setOpen] = React.useState(false);
   const [timeLeft, setTimeLeft] = useState(calculateTimeLeft());
+  const [isShowCard, setShowCard] = useState(false);
 
   const handleExpandClick = () => {
     setExpanded(!expanded);
   };
+  const handleClose = () => {
+    setOpen(false);
+  };
+  const handleToggle = () => {
+    setOpen(!open);
+  };
+  const handleClickFav = () => {
+    
+  }
 
   useEffect(() => {
     setTimeout(() => {
@@ -98,7 +115,7 @@ export default function OrderCard(props) {
         component="h2"
         className={classes.boldFont}
       >
-        {props.item.name}
+        {props.item.name}  x {props.item.amount}
       </Typography>
       <Typography
         gutterBottom
@@ -113,23 +130,9 @@ export default function OrderCard(props) {
         image={props.item.image}
         title="Paella dish"
       />
-      <CardContent>
-        <Typography
-          variant="body2"
-          color="textSecondary"
-          component="p"
-          className={classes.boldFont}
-          style={{ fontSize: 24, marginTop: 10 }}
-        >
-          {props.item.price}
-        </Typography>
-      </CardContent>
       <CardActions disableSpacing>
-        <IconButton aria-label="add to favorites">
+        <IconButton aria-label="add to favorites" onClick={handleToggle}>
           <FavoriteIcon />
-        </IconButton>
-        <IconButton aria-label="share">
-          <Icon className="fas fa-check-double" />
         </IconButton>
         <IconButton aria-label="calcel">
           <DeleteIcon />
@@ -157,6 +160,13 @@ export default function OrderCard(props) {
           </Typography>
         </CardContent>
       </Collapse>
+      <Backdrop
+          className={classes.backdrop}
+          open={open}
+          onClick={handleClose}
+        >
+          <ThankYouCard />
+        </Backdrop>
     </Card>
   );
 }
