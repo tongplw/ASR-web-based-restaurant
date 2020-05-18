@@ -15,7 +15,7 @@ import Tabs from "@material-ui/core/Tabs";
 import Tab from "@material-ui/core/Tab";
 import Typography from "@material-ui/core/Typography";
 import PropTypes from "prop-types";
-import ReserveTable from './ReserveTable'
+import ReserveTable from "./ReserveTable";
 import axios from "axios";
 
 function TabPanel(props) {
@@ -57,6 +57,7 @@ const useStyles = makeStyles((theme) => ({
     display: "flex",
     alignItems: "center",
     justifyContent: "center",
+    marginTop: 20,
   },
   search: {
     textAlignment: "center",
@@ -104,15 +105,16 @@ var dc = null,
 // negitiate
 
 export default function Search() {
-  const [items, setItems] = useState([]);
   const [message, setMessage] = useState("");
   const [loading, setLoading] = React.useState(false);
-  const [success, setSuccess] = React.useState(false);
   const [textFiledInput, setTextFieldInput] = useState();
   const [textField, setTextField] = useState();
-  const timer = React.useRef();
   const classes = useStyles();
   const [value, setValue] = React.useState(0);
+  const [menuItems, setMenuItems] = useState([]);
+  const [orderItems, setOrderItems] = useState([]);
+  const [tableItems, setTableItems] = useState([]);
+  const [tableNo, settableNo] = React.useState(0);
 
   const handleChange = (event, newValue) => {
     setValue(newValue);
@@ -193,7 +195,7 @@ export default function Search() {
       console.log("received:" + msg);
       if (msg.length > 1) {
         setTextFieldInput(msg);
-        setTextField(msg)
+        setTextField(msg);
       }
       if (msg.endsWith("\n")) {
         console.log("asd");
@@ -257,33 +259,27 @@ export default function Search() {
   const handleListenClick = () => {
     if (!loading) {
       setMessage("Please wait");
-      setSuccess(false);
       setLoading(true);
       start();
     } else if (loading) {
       setMessage("Push to speak");
-      setSuccess(true);
       setLoading(false);
       stop();
-    }
-  };
-
-  const handleSearchClick = () => {
-    setTextFieldInput(textFiledInput)
-    let inputForm = document.getElementById("filled-basic")
-    console.log(`textField : ${textField}`);
-    let sendData = {
-      "orders" : textField
-    }
-    axios.post(`http://localhost:8080/textfield`, sendData).then(res => {
-        //console.log(res);
+      setTextFieldInput(textFiledInput);
+      console.log(`textField : ${textField}`);
+      let sendData = {
+        orders: textField,
+      };
+      axios.post(`http://localhost:8080/textfield`, sendData).then((res) => {
+        //console.log(res)
         console.log(res.data);
-    })
+      });
+    }
   };
 
   const onTextFieldChange = (e) => {
     console.log(e);
-    setTextField(e)
+    setTextField(e);
   };
 
   useEffect(() => {
@@ -292,14 +288,113 @@ export default function Search() {
       document.querySelector("#font-awesome-css")
     );
     setMessage("Push to speak");
+    setTableItems([
+      {
+        tableNo: 1,
+        title: "Available",
+        status : true,
+      },
+      {
+        tableNo: 2,
+        title: "Unavaiable",
+        name: "good steak",
+        status : false,
+        image:
+          "https://ezeesmarthotel.com/assets/images/cloudpos/quick_table_management.png",
+      },
+      {
+        tableNo: 3,
+        title: "Available",
+        name: "good steak",
+        status : true,
+        image:
+          "https://ezeesmarthotel.com/assets/images/cloudpos/quick_table_management.png",
+      },
+      {
+        tableNo: 4,
+        title: "Available",
+        name: "good steak",
+        status : true,
+        image:
+          "https://ezeesmarthotel.com/assets/images/cloudpos/quick_table_management.png",
+      },
+      {
+        tableNo: 5,
+        title: "Unavaiable",
+        name: "good steak",
+        status : false,
+        image:
+          "https://ezeesmarthotel.com/assets/images/cloudpos/quick_table_management.png",
+      },
+    ]);
+    setMenuItems([
+      {
+        name: "กะเพราหมูสับ",
+        text:
+          " หมูสับร่วนผัดกับใบกะเพราหอมติดจมูก ราดบนข้าวสวยร้อน ๆ พร้อมไข่ดาว",
+        image: "https://img.pptvhd36.com/contents/H/y/cd32a0364b7a.jpg",
+        price: 79,
+      },
+      {
+        name: "ข้าวไข่เจียวหมูสับ",
+        text:
+          "good jokfffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff ffff ffffff fffff ffffffff fffff ffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffe",
+        image: "https://upic.me/i/dz/img-0671.jpg",
+        price: 59,
+      },
+      {
+        name: "ข้าวผัดหมู",
+        text: "good noodles",
+        image:
+          "https://lh3.googleusercontent.com/proxy/vW6hGNnGC3SUpxy2ZtQiJG2DvCLNxrPQ0nixM42FptStZTrhPuBttcylguB8VLihi0W7Mqzm954MrPUvQdwCRTGhLOS_J4X-IF-9N9mylJN13cLWlg",
+        price: 79,
+      },
+      {
+        name: "ข้าวหมูกรอบ",
+        text: "good steak",
+        image:
+          "https://lh3.googleusercontent.com/proxy/xpOemdxrVPdwKo8vHDyBFV1MYgLkTf1GoMRyE5zQOBKPffqFSkgUrqpEWCzykBfc-jb-7cBy6BcYcmAZwu26ux6Bo6TR9KJvq90P8ci1ePEKkLRHucz9VbMRagL6OJAnyOnMoZya",
+        price: 99,
+      },
+      {
+        name: "ก๋วยเตี๋ยว",
+        text: "good steak",
+        image:
+          "https://lh3.googleusercontent.com/proxy/82npm7nCiq0E8bHx-JAqZaVeNCJBL-_urPw4easjzAYpIO1PZvLQ0MmNhCbqZXqqS3pPwBCDKZdJaJsDzcagd_WtNmGDvjg9n6jJerj2ptfOEgtbbBST",
+        price: 99,
+      },
+    ]);
+    setOrderItems([
+      {
+        name: "samyan steak",
+        text: "good steak",
+        image:
+          "https://img-global.cpcdn.com/recipes/8b8c8c4bd551a902/1200x630cq70/photo.jpg",
+        price: 99,
+        addTime: new Date(2020, 4, 17, 21, 31),
+        makeTime: 600000,
+        amount: 1,
+      },
+      {
+        name: "samyan joke",
+        text:
+          "good jokfffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff ffff ffffff fffff ffffffff fffff ffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffe",
+        image:
+          "https://img-global.cpcdn.com/recipes/8b8c8c4bd551a902/1200x630cq70/photo.jpg",
+        price: 99,
+        addTime: new Date(2020, 4, 17, 21, 31),
+        makeTime: 300000,
+        amount: 2,
+      },
+    ]);
     return () => {
       node.parentNode.removeChild(node);
     };
   }, []);
-  
+
   return (
     <div>
-      <div id="searchBar" style={{ width: "100%", height: 400}}>
+      <div id="searchBar" style={{ width: "100%", height: 400 }}>
         <h1 id="text">{message}</h1>
         <div className={classes.search}>
           <form className={classes.root}>
@@ -309,18 +404,6 @@ export default function Search() {
               onChange={(e) => onTextFieldChange(e.target.value)}
               value={textFiledInput}
             />
-            <Button
-              variant="contained"
-              color="default"
-              className={classes.button}
-              startIcon={
-                <Icon className="fas fa-check" style={{ fontSize: 15 }} />
-              }
-              style={{ marginTop: 15 }}
-              onClick={handleSearchClick}
-            >
-              Submit
-            </Button>
           </form>
         </div>
         <div className={classes.newRoot}>
@@ -338,7 +421,7 @@ export default function Search() {
           </div>
         </div>
       </div>
-      <div style={{ width: "100%", minHeight: 400}}>
+      <div style={{ width: "100%", minHeight: 400 }}>
         <AppBar position="static" color="default">
           <Tabs
             value={value}
@@ -379,16 +462,16 @@ export default function Search() {
           </Tabs>
         </AppBar>
         <TabPanel value={value} index={0}>
-          <ReserveTable />
+          <ReserveTable tableItems={tableItems} tableNo={tableNo}/>
         </TabPanel>
         <TabPanel value={value} index={1}>
-          <Menu state="menu" />
+          <Menu state="menu" menuItems={menuItems} />
         </TabPanel>
         <TabPanel value={value} index={2}>
-          <Menu state="order" />
+          <Menu state="order" orderItems={orderItems} />
         </TabPanel>
         <TabPanel value={value} index={3}>
-          <Billing />
+          <Billing orderItems={orderItems} />
         </TabPanel>
       </div>
     </div>

@@ -88,7 +88,7 @@ export default function MenuCard(props) {
     else {
         setText("NaN") 
     }
-  }, []);
+  });
 
   return (
     <Card className={classes.root}>

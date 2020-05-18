@@ -1,10 +1,10 @@
-import React, { useState } from "react";
-import { makeStyles } from "@material-ui/core/styles";
-import Box from "@material-ui/core/Box";
-import { loadCSS } from "fg-loadcss";
-import "./Search.css";
-import Card from "../card/MenuCard";
-import OrderCard from "../card/OrderCard";
+import React, { useState } from "react"
+import { makeStyles } from "@material-ui/core/styles"
+import Box from "@material-ui/core/Box"
+import { loadCSS } from "fg-loadcss"
+import "./Search.css"
+import Card from "../card/MenuCard"
+import OrderCard from "../card/OrderCard"
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -14,35 +14,33 @@ const useStyles = makeStyles((theme) => ({
       justifyContent: "center",
     },
   },
-}));
+}))
 
 const showMenuItem = (item) => {
-  let newItem = item;
   return (
     <Box p={1} css={{ wordWrap: "break-word" }}>
-      <Card item={newItem} />
+      <Card item={item} />
     </Box>
-  );
-};
+  )
+}
 
 const showOrderItem = (item) => {
-  let newItem = item;
   return (
     <Box p={1} css={{ wordWrap: "break-word" }}>
-      <OrderCard item={newItem} />
+      <OrderCard item={item} />
     </Box>
-  );
-};
+  )
+}
 
 export default function Menu(props) {
-  const [menuItems, setMenuItems] = useState([]);
-  const [orderItems, setOrderItems] = useState([]);
+  const [menuItems, setMenuItems] = useState([])
+  const [orderItems, setOrderItems] = useState([])
 
   React.useEffect(() => {
     const node = loadCSS(
       "https://use.fontawesome.com/releases/v5.12.0/css/all.css",
       document.querySelector("#font-awesome-css")
-    );
+    )
     setOrderItems([
       {
         name: "samyan steak",
@@ -65,46 +63,10 @@ export default function Menu(props) {
         makeTime: 300000,
         amount:2
       },
-    ]);
-    setMenuItems([
-      {
-        name: "กะเพราหมูสับ",
-        text: " หมูสับร่วนผัดกับใบกะเพราหอมติดจมูก ราดบนข้าวสวยร้อน ๆ พร้อมไข่ดาว",
-        image:
-          "https://img.pptvhd36.com/contents/H/y/cd32a0364b7a.jpg",
-        price: "79.-",
-      },
-      {
-        name: "ข้าวไข่เจียวหมูสับ",
-        text:
-          "good jokfffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff ffff ffffff fffff ffffffff fffff ffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffe",
-        image:
-          "https://upic.me/i/dz/img-0671.jpg",
-        price: "59.-",
-      },
-      {
-        name: "ข้าวผัดหมู",
-        text: "good noodles",
-        image:
-          "https://lh3.googleusercontent.com/proxy/vW6hGNnGC3SUpxy2ZtQiJG2DvCLNxrPQ0nixM42FptStZTrhPuBttcylguB8VLihi0W7Mqzm954MrPUvQdwCRTGhLOS_J4X-IF-9N9mylJN13cLWlg",
-        price: "79.-",
-      },
-      {
-        name: "ข้าวหมูกรอบ",
-        text: "good steak",
-        image:
-          "https://lh3.googleusercontent.com/proxy/xpOemdxrVPdwKo8vHDyBFV1MYgLkTf1GoMRyE5zQOBKPffqFSkgUrqpEWCzykBfc-jb-7cBy6BcYcmAZwu26ux6Bo6TR9KJvq90P8ci1ePEKkLRHucz9VbMRagL6OJAnyOnMoZya",
-        price: "99.-",
-      },
-      {
-        name: "ก๋วยเตี๋ยว",
-        text: "good steak",
-        image:
-          "https://lh3.googleusercontent.com/proxy/82npm7nCiq0E8bHx-JAqZaVeNCJBL-_urPw4easjzAYpIO1PZvLQ0MmNhCbqZXqqS3pPwBCDKZdJaJsDzcagd_WtNmGDvjg9n6jJerj2ptfOEgtbbBST",
-        price: "99.-",
-      },
-    ]);
-  }, []);
+    ])
+    setMenuItems(props.menuItems)
+    setOrderItems(props.orderItems)
+  }, [])
   if (props.state === "menu") {
     return (
       <Box
@@ -124,7 +86,7 @@ export default function Menu(props) {
       >
         {menuItems.map((item) => showMenuItem(item))}
       </Box>
-    );
+    )
   } else if (props.state === "order") {
     return (
       <Box
@@ -144,6 +106,6 @@ export default function Menu(props) {
       >
         {orderItems.map((item) => showOrderItem(item))}
       </Box>
-    );
+    )
   }
 }

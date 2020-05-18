@@ -58,7 +58,7 @@ const showOrderItem = (item) => {
   );
 };
 
-export default function LayoutTextFields() {
+export default function LayoutTextFields(props) {
   const classes = useStyles();
   const [payment, setPayment] = React.useState("");
   const [month, setMonth] = React.useState(0);
@@ -82,29 +82,7 @@ export default function LayoutTextFields() {
     setTotalPrice(sum);
   };
   useEffect(() => {
-    setOrderItems([
-      {
-        name: "samyan steak",
-        text: "good steak",
-        image:
-          "https://img-global.cpcdn.com/recipes/8b8c8c4bd551a902/1200x630cq70/photo.jpg",
-        price: 99,
-        addTime: new Date(2020, 4, 17, 21, 31),
-        makeTime: 600000,
-        amount: 1,
-      },
-      {
-        name: "samyan joke",
-        text:
-          "good jokfffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff ffff ffffff fffff ffffffff fffff ffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffe",
-        image:
-          "https://img-global.cpcdn.com/recipes/8b8c8c4bd551a902/1200x630cq70/photo.jpg",
-        price: 99,
-        addTime: new Date(2020, 4, 17, 21, 31),
-        makeTime: 300000,
-        amount: 2,
-      },
-    ]);
+    setOrderItems(props.orderItems);
   }, []);
 
   useEffect(() => {

@@ -9,11 +9,12 @@ import Collapse from "@material-ui/core/Collapse";
 import DeleteIcon from "@material-ui/icons/Delete";
 import IconButton from "@material-ui/core/IconButton";
 import Typography from "@material-ui/core/Typography";
-import FavoriteIcon from "@material-ui/icons/Favorite";
-import Icon from "@material-ui/core/Icon";
+import Rating from "@material-ui/lab/Rating";
+import CardActionArea from "@material-ui/core/CardActionArea";
 import ExpandMoreIcon from "@material-ui/icons/ExpandMore";
-import ThankYouCard from "./ThankYouCard"
+import ThankYouCard from "./ThankYouCard";
 import Backdrop from "@material-ui/core/Backdrop";
+import Button from "@material-ui/core/Button";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -36,22 +37,23 @@ const useStyles = makeStyles((theme) => ({
     transform: "rotate(180deg)",
   },
   font: {
-    fontFamily: "Comfortaa, cursive",
-    margin: 10,
+    fontFamily: "Mitr, sans-serif",
   },
   boldFont: {
-    fontFamily: "Comfortaa, cursive",
+    fontFamily: "Mitr, sans-serif",
     fontWeight: "bold",
-    margin: 10,
   },
   backdrop: {
     zIndex: theme.zIndex.drawer + 1,
     color: "#fff",
   },
+  backdropCard: {
+    maxWidth: 600,
+    maxHeight: 600,
+  },
 }));
 
 export default function OrderCard(props) {
-
   const calculateTimeLeft = () => {
     const difference = +props.item.addTime + props.item.makeTime - +new Date();
     let timeLeft = {};
@@ -71,8 +73,11 @@ export default function OrderCard(props) {
   const classes = useStyles();
   const [expanded, setExpanded] = React.useState(false);
   const [open, setOpen] = React.useState(false);
+  const [openCancel, setOpenCancel] = React.useState(false);
+  const [openNotCancel, setOpenNotCancel] = React.useState(false);
   const [timeLeft, setTimeLeft] = useState(calculateTimeLeft());
   const [isShowCard, setShowCard] = useState(false);
+  const [value, setValue] = React.useState(0);
 
   const handleExpandClick = () => {
     setExpanded(!expanded);
@@ -81,12 +86,26 @@ export default function OrderCard(props) {
     setOpen(false);
   };
   const handleToggle = () => {
+    if (value !== 1) console.log(value);
     setOpen(!open);
   };
-  const handleClickFav = () => {
-    
-  }
-
+  const handleCloseCancel = () => {
+    setOpenCancel(false);
+  };
+  const handleCloseNotCancel = () => {
+    setOpenNotCancel(false);
+  };
+  const setOpenCheckCancel = () => {
+    if (!timerComponents.length) {
+      setOpenNotCancel(true);
+    } else {
+      setOpenCancel(true);
+    }
+  };
+  const handleCancel = () => {
+    console.log("axios update table");
+    window.location.assign("/");
+  };
   useEffect(() => {
     setTimeout(() => {
       setTimeLeft(calculateTimeLeft());
@@ -109,32 +128,43 @@ export default function OrderCard(props) {
 
   return (
     <Card className={classes.root}>
-      <Typography
-        gutterBottom
-        variant="h5"
-        component="h2"
-        className={classes.boldFont}
-      >
-        {props.item.name}  x {props.item.amount}
-      </Typography>
-      <Typography
-        gutterBottom
-        variant="h6"
-        component="h2"
-        className={classes.font}
-      >
-        {timerComponents.length ? timerComponents : <span>Your order is ready!</span>}
-      </Typography>
+      <div style={{ margin: 20 }}>
+        <Typography
+          gutterBottom
+          variant="h5"
+          component="h2"
+          className={classes.boldFont}
+        >
+          {props.item.name} x {props.item.amount}
+        </Typography>
+        <Typography
+          gutterBottom
+          variant="h6"
+          component="h2"
+          className={classes.font}
+        >
+          {timerComponents.length ? (
+            timerComponents
+          ) : (
+            <span>อาหารของคุณมาถึงแล้ว!</span>
+          )}
+        </Typography>
+      </div>
       <CardMedia
         className={classes.media}
         image={props.item.image}
         title="Paella dish"
       />
       <CardActions disableSpacing>
-        <IconButton aria-label="add to favorites" onClick={handleToggle}>
-          <FavoriteIcon />
-        </IconButton>
-        <IconButton aria-label="calcel">
+        <Rating
+          value={value}
+          precision={1}
+          onChange={(event, newValue) => {
+            setValue(newValue);
+            handleToggle();
+          }}
+        />
+        <IconButton aria-label="cancel" onClick={setOpenCheckCancel}>
           <DeleteIcon />
         </IconButton>
         <IconButton
@@ -160,13 +190,67 @@ export default function OrderCard(props) {
           </Typography>
         </CardContent>
       </Collapse>
+      <Backdrop className={classes.backdrop} open={open} onClick={handleClose}>
+        <ThankYouCard rating={value} />
+      </Backdrop>
       <Backdrop
-          className={classes.backdrop}
-          open={open}
-          onClick={handleClose}
-        >
-          <ThankYouCard />
-        </Backdrop>
+        className={classes.backdrop}
+        open={openCancel}
+        onClick={handleCloseCancel}
+      >
+        <Card className={classes.backdropCard}>
+          <CardActionArea>
+            <CardContent>
+              <Typography
+                gutterBottom
+                variant="h5"
+                component="h2"
+                className={classes.boldFont}
+              >
+                ยืนยันที่จะยกเลิก {props.item.name}
+              </Typography>
+              <div style={{ display: "flex", justifyContent: "space-evenly" }}>
+                <Button
+                  size="medium"
+                  color="primary"
+                  className={classes.font}
+                  onClick={handleCancel}
+                >
+                  ใช่
+                </Button>
+                <Button
+                  size="medium"
+                  color="primary"
+                  className={classes.font}
+                  onClick={handleCloseCancel}
+                >
+                  ไม่
+                </Button>
+              </div>
+            </CardContent>
+          </CardActionArea>
+        </Card>
+      </Backdrop>
+      <Backdrop
+        className={classes.backdrop}
+        open={openNotCancel}
+        onClick={handleCloseNotCancel}
+      >
+        <Card className={classes.backdropCard}>
+          <CardActionArea>
+            <CardContent>
+              <Typography
+                gutterBottom
+                variant="h5"
+                component="h2"
+                className={classes.boldFont}
+              >
+                ไม่สามารถยกเลิก {props.item.name} ได้ เนื่องจากอาหารมาถึงแล้ว
+              </Typography>
+            </CardContent>
+          </CardActionArea>
+        </Card>
+      </Backdrop>
     </Card>
   );
 }

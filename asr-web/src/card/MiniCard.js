@@ -17,10 +17,10 @@ const useStyles = makeStyles((theme) => ({
     height: 100,
   },
   font: {
-    fontFamily: "Comfortaa, cursive",
+    fontFamily: "Mitr, sans-serif",
   },
   boldFont: {
-    fontFamily: "Comfortaa, cursive",
+    fontFamily: "Mitr, sans-serif",
     fontWeight: "bold",
   },
   backdrop: {

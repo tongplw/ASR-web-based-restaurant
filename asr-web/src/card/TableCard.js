@@ -10,6 +10,9 @@ import Typography from "@material-ui/core/Typography";
 import { red } from "@material-ui/core/colors";
 import green from "@material-ui/core/colors/green";
 import Icon from "@material-ui/core/Icon";
+import Backdrop from "@material-ui/core/Backdrop";
+import CardActionArea from "@material-ui/core/CardActionArea";
+import Button from "@material-ui/core/Button";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -42,10 +45,43 @@ const useStyles = makeStyles((theme) => ({
   font: {
     fontFamily: "Comfortaa, cursive",
   },
+  backdropCard: {
+    maxWidth: 600,
+    maxHeight: 600,
+  },
+  font: {
+    fontFamily: "Mitr, sans-serif",
+  },
+  boldFont: {
+    fontFamily: "Mitr, sans-serif",
+    fontWeight: "bold",
+  },
+  buttonFont: {
+    fontFamily: "Comfortaa, cursive",
+    fontWeight: "bold",
+  },
+  backdrop: {
+    zIndex: theme.zIndex.drawer + 1,
+    color: "#fff",
+  },
 }));
 
 export default function RecipeReviewCard(props) {
   const classes = useStyles();
+  const [open, setOpen] = React.useState(false);
+  const handleClose = () => {
+    setOpen(false);
+  };
+  const handleToggle = () => {
+    setOpen(!open);
+  };
+  const handleBook = () => {
+    console.log("axios update table");
+    window.location.assign('/')
+  }
+  React.useEffect(() => {
+    setOpen(props.openBackdrop)
+  });
   if (props.item.status) {
     return (
       <Card className={classes.root}>
@@ -56,17 +92,61 @@ export default function RecipeReviewCard(props) {
             </Avatar>
           }
           action={
-            <IconButton aria-label="settings">
+            <IconButton aria-label="settings" onClick={handleToggle}>
               <Icon className="fas fa-check" />
             </IconButton>
           }
         />
         <CardMedia className={classes.media} image="table.jpg" />
         <CardContent>
-          <Typography variant="h5" color="primary" component="p" className={classes.font}>
+          <Typography
+            variant="h5"
+            color="primary"
+            component="p"
+            className={classes.font}
+          >
             {props.item.title}
           </Typography>
         </CardContent>
+        <Backdrop
+          className={classes.backdrop}
+          open={open}
+          onClick={handleClose}
+        >
+          <Card className={classes.backdropCard}>
+            <CardActionArea>
+              <CardContent>
+                <Typography
+                  gutterBottom
+                  variant="h5"
+                  component="h2"
+                  className={classes.boldFont}
+                >
+                  ยืนยันที่จะจองโต๊ะที่ {props.item.tableNo}
+                </Typography>
+                <div style={{display: "flex", justifyContent: "space-evenly"}}>
+                  <Button
+                  size="medium"
+                  color="primary"
+                  className={classes.font}
+                  onClick={handleBook}
+                >
+                  ใช่
+                </Button>
+                <Button
+                  size="medium"
+                  color="primary"
+                  className={classes.font}
+                  onClick={handleClose}
+                >
+                  ไม่
+                </Button>
+                </div>
+                
+              </CardContent>
+            </CardActionArea>
+          </Card>
+        </Backdrop>
       </Card>
     );
   } else {
@@ -81,7 +161,12 @@ export default function RecipeReviewCard(props) {
         />
         <CardMedia className={classes.media} image="table.jpg" />
         <CardContent>
-          <Typography variant="h5" color="primary" component="p" className={classes.font}>
+          <Typography
+            variant="h5"
+            color="primary"
+            component="p"
+            className={classes.font}
+          >
             {props.item.title}
           </Typography>
         </CardContent>
