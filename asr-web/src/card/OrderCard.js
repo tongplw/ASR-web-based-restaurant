@@ -88,7 +88,6 @@ export default function OrderCard(props) {
     if (props.setOrderRating) props.setOrderRating("");
   };
   const handleToggle = () => {
-    if (value !== 1) console.log(value);
     setOpen(!open);
   };
   const handleCloseCancel = () => {
@@ -115,10 +114,13 @@ export default function OrderCard(props) {
     window.location.assign("/");
   };
   useEffect(() => {
-    if (props.orderCommand === "rate") {
-      setOpen(true);
+    if (props.orderCommand === "rate" && !open) {
+      handleToggle();
       setValue(props.orderRating);
-    } else if (props.orderCommand === "cancel") {
+    } else if (
+      props.orderCommand === "cancel" &&
+      !(openCancel || openNotCancel)
+    ) {
       setOpenCheckCancel();
     }
     setTimeout(() => {

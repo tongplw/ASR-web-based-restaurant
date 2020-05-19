@@ -94,10 +94,10 @@ export default function MenuCard(props) {
     window.location.assign("/");
   };
   React.useEffect(() => {
-    if (props.menuCommand === "order") {
-      setOpenOrder(true);
-    } else if (props.menuCommand === "more") {
-      setOpen(true);
+    if (props.menuCommand === "order" && !openOrder) {
+      handleToggleOrder()
+    } else if (props.menuCommand === "more"&& !open) {
+      handleToggle()
     }
   });
   return (
