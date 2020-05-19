@@ -157,7 +157,7 @@ async def textfield(request) :
             else :
                 res.tableNo = "1"
                 res.status = False
-        if "สอง" in orders :
+        elif "สอง" in orders :
             res.value = "table2"
             if (not table2.isOccupied) :
                 # table2.setOccupied(True)
@@ -167,7 +167,7 @@ async def textfield(request) :
             else :
                 res.tableNo = "2"
                 res.status = False
-        if "สาม" in orders :
+        elif "สาม" in orders :
             res.value = "table3"
             if (not table3.isOccupied) :
                 # table3.setOccupied(True)
@@ -177,7 +177,7 @@ async def textfield(request) :
             else :
                 res.tableNo = "3"
                 res.status = False
-        if "สี่" in orders :
+        elif "สี่" in orders :
             res.value = "table4"
             if (not table4.isOccupied) :
                 # table4.setOccupied(True)
@@ -187,7 +187,7 @@ async def textfield(request) :
             else :
                 res.tableNo = "4"
                 res.status = False
-        if "ห้า" in orders :
+        elif "ห้า" in orders :
             res.value = "table5"
             if (not table5.isOccupied) :
                 # table5.setOccupied(True)
@@ -197,27 +197,27 @@ async def textfield(request) :
             else :
                 res.tableNo = "5"
                 res.status = False
-    if ("กี่" in orders) and ("บาท" in orders) or ("เท่าไร" in orders):
+    elif ("กี่" in orders) and ("บาท" in orders) or ("เท่าไร" in orders):
         res.key = "asking"
         res.status = True
         if ("ข้าว ไข่เจียว หมูสับ" in orders):
             res.name = "ข้าวไข่เจียวหมูสับ"
-        if ("กะเพรา หมูสับ" in orders):
+        elif ("กะเพรา หมูสับ" in orders):
             res.name = "กะเพราหมูสับ"
             res.makeTime = 600000
-        if ("ข้าวผัด หมู" in orders):
+        elif ("ข้าวผัด หมู" in orders):
             res.name = "ข้าวผัดหมู"
             res.makeTime = 600000
-        if ("ข้าว หมูกรอบ" in orders):
+        elif ("ข้าว หมูกรอบ" in orders):
             res.name = "ข้าวหมูกรอบ"
-        if ("ก๋วยเตี๋ยว" in orders):
+        elif ("ก๋วยเตี๋ยว" in orders):
             res.name = "ก๋วยเตี๋ยว"
         if "หนึ่ง" in orders : res.amount = 1
-        if "สอง" in orders : res.amount = 2
-        if "สาม" in orders : res.amount = 3
-        if "สี่" in orders : res.amount = 4
-        if "ห้า" in orders : res.amount = 5
-    if ("ขอ" in orders) and ("จาน" in orders):
+        elif "สอง" in orders : res.amount = 2
+        elif "สาม" in orders : res.amount = 3
+        elif "สี่" in orders : res.amount = 4
+        elif "ห้า" in orders : res.amount = 5
+    elif ("ขอ" in orders) and ("จาน" in orders):
         res.key = "order"
         x = datetime.datetime.now()
         if ("ข้าว ไข่เจียว หมูสับ" in orders):
@@ -227,28 +227,28 @@ async def textfield(request) :
             res.price = "99.-"
             res.addTime = str(x)
             res.makeTime = 600000
-        if ("กะเพรา หมูสับ" in orders):
+        elif ("กะเพรา หมูสับ" in orders):
             res.name = "กะเพราหมูสับ"
             res.text = "หมูที่ดีหรือหมู่กลม"
             res.image = "กะเพราหมูสับ.jpg"
             res.price = "99.-"
             res.addTime = str(x)
             res.makeTime = 600000
-        if ("ข้าวผัด หมู" in orders):
+        elif ("ข้าวผัด หมู" in orders):
             res.name = "ข้าวผัดหมู"
             res.text = "ผัดที่ดีคือผัดใบเขียว"
             res.image = "ข้าวผัดหมู.png"
             res.price = "99.-"
             res.addTime = str(x)
             res.makeTime = 600000
-        if ("ข้าว หมูกรอบ" in orders):
+        elif ("ข้าว หมูกรอบ" in orders):
             res.name = "ข้าวหมูกรอบ"
             res.text = "หมูกรอบบบบบบบบบบบ"
             res.image = "ข้าวหมูกรอบ.jpg"
             res.price = "99.-"
             res.addTime = str(x)
             res.makeTime = 600000
-        if ("ก๋วยเตี๋ยว" in orders):
+        elif ("ก๋วยเตี๋ยว" in orders):
             res.name = "ก๋วยเตี๋ยว"
             res.text = "เส้นที่ดีคือเส้นใหญ่"
             res.image = "ก๋วยเตี๋ยว.jpg"
@@ -256,66 +256,66 @@ async def textfield(request) :
             res.addTime = str(x)
             res.makeTime = 300000
         if "หนึ่ง" in orders : res.amount = 1
-        if "สอง" in orders : res.amount = 2
-        if "สาม" in orders : res.amount = 3
-        if "สี่" in orders : res.amount = 4
-        if "ห้า" in orders : res.amount = 5
+        elif "สอง" in orders : res.amount = 2
+        elif "สาม" in orders : res.amount = 3
+        elif "สี่" in orders : res.amount = 4
+        elif "ห้า" in orders : res.amount = 5
         # jsonStr = json.dumps(res.__dict__,ensure_ascii=False)
         # foodOrder.append(jsonStr)
         
-    if "เมนู" in orders :
+    elif "เมนู" in orders :
         res.key = "menu"
         res.status = True
         res.value = ["menu"]
-    if "ราคา" in orders :
+    elif "ราคา" in orders :
         res.key = "price"
         res.status = True
         res.value = ["price"]
-    if "ให้" in orders :
+    elif "ให้" in orders :
         if ( "ดาว" in orders ) or ( "คะแนน" in orders ) :   
             res.key = "star"
             res.status = True
             res.value = ["star"]
             if "หนึ่ง" in orders : res.point = 1
-            if "สอง" in orders : res.point = 2
-            if "สาม" in orders : res.point = 3
-            if "สี่" in orders : res.point = 4
-            if "ห้า" in orders : res.point = 5
-    if ("คิด" in orders) or ("จ่าย" in orders) or ("เก็บ" in orders) :
+            elif "สอง" in orders : res.point = 2
+            elif "สาม" in orders : res.point = 3
+            elif "สี่" in orders : res.point = 4
+            elif "ห้า" in orders : res.point = 5
+    elif ("คิด" in orders) or ("จ่าย" in orders) or ("เก็บ" in orders) :
         if ( "ตัง" in orders ) or ( "เงิน" in orders ) :   
             res.key = "bill"
             res.status = True
             res.value = ["bill"]
     ###### confirm #######
-    if ("ยืนยัน" in orders) and ("จอง" in orders) :
+    elif ("ยืนยัน" in orders) and ("จอง" in orders) :
         res.key = "confirm"
         if "1" in orders : 
             res.status = True
             res.tableNo = 1
             table1.setOccupied(True)
             res.occupied = table1.isOccupied
-        if "2" in orders :
+        elif "2" in orders :
             res.status = True
             res.tableNo = 2 
             table2.setOccupied(True)
             res.occupied = table2.isOccupied
-        if "3" in orders :
+        elif "3" in orders :
             res.status = True 
             res.tableNo = 3
             table3.setOccupied(True)
             res.occupied = table3.isOccupied
-        if "4" in orders :
+        elif "4" in orders :
             res.status = True 
             res.tableNo = 4
             table4.setOccupied(True)
             res.occupied = table4.isOccupied
-        if "5" in orders :
+        elif "5" in orders :
             res.status = True 
             res.tableNo = 5
             table5.setOccupied(True)
             res.occupied = table5.isOccupied
         
-    if ("ยืนยัน" in orders) and ("สั่ง" in orders) :
+    elif ("ยืนยัน" in orders) and ("สั่ง" in orders) :
             res.key = "Confirm"
             x = datetime.datetime.now()
             if ("ข้าวไข่เจียวหมูสับ" in orders):
@@ -325,28 +325,28 @@ async def textfield(request) :
                 res.price = "99.-"
                 res.addTime = str(x)
                 res.makeTime = 600000
-            if ("กะเพราหมูสับ" in orders):
+            elif ("กะเพราหมูสับ" in orders):
                 res.name = "กะเพราหมูสับ"
                 res.text = "หมูที่ดีหรือหมู่กลม"
                 res.image = "กะเพราหมูสับ.jpg"
                 res.price = "99.-"
                 res.addTime = str(x)
                 res.makeTime = 600000
-            if ("ข้าวผัดหมู" in orders):
+            elif ("ข้าวผัดหมู" in orders):
                 res.name = "ข้าวผัดหมู"
                 res.text = "ผัดที่ดีคือผัดใบเขียว"
                 res.image = "ข้าวผัดหมู.png"
                 res.price = "99.-"
                 res.addTime = str(x)
                 res.makeTime = 600000
-            if ("ข้าวหมูกรอบ" in orders):
+            elif ("ข้าวหมูกรอบ" in orders):
                 res.name = "ข้าวหมูกรอบ"
                 res.text = "หมูกรอบบบบบบบบบบบ"
                 res.image = "ข้าวหมูกรอบ.jpg"
                 res.price = "99.-"
                 res.addTime = str(x)
                 res.makeTime = 600000
-            if ("ก๋วยเตี๋ยว" in orders):
+            elif ("ก๋วยเตี๋ยว" in orders):
                 res.name = "ก๋วยเตี๋ยว"
                 res.text = "เส้นที่ดีคือเส้นใหญ่"
                 res.image = "ก๋วยเตี๋ยว.jpg"
@@ -354,38 +354,38 @@ async def textfield(request) :
                 res.addTime = str(x)
                 res.makeTime = 300000
             if "1" in orders : res.amount = 1
-            if "2" in orders : res.amount = 2
-            if "3" in orders : res.amount = 3
-            if "4" in orders : res.amount = 4
-            if "5" in orders : res.amount = 5
+            elif "2" in orders : res.amount = 2
+            elif "3" in orders : res.amount = 3
+            elif "4" in orders : res.amount = 4
+            elif "5" in orders : res.amount = 5
             
             jsonStr = json.dumps(res.__dict__,ensure_ascii=False)
             foodOrder.append(jsonStr)
-    if ("ลบ") in orders :
+    elif ("ลบ") in orders :
         res.key = "delete"
         res.status = True
         if ("ข้าว ไข่เจียว หมูสับ" in orders):
             removeOrder("ข้าวไข่เจียวหมูสับ")
-        if ("กะเพรา หมูสับ" in orders):
+        elif ("กะเพรา หมูสับ" in orders):
             removeOrder("กะเพราหมูสับ")
-        if ("ข้าวผัด หมู" in orders):
+        elif ("ข้าวผัด หมู" in orders):
             removeOrder("ข้าวผัดหมู")
-        if ("ข้าว หมูกรอบ" in orders):
+        elif ("ข้าว หมูกรอบ" in orders):
             removeOrder("ข้าวหมูกรอบ")
-        if ("ก๋วยเตี๋ยว" in orders):
+        elif ("ก๋วยเตี๋ยว" in orders):
             removeOrder("ก๋วยเตี๋ยว")
-    if ("ยกเลิก" in orders) and ("ขอ" not in orders):
+    elif ("ยกเลิก" in orders) and ("ขอ" not in orders):
         res.key = "cancel"
         res.status = True
         if ("ข้าว ไข่เจียว หมูสับ" in orders):
             res.name = "ข้าวไข่เจียวหมูสับ"
-        if ("กะเพรา หมูสับ" in orders):
+        elif ("กะเพรา หมูสับ" in orders):
             res.name = "กะเพราหมูสับ"
-        if ("ข้าวผัด หมู" in orders):
+        elif ("ข้าวผัด หมู" in orders):
             res.name = "ข้าวผัดหมู"
-        if ("ข้าว หมูกรอบ" in orders):
+        elif ("ข้าว หมูกรอบ" in orders):
             res.name = "ข้าวหมูกรอบ"
-        if ("ก๋วยเตี๋ยว" in orders):
+        elif ("ก๋วยเตี๋ยว" in orders):
             res.name = "ก๋วยเตี๋ยว"
     
 
