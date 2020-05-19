@@ -3,8 +3,13 @@ import { makeStyles } from "@material-ui/core/styles";
 import Box from "@material-ui/core/Box";
 import { loadCSS } from "fg-loadcss";
 import "./Search.css";
-import Card from "../card/MenuCard";
+import MenuCard from "../card/MenuCard";
 import OrderCard from "../card/OrderCard";
+import Backdrop from "@material-ui/core/Backdrop";
+import CardActionArea from "@material-ui/core/CardActionArea";
+import Card from "@material-ui/core/Card";
+import CardContent from "@material-ui/core/CardContent";
+import Typography from "@material-ui/core/Typography";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -13,17 +18,37 @@ const useStyles = makeStyles((theme) => ({
       width: "40%",
       justifyContent: "center",
     },
+    backdrop: {
+      zIndex: theme.zIndex.drawer + 1,
+      color: "#fff",
+    },
+    boldFont: {
+      fontFamily: "Mitr, sans-serif",
+      fontWeight: "bold",
+    },
+    backdropCard: {
+      maxWidth: 600,
+      maxHeight: 600,
+    },
   },
 }));
 
 export default function Menu(props) {
+  const classes = useStyles();
   const [menuItems, setMenuItems] = useState([]);
   const [orderItems, setOrderItems] = useState([]);
+  const [open, setOpen] = React.useState(false);
+  const handleClose = () => {
+    setOpen(false);
+  };
+  const handleToggle = () => {
+    setOpen(!open);
+  };
   const showMenuItem = (item) => {
     if (props.menuName === item.name) {
       return (
         <Box p={1} css={{ wordWrap: "break-word" }}>
-          <Card
+          <MenuCard
             item={item}
             menuCommand={props.menuCommand}
             setMenuName={props.setMenuName}
@@ -34,7 +59,7 @@ export default function Menu(props) {
     } else {
       return (
         <Box p={1} css={{ wordWrap: "break-word" }}>
-          <Card item={item} menuCommand={""} />
+          <MenuCard item={item} menuCommand={""} />
         </Box>
       );
     }
@@ -70,45 +95,94 @@ export default function Menu(props) {
     setMenuItems(props.menuItems);
     setOrderItems(props.orderItems);
   }, []);
+  React.useEffect(() => {
+    if((props.menuCommand === "No" && !open) || (props.orderCommand === "No" && !open)) {
+      handleToggle()
+    }
+  });
   if (props.state === "menu") {
     return (
-      <Box
-        display="flex"
-        flexWrap="wrap"
-        alignContent="flex-start"
-        alignItems="flex-start"
-        p={1}
-        m={1}
-        bgcolor="background.paper"
-        css={{
-          maxWidth: "100%",
-          height: "100%",
-          overflow: true,
-          justifyContent: "flex-start",
-        }}
-      >
-        {menuItems.map((item) => showMenuItem(item))}
-      </Box>
+      <div>
+        <Box
+          display="flex"
+          flexWrap="wrap"
+          alignContent="flex-start"
+          alignItems="flex-start"
+          p={1}
+          m={1}
+          bgcolor="background.paper"
+          css={{
+            maxWidth: "100%",
+            height: "100%",
+            overflow: true,
+            justifyContent: "flex-start",
+          }}
+        >
+          {menuItems.map((item) => showMenuItem(item))}
+        </Box>
+        <Backdrop
+          className={classes.backdrop}
+          open={open}
+          onClick={handleClose}
+        >
+          <Card className={classes.backdropCard}>
+            <CardActionArea>
+              <CardContent>
+                <Typography
+                  gutterBottom
+                  variant="h5"
+                  component="h2"
+                  className={classes.boldFont}
+                >
+                  ไม่มีเมนูนี้อยู่
+                </Typography>
+              </CardContent>
+            </CardActionArea>
+          </Card>
+        </Backdrop>
+      </div>
     );
   } else if (props.state === "order") {
     return (
-      <Box
-        display="flex"
-        flexWrap="wrap"
-        alignContent="flex-start"
-        alignItems="flex-start"
-        p={1}
-        m={1}
-        bgcolor="background.paper"
-        css={{
-          maxWidth: "100%",
-          height: "100%",
-          overflow: true,
-          justifyContent: "flex-start",
-        }}
-      >
-        {orderItems.map((item) => showOrderItem(item))}
-      </Box>
+      <div>
+        <Box
+          display="flex"
+          flexWrap="wrap"
+          alignContent="flex-start"
+          alignItems="flex-start"
+          p={1}
+          m={1}
+          bgcolor="background.paper"
+          css={{
+            maxWidth: "100%",
+            height: "100%",
+            overflow: true,
+            justifyContent: "flex-start",
+          }}
+        >
+          {orderItems.map((item) => showOrderItem(item))}
+        </Box>
+        <Backdrop
+          className={classes.backdrop}
+          open={open}
+          onClick={handleClose}
+        >
+          <Card className={classes.backdropCard}>
+            <CardActionArea>
+              <CardContent>
+                <Typography
+                  gutterBottom
+                  variant="h5"
+                  component="h2"
+                  className={classes.boldFont}
+                >
+                  ไม่มีเมนูนี้อยู่
+                </Typography>
+              </CardContent>
+            </CardActionArea>
+          </Card>
+        </Backdrop>
+      </div>
     );
   }
 }

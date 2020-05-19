@@ -120,7 +120,7 @@ export default function RecipeReviewCard(props) {
             component="p"
             className={classes.font}
           >
-            {props.item.title}
+            Available
           </Typography>
         </CardContent>
         <Backdrop
@@ -183,7 +183,7 @@ export default function RecipeReviewCard(props) {
             component="p"
             className={classes.font}
           >
-            {props.item.title}
+            Unavaiable
           </Typography>
         </CardContent>
         <Backdrop
