@@ -305,7 +305,21 @@ export default function Search() {
         }
 
         if (message.key === "bill")  {
-          setValue(3)
+          setValue(2)
+          // setOrderItems([
+          //   {
+          //     name: "samyan steak",
+          //     text: "good steak",
+          //     image:
+          //       "https://img-global.cpcdn.com/recipes/8b8c8c4bd551a902/1200x630cq70/photo.jpg",
+          //     price: 99,
+          //     addTime: new Date(2020, 4, 17, 21, 31),
+          //     makeTime: 600000,
+          //     amount: 1,
+          //   }])
+          //setOrderName("ข้าวไข่เจียวหมูสับ")
+          setOrderCommand("rate")
+          setOrderRating(5)
         }
 
         //if (message.)
