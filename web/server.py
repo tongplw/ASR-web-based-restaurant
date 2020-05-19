@@ -121,6 +121,8 @@ class respond :
         self.status = False
         self.value = "initValue"
 
+foodOrder = []
+
 table1 = table("table1")
 table2 = table("table2")
 table3 = table("table3")
@@ -142,8 +144,9 @@ async def textfield(request) :
                 res.tableNo = "1"
                 res.title = "Available"
                 res.status = True
-            # else :
-            #     res.status = False
+            else :
+                res.tableNo = "1"
+                res.status = False
         if "สอง" in orders :
             res.value = "table2"
             if (not table2.isOccupied) :
@@ -151,8 +154,9 @@ async def textfield(request) :
                 res.tableNo = "2"
                 res.title = "Available"
                 res.status = True
-            # else :
-            #     res.status = False
+            else :
+                res.tableNo = "2"
+                res.status = False
         if "สาม" in orders :
             res.value = "table3"
             if (not table3.isOccupied) :
@@ -160,8 +164,9 @@ async def textfield(request) :
                 res.tableNo = "3"
                 res.title = "Available"
                 res.status = True
-            # else :
-            #     res.status = False
+            else :
+                res.tableNo = "3"
+                res.status = False
         if "สี่" in orders :
             res.value = "table4"
             if (not table4.isOccupied) :
@@ -169,8 +174,9 @@ async def textfield(request) :
                 res.tableNo = "4"
                 res.title = "Available"
                 res.status = True
-            # else :
-            #     res.status = False
+            else :
+                res.tableNo = "4"
+                res.status = False
         if "ห้า" in orders :
             res.value = "table5"
             if (not table5.isOccupied) :
@@ -178,8 +184,9 @@ async def textfield(request) :
                 res.tableNo = "5"
                 res.title = "Available"
                 res.status = True
-            # else :
-            #     res.status = False
+            else :
+                res.tableNo = "5"
+                res.status = False
     if ("กี่" in orders) and ("บาท" in orders) or ("เท่าไร" in orders):
         res.key = "asking"
         res.status = True
@@ -189,35 +196,35 @@ async def textfield(request) :
         if ("ข้าว ไข่เจียว หมูสับ" in orders):
             res.name = "ข้าวไข่เจียวหมูสับ"
             res.text = "ไข่ที่ดีคือไข่ลาดยาง"
-            res.image = "https://img-global.cpcdn.com/recipes/8b8c8c4bd551a902/1200x630cq70/photo.jpg"
+            res.image = "ข้าวไข่เจียวหมูสับ.jpg"
             res.price = "99.-"
             res.addTime = str(x)
             res.makeTime = 600000
         if ("กะเพรา หมูสับ" in orders):
             res.name = "กะเพราหมูสับ"
             res.text = "หมูที่ดีหรือหมู่กลม"
-            res.image = "https://img-global.cpcdn.com/recipes/8b8c8c4bd551a902/1200x630cq70/photo.jpg"
+            res.image = "กะเพราหมูสับ.jpg"
             res.price = "99.-"
             res.addTime = str(x)
             res.makeTime = 600000
         if ("ข้าวผัด หมู" in orders):
             res.name = "ข้าวผัดหมู"
             res.text = "ผัดที่ดีคือผัดใบเขียว"
-            res.image = "https://img-global.cpcdn.com/recipes/8b8c8c4bd551a902/1200x630cq70/photo.jpg"
+            res.image = "ข้าวผัดหมู.png"
             res.price = "99.-"
             res.addTime = str(x)
             res.makeTime = 600000
         if ("ข้าว หมูกรอบ" in orders):
             res.name = "ข้าวหมูกรอบ"
             res.text = "หมูกรอบบบบบบบบบบบ"
-            res.image = "https://img-global.cpcdn.com/recipes/8b8c8c4bd551a902/1200x630cq70/photo.jpg"
+            res.image = "ข้าวหมูกรอบ.jpg"
             res.price = "99.-"
             res.addTime = str(x)
             res.makeTime = 600000
         if ("ก๋วยเตี๋ยว" in orders):
             res.name = "ก๋วยเตี๋ยว"
             res.text = "เส้นที่ดีคือเส้นใหญ่"
-            res.image = "https://img-global.cpcdn.com/recipes/8b8c8c4bd551a902/1200x630cq70/photo.jpg"
+            res.image = "ก๋วยเตี๋ยว.jpg"
             res.price = "99.-"
             res.addTime = str(x)
             res.makeTime = 300000
@@ -226,7 +233,8 @@ async def textfield(request) :
         if "สาม" in orders : res.amount = 3
         if "สี่" in orders : res.amount = 4
         if "ห้า" in orders : res.amount = 5
-    
+        jsonStr = json.dumps(res.__dict__,ensure_ascii=False)
+        foodOrder.append(jsonStr)
         
     if "เมนู" in orders :
         res.key = "menu"
@@ -304,8 +312,12 @@ async def table(request):
         jsonStr = json.dumps(table5.__dict__)
         return web.Response(content_type='text/html', text=str(jsonStr))
 
+async def order(request) :
+    print("ordering")
+    return web.Response(content_type='text/html', text=str(foodOrder))
+
 async def debug(request) :
-    print("debugging")
+    print("order")
     jsonStr = json.dumps(table1.__dict__)
     return web.Response(content_type='text/html', text=str(jsonStr))
 
@@ -331,6 +343,7 @@ if __name__ == '__main__':
 
     app.router.add_post('/textfield',textfield)
     app.router.add_get('/debug',debug)
+    app.router.add_get('/order',order)
     app.add_routes([web.get('/table', table),
                 web.get('/table/{name}', table)])
 
