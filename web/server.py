@@ -233,8 +233,8 @@ async def textfield(request) :
         if "สาม" in orders : res.amount = 3
         if "สี่" in orders : res.amount = 4
         if "ห้า" in orders : res.amount = 5
-        jsonStr = json.dumps(res.__dict__,ensure_ascii=False)
-        foodOrder.append(jsonStr)
+        # jsonStr = json.dumps(res.__dict__,ensure_ascii=False)
+        # foodOrder.append(jsonStr)
         
     if "เมนู" in orders :
         res.key = "menu"
@@ -288,6 +288,52 @@ async def textfield(request) :
             table5.setOccupied(True)
             res.occupied = table5.isOccupied
         
+    if ("ยืนยัน" in orders) and ("สั่ง" in orders) :
+            res.key = "Confirm"
+            x = datetime.datetime.now()
+            if ("ข้าวไข่เจียวหมูสับ" in orders):
+                res.name = "ข้าวไข่เจียวหมูสับ"
+                res.text = "ไข่ที่ดีคือไข่ลาดยาง"
+                res.image = "ข้าวไข่เจียวหมูสับ.jpg"
+                res.price = "99.-"
+                res.addTime = str(x)
+                res.makeTime = 600000
+            if ("กะเพราหมูสับ" in orders):
+                res.name = "กะเพราหมูสับ"
+                res.text = "หมูที่ดีหรือหมู่กลม"
+                res.image = "กะเพราหมูสับ.jpg"
+                res.price = "99.-"
+                res.addTime = str(x)
+                res.makeTime = 600000
+            if ("ข้าวผัดหมู" in orders):
+                res.name = "ข้าวผัดหมู"
+                res.text = "ผัดที่ดีคือผัดใบเขียว"
+                res.image = "ข้าวผัดหมู.png"
+                res.price = "99.-"
+                res.addTime = str(x)
+                res.makeTime = 600000
+            if ("ข้าวหมูกรอบ" in orders):
+                res.name = "ข้าวหมูกรอบ"
+                res.text = "หมูกรอบบบบบบบบบบบ"
+                res.image = "ข้าวหมูกรอบ.jpg"
+                res.price = "99.-"
+                res.addTime = str(x)
+                res.makeTime = 600000
+            if ("ก๋วยเตี๋ยว" in orders):
+                res.name = "ก๋วยเตี๋ยว"
+                res.text = "เส้นที่ดีคือเส้นใหญ่"
+                res.image = "ก๋วยเตี๋ยว.jpg"
+                res.price = "99.-"
+                res.addTime = str(x)
+                res.makeTime = 300000
+            if "1" in orders : res.amount = 1
+            if "2" in orders : res.amount = 2
+            if "3" in orders : res.amount = 3
+            if "4" in orders : res.amount = 4
+            if "5" in orders : res.amount = 5
+            
+            jsonStr = json.dumps(res.__dict__,ensure_ascii=False)
+            foodOrder.append(jsonStr)
 
 
     jsonStr = json.dumps(res.__dict__,ensure_ascii=False)

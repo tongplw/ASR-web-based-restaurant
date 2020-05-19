@@ -10,6 +10,7 @@ import Typography from "@material-ui/core/Typography";
 import Backdrop from "@material-ui/core/Backdrop";
 import TextField from "@material-ui/core/TextField";
 import MenuItem from "@material-ui/core/MenuItem";
+import axios from "axios"
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -91,8 +92,15 @@ export default function MenuCard(props) {
     }
   };
   const handleOrder = () => {
-    console.log("axios update table");
-    window.location.assign("/");
+    let sendData ={
+      "orders" : `ยืนยัน สั่ง ${props.item.name} ${currency}`
+    }
+    console.log("order :",sendData.orders)
+    axios.post("http://localhost:8080/textfield",sendData).then((res) =>{
+      console.log(res.sendData)
+      console.log("axios update order");
+    })
+    // window.location.assign("/");
   };
   React.useEffect(() => {
     if (props.menuCommand === "order" && !openOrder) {
