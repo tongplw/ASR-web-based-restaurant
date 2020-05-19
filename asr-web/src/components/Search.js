@@ -15,8 +15,8 @@ import Tabs from "@material-ui/core/Tabs";
 import Tab from "@material-ui/core/Tab";
 import Typography from "@material-ui/core/Typography";
 import PropTypes from "prop-types";
-import ReserveTable from './ReserveTable'
-import axios from 'axios'
+import ReserveTable from "./ReserveTable";
+import axios from "axios";
 
 function TabPanel(props) {
   const { children, value, index, ...other } = props;
@@ -49,7 +49,7 @@ const useStyles = makeStyles((theme) => ({
   root: {
     "& .MuiTextField-root": {
       margin: theme.spacing(1),
-      width: "40%",
+      width: "35%",
       justifyContent: "center",
     },
   },
@@ -57,6 +57,7 @@ const useStyles = makeStyles((theme) => ({
     display: "flex",
     alignItems: "center",
     justifyContent: "center",
+    marginTop: 20,
   },
   search: {
     textAlignment: "center",
@@ -104,17 +105,22 @@ var dc = null,
 // negitiate
 
 export default function Search() {
-  const [latitude, setLatitude] = useState(0.0);
-  const [longitude, setLongitude] = useState(0.0);
-  const [items, setItems] = useState([]);
   const [message, setMessage] = useState("");
-  const [loading, setLoading] = React.useState(false);
-  const [loadingResult, setLoadingResult] = React.useState(false);
-  const [success, setSuccess] = React.useState(false);
+  const [loading, setLoading] = useState(false);
   const [textFiledInput, setTextFieldInput] = useState();
-  const timer = React.useRef();
+  const [textField, setTextField] = useState();
   const classes = useStyles();
-  const [value, setValue] = React.useState(0);
+  const [value, setValue] = useState(0);
+  const [menuItems, setMenuItems] = useState([]);
+  const [orderItems, setOrderItems] = useState([]);
+  const [tableItems, setTableItems] = useState([]);
+  const [tableNo, setTableNo] = useState(0);
+  const [menuName, setMenuName] = useState("");
+  const [menuCommand, setMenuCommand] = useState("");
+  const [menuNo, setMenuNo] = useState(0);
+  const [orderName, setOrderName] = useState("");
+  const [orderCommand, setOrderCommand] = useState("");
+  const [orderRating, setOrderRating] = useState(0);
 
   const handleChange = (event, newValue) => {
     setValue(newValue);
@@ -193,7 +199,10 @@ export default function Search() {
     dc.onmessage = function (evt) {
       var msg = evt.data;
       console.log("received:" + msg);
-      if (msg.length > 1) setTextFieldInput(msg);
+      if (msg.length > 1) {
+        setTextFieldInput(msg);
+        setTextField(msg);
+      }
       if (msg.endsWith("\n")) {
         console.log("asd");
       } else if (msg.endsWith("\r")) {
@@ -254,66 +263,148 @@ export default function Search() {
     }, 500);
   }
   const handleListenClick = () => {
+    console.log(`tableNo_outAxios : ${tableNo}`);
+    //setValue(0)
+    //setTableNo(4)
     if (!loading) {
       setMessage("Please wait");
-      setSuccess(false);
       setLoading(true);
       start();
     } else if (loading) {
       setMessage("Push to speak");
-      setSuccess(true);
       setLoading(false);
       stop();
-    }
-  };
+      setTextFieldInput(textFiledInput);
+      console.log(`textField : ${textField}`);
+      let sendData = {
+        orders: textField,
+      };
+      axios.post(`http://localhost:8080/textfield`, sendData).then((res) => {
+        //console.log(res)
+        console.log(res.data);
+        let message = res.data;
+        if (message.key === "table") {
+          //console.log("table command",message.tableNo)
+          setValue(0);
+          setTableNo(parseInt(message.tableNo));
+          console.log(`tableNo_inAxios : ${tableNo}`);
+        }
 
-  const handleSearchClick = () => {
-    setTextFieldInput(textFiledInput)
-    let inputForm = document.getElementById("filled-basic")
-    console.log(inputForm)
-    console.log("axios");
-    setLoadingResult(true);
+        if (message.key === "order") {
+          setValue(1);
+          setMenuName(message.name);
+          setMenuNo(parseInt(message.amount));
+          setMenuCommand("order");
+        }
+      });
+    }
   };
 
   const onTextFieldChange = (e) => {
     console.log(e);
+    setTextField(e);
   };
 
+  function tableCallback(i, callback, item) {
+    if (i === 5) callback(item);
+  }
+  function getTable(callback) {
+    var itemSet = [];
+    for (let i = 1; i <= 5; i++) {
+      console.log(i);
+      axios.get(`http://localhost:8080/table/${i}`).then((res) => {
+        console.log(`debug : ${res.data.name}`);
+        itemSet.push({
+          tableNo: i,
+          status: !res.data.isOccupied,
+        });
+        tableCallback(i, callback, itemSet);
+      });
+    }
+  }
   useEffect(() => {
     const node = loadCSS(
       "https://use.fontawesome.com/releases/v5.12.0/css/all.css",
       document.querySelector("#font-awesome-css")
     );
+
+    getTable(setTableItems);
     setMessage("Push to speak");
+
+    setMenuItems([
+      {
+        name: "กะเพราหมูสับ",
+        text:
+          " หมูสับร่วนผัดกับใบกะเพราหอมติดจมูก ราดบนข้าวสวยร้อน ๆ พร้อมไข่ดาว",
+        image: "กะเพราหมูสับ.jpg",
+        price: 79,
+      },
+      {
+        name: "ข้าวไข่เจียวหมูสับ",
+        text:
+          "good jokfffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff ffff ffffff fffff ffffffff fffff ffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffe",
+        image: "ข้าวไข่เจียวหมูสับ.jpg",
+        price: 59,
+      },
+      {
+        name: "ข้าวผัดหมู",
+        text: "good noodles",
+        image: "ข้าวผัดหมู.png",
+        price: 79,
+      },
+      {
+        name: "ข้าวหมูกรอบ",
+        text: "good steak",
+        image: "ข้าวหมูกรอบ.jpg",
+        price: 99,
+      },
+      {
+        name: "ก๋วยเตี๋ยว",
+        text: "good steak",
+        image: "ก๋วยเตี๋ยว.jpg",
+        price: 99,
+      },
+    ]);
+    setOrderItems([
+      {
+        name: "samyan steak",
+        text: "good steak",
+        image:
+          "https://img-global.cpcdn.com/recipes/8b8c8c4bd551a902/1200x630cq70/photo.jpg",
+        price: 99,
+        addTime: new Date(2020, 4, 17, 21, 31),
+        makeTime: 600000,
+        amount: 1,
+      },
+      {
+        name: "samyan joke",
+        text:
+          "good jokfffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff ffff ffffff fffff ffffffff fffff ffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffe",
+        image:
+          "https://img-global.cpcdn.com/recipes/8b8c8c4bd551a902/1200x630cq70/photo.jpg",
+        price: 99,
+        addTime: new Date(2020, 4, 17, 21, 31),
+        makeTime: 300000,
+        amount: 2,
+      },
+    ]);
     return () => {
       node.parentNode.removeChild(node);
     };
   }, []);
-  
+
   return (
     <div>
-      <div id="searchBar" style={{ width: "100%", height: 400}}>
+      <div id="searchBar" style={{ width: "100%", height: 400 }}>
         <h1 id="text">{message}</h1>
         <div className={classes.search}>
           <form className={classes.root}>
             <TextField
               id="filled-basic"
               variant="filled"
-              onChange={(e) => onTextFieldChange(e.target.placeholder)}
+              onChange={(e) => onTextFieldChange(e.target.value)}
               value={textFiledInput}
             />
-            <Button
-              variant="contained"
-              color="default"
-              className={classes.button}
-              startIcon={
-                <Icon className="fas fa-check" style={{ fontSize: 15 }} />
-              }
-              style={{ marginTop: 15 }}
-              onClick={handleSearchClick}
-            >
-              Submit
-            </Button>
           </form>
         </div>
         <div className={classes.newRoot}>
@@ -331,7 +422,7 @@ export default function Search() {
           </div>
         </div>
       </div>
-      <div style={{ width: "100%", minHeight: 400}}>
+      <div style={{ width: "100%", minHeight: 400 }}>
         <AppBar position="static" color="default">
           <Tabs
             value={value}
@@ -372,16 +463,38 @@ export default function Search() {
           </Tabs>
         </AppBar>
         <TabPanel value={value} index={0}>
-          <ReserveTable />
+          <ReserveTable
+            tableItems={tableItems}
+            tableNo={tableNo}
+            setTableNo={setTableNo}
+          />
         </TabPanel>
         <TabPanel value={value} index={1}>
-          <Menu state="menu" />
+          <Menu
+            state="menu"
+            menuItems={menuItems}
+            menuName={menuName}
+            menuCommand={menuCommand}
+            menuNo={menuNo}
+            setMenuName={setMenuName}
+            setMenuCommand={setMenuCommand}
+            setMenuNo={setMenuNo}
+          />
         </TabPanel>
         <TabPanel value={value} index={2}>
-          <Menu state="order" />
+          <Menu
+            state="order"
+            orderItems={orderItems}
+            orderName={orderName}
+            orderCommand={orderCommand}
+            orderRating={orderRating}
+            setOrderName={setOrderName}
+            setOrderCommand={setOrderCommand}
+            setOrderRating={setOrderRating}
+          />
         </TabPanel>
         <TabPanel value={value} index={3}>
-          <Billing />
+          <Billing orderItems={orderItems} />
         </TabPanel>
       </div>
     </div>

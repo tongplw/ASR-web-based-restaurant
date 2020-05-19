@@ -26,6 +26,9 @@ const useStyles = makeStyles((theme) => ({
 
 export default function MenuBar() {
   const classes = useStyles();
+  const handleAboutUs = () => {
+    window.location.assign("https://github.com/tongplw/asr_proj")
+  }
 
   return (
     <div className={classes.root}>
@@ -37,7 +40,7 @@ export default function MenuBar() {
           <Typography variant="h6" className={classes.title}>
             <img src='foodcy.png' alt="Foodcy" style={{width:110, height:40, paddingTop: 15}}/>
           </Typography>
-          <Button color="inherit" className={classes.leftButton}>About Us</Button>
+          <Button color="inherit" className={classes.leftButton} onClick={handleAboutUs}>About project</Button>
           <Button color="inherit" className={classes.leftButton}>Login</Button>
         </Toolbar>
       </AppBar>

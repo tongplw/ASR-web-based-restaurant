@@ -1,12 +1,12 @@
 version: '3.3'
 services:
 
-  db:
-    build: db
-    ports: 
-        - 3308:3306
-    environment:
-        TZ: Asia/Bangkok
+  # db:
+  #   build: db
+  #   ports: 
+  #       - 3308:3306
+  #   environment:
+  #       TZ: Asia/Bangkok
 
   node:
     build: asr-web
