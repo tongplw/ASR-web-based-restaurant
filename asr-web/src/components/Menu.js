@@ -84,6 +84,7 @@ export default function Menu(props) {
   };
   const showOrderItem = (item) => {
     if (props.orderCommand === "rate") {
+      return (
       <Box p={1} css={{ wordWrap: "break-word" }}>
         <OrderCard
           item={item}
@@ -94,7 +95,7 @@ export default function Menu(props) {
           setOrderCommand={props.setOrderCommand}
           setOrderRating={props.setOrderRating}
         />
-      </Box>;
+      </Box>);
     } else if (props.orderCommand === "cancel") {
       if (props.orderName === item.name) {
         return (
