@@ -138,7 +138,7 @@ async def textfield(request) :
         if "หนึ่ง" in orders :
             res.value = "table1"
             if (not table1.isOccupied) :
-                table1.setOccupied(True)
+                # table1.setOccupied(True)
                 res.tableNo = "1"
                 res.title = "Available"
                 res.status = True
@@ -147,7 +147,7 @@ async def textfield(request) :
         if "สอง" in orders :
             res.value = "table2"
             if (not table2.isOccupied) :
-                table2.setOccupied(True)
+                # table2.setOccupied(True)
                 res.tableNo = "2"
                 res.title = "Available"
                 res.status = True
@@ -156,7 +156,7 @@ async def textfield(request) :
         if "สาม" in orders :
             res.value = "table3"
             if (not table3.isOccupied) :
-                table3.setOccupied(True)
+                # table3.setOccupied(True)
                 res.tableNo = "3"
                 res.title = "Available"
                 res.status = True
@@ -165,7 +165,7 @@ async def textfield(request) :
         if "สี่" in orders :
             res.value = "table4"
             if (not table4.isOccupied) :
-                table4.setOccupied(True)
+                # table4.setOccupied(True)
                 res.tableNo = "4"
                 res.title = "Available"
                 res.status = True
@@ -174,7 +174,7 @@ async def textfield(request) :
         if "ห้า" in orders :
             res.value = "table5"
             if (not table5.isOccupied) :
-                table5.setOccupied(True)
+                # table5.setOccupied(True)
                 res.tableNo = "5"
                 res.title = "Available"
                 res.status = True
@@ -245,6 +245,34 @@ async def textfield(request) :
             res.key = "bill"
             res.status = True
             res.value = ["bill"]
+    if ("ยืนยัน" in orders) or ("จอง" in orders) :
+        res.key = "confirm"
+        if "1" in orders : 
+            res.status = True
+            res.tableNo = 1
+            table1.setOccupied(True)
+            res.occupied = table1.isOccupied
+        if "2" in orders :
+            res.status = True
+            res.tableNo = 2 
+            table2.setOccupied(True)
+            res.occupied = table2.isOccupied
+        if "3" in orders :
+            res.status = True 
+            res.tableNo = 3
+            table3.setOccupied(True)
+            res.occupied = table3.isOccupied
+        if "4" in orders :
+            res.status = True 
+            res.tableNo = 4
+            table4.setOccupied(True)
+            res.occupied = table4.isOccupied
+        if "5" in orders :
+            res.status = True 
+            res.tableNo = 5
+            table5.setOccupied(True)
+            res.occupied = table5.isOccupied
+
     jsonStr = json.dumps(res.__dict__,ensure_ascii=False)
     return web.Response(content_type='text/html', text=str(jsonStr))
     #return web.json_response(jsonStr)

@@ -13,6 +13,7 @@ import Icon from "@material-ui/core/Icon";
 import Backdrop from "@material-ui/core/Backdrop";
 import CardActionArea from "@material-ui/core/CardActionArea";
 import Button from "@material-ui/core/Button";
+import axios from "axios"
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -80,7 +81,16 @@ export default function RecipeReviewCard(props) {
   };
   const handleBook = () => {
     console.log("axios update table");
-    window.location.assign("/");
+    console.log(props.item.tableNo)
+    let sendData ={
+        "orders" : `ยืนยัน จอง ${props.item.tableNo}`
+    }
+    console.log(sendData.orders)
+    axios.post("http://localhost:8080/textfield",sendData).then((res) =>{
+      console.log(res.data)
+      
+    })
+    // window.location.assign("/");
   };
   React.useEffect(() => {
     if(props.openBackdrop && !open) {
