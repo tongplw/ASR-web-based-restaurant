@@ -272,7 +272,44 @@ async def textfield(request) :
             res.tableNo = 5
             table5.setOccupied(True)
             res.occupied = table5.isOccupied
-
+    if ("กี่" in orders) or ("บาท" in orders) or ("เท่าไร" in orders) :
+        res.key = "ask"
+        x = datetime.datetime.now()
+        if ("ข้าว ไข่เจียว หมูสับ" in orders):
+            res.name = "ข้าวไข่เจียวหมูสับ"
+            res.text = "ไข่ที่ดีคือไข่ลาดยาง"
+            res.image = "https://img-global.cpcdn.com/recipes/8b8c8c4bd551a902/1200x630cq70/photo.jpg"
+            res.price = "99.-"
+            res.addTime = str(x)
+            res.makeTime = 600000
+        if ("กะเพรา หมูสับ" in orders):
+            res.name = "กะเพราหมูสับ"
+            res.text = "หมูที่ดีหรือหมู่กลม"
+            res.image = "https://img-global.cpcdn.com/recipes/8b8c8c4bd551a902/1200x630cq70/photo.jpg"
+            res.price = "99.-"
+            res.addTime = str(x)
+            res.makeTime = 600000
+        if ("ข้าวผัด หมู" in orders):
+            res.name = "ข้าวผัดหมู"
+            res.text = "ผัดที่ดีคือผัดใบเขียว"
+            res.image = "https://img-global.cpcdn.com/recipes/8b8c8c4bd551a902/1200x630cq70/photo.jpg"
+            res.price = "99.-"
+            res.addTime = str(x)
+            res.makeTime = 600000
+        if ("ข้าว หมูกรอบ" in orders):
+            res.name = "ข้าวหมูกรอบ"
+            res.text = "หมูกรอบบบบบบบบบบบ"
+            res.image = "https://img-global.cpcdn.com/recipes/8b8c8c4bd551a902/1200x630cq70/photo.jpg"
+            res.price = "99.-"
+            res.addTime = str(x)
+            res.makeTime = 600000
+        if ("ก๋วยเตี๋ยว" in orders):
+            res.name = "ก๋วยเตี๋ยว"
+            res.text = "เส้นที่ดีคือเส้นใหญ่"
+            res.image = "https://img-global.cpcdn.com/recipes/8b8c8c4bd551a902/1200x630cq70/photo.jpg"
+            res.price = "99.-"
+            res.addTime = str(x)
+            res.makeTime = 300000
     jsonStr = json.dumps(res.__dict__,ensure_ascii=False)
     return web.Response(content_type='text/html', text=str(jsonStr))
     #return web.json_response(jsonStr)
