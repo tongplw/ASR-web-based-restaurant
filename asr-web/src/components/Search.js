@@ -304,6 +304,10 @@ export default function Search() {
           setMenuCommand("more")
         }
 
+        if (message.key === "cancel") {
+          setOrderName(message.name)
+          setOrderCommand("cancel")
+        }
         if (message.key === "bill")  {
           setValue(2)
           // setOrderItems([

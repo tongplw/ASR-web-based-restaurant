@@ -129,6 +129,16 @@ table3 = table("table3")
 table4 = table("table4")
 table5 = table("table5")
 
+def findOrder(name) :
+    for i in range(0,len(foodOrder)) :
+        if name in foodOrder[i] :
+            return i
+    return -1
+
+def removeOrder(name) :
+    if findOrder(name) != -1 :
+        del foodOrder[findOrder(name)]
+
 async def textfield(request) :
     params = await request.json()
     orders = params['orders']
@@ -334,7 +344,33 @@ async def textfield(request) :
             
             jsonStr = json.dumps(res.__dict__,ensure_ascii=False)
             foodOrder.append(jsonStr)
-
+    if ("ลบ") in orders :
+        res.key = "delete"
+        res.status = True
+        if ("ข้าว ไข่เจียว หมูสับ" in orders):
+            removeOrder("ข้าวไข่เจียวหมูสับ")
+        if ("กะเพรา หมูสับ" in orders):
+            removeOrder("กะเพราหมูสับ")
+        if ("ข้าวผัด หมู" in orders):
+            removeOrder("ข้าวผัดหมู")
+        if ("ข้าว หมูกรอบ" in orders):
+            removeOrder("ข้าวหมูกรอบ")
+        if ("ก๋วยเตี๋ยว" in orders):
+            removeOrder("ก๋วยเตี๋ยว")
+    if ("ยกเลิก" in orders) and ("ขอ" not in orders):
+        res.key = "cancel"
+        res.status = True
+        if ("ข้าว ไข่เจียว หมูสับ" in orders):
+            res.name = "ข้าวไข่เจียวหมูสับ"
+        if ("กะเพรา หมูสับ" in orders):
+            res.name = "กะเพราหมูสับ"
+        if ("ข้าวผัด หมู" in orders):
+            res.name = "ข้าวผัดหมู"
+        if ("ข้าว หมูกรอบ" in orders):
+            res.name = "ข้าวหมูกรอบ"
+        if ("ก๋วยเตี๋ยว" in orders):
+            res.name = "ก๋วยเตี๋ยว"
+    
 
     jsonStr = json.dumps(res.__dict__,ensure_ascii=False)
     return web.Response(content_type='text/html', text=str(jsonStr))
