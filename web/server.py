@@ -378,15 +378,15 @@ async def textfield(request) :
         res.key = "cancel"
         res.status = True
         if ("ข้าว ไข่เจียว หมูสับ" in orders):
-            res.name = "ข้าวไข่เจียวหมูสับ"
+            removeOrder("ข้าวไข่เจียวหมูสับ")
         elif ("กะเพรา หมูสับ" in orders):
-            res.name = "กะเพราหมูสับ"
+            removeOrder("กะเพราหมูสับ")
         elif ("ข้าวผัด หมู" in orders):
-            res.name = "ข้าวผัดหมู"
+            removeOrder("ข้าวผัดหมู")
         elif ("ข้าว หมูกรอบ" in orders):
-            res.name = "ข้าวหมูกรอบ"
+            removeOrder("ข้าวหมูกรอบ")
         elif ("ก๋วยเตี๋ยว" in orders):
-            res.name = "ก๋วยเตี๋ยว"
+            removeOrder("ก๋วยเตี๋ยว")
     
 
     jsonStr = json.dumps(res.__dict__,ensure_ascii=False)

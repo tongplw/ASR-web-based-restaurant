@@ -303,16 +303,17 @@ export default function Search() {
           setMenuNo(parseInt(message.amount))
           setMenuCommand("more")
         }
+        
 
         if (message.key === "cancel") {
-          setOrderName(message.name)
-          setOrderCommand("cancel")
+          window.location.assign("/");
+          //setOrderCommand("cancel")
         }
 
         if (message.key === "star") {
           setValue(2)
           setOrderCommand("rate")
-          setOrderRating(parseInt(message.point))
+          setOrderRating(parseInt(5))
         }
         if (message.key === "bill")  {
           setValue(3)
