@@ -200,6 +200,23 @@ async def textfield(request) :
     if ("กี่" in orders) and ("บาท" in orders) or ("เท่าไร" in orders):
         res.key = "asking"
         res.status = True
+        if ("ข้าว ไข่เจียว หมูสับ" in orders):
+            res.name = "ข้าวไข่เจียวหมูสับ"
+        if ("กะเพรา หมูสับ" in orders):
+            res.name = "กะเพราหมูสับ"
+            res.makeTime = 600000
+        if ("ข้าวผัด หมู" in orders):
+            res.name = "ข้าวผัดหมู"
+            res.makeTime = 600000
+        if ("ข้าว หมูกรอบ" in orders):
+            res.name = "ข้าวหมูกรอบ"
+        if ("ก๋วยเตี๋ยว" in orders):
+            res.name = "ก๋วยเตี๋ยว"
+        if "หนึ่ง" in orders : res.amount = 1
+        if "สอง" in orders : res.amount = 2
+        if "สาม" in orders : res.amount = 3
+        if "สี่" in orders : res.amount = 4
+        if "ห้า" in orders : res.amount = 5
     if ("ขอ" in orders) and ("จาน" in orders):
         res.key = "order"
         x = datetime.datetime.now()

@@ -297,7 +297,7 @@ export default function Search() {
           setMenuCommand("order")
         }
 
-        if (message.key === "ask") {
+        if (message.key === "asking") {
           setValue(1)
           setMenuName(message.name)
           setMenuNo(parseInt(message.amount))
@@ -309,7 +309,7 @@ export default function Search() {
           setOrderCommand("cancel")
         }
         if (message.key === "bill")  {
-          setValue(2)
+          setValue(3)
           // setOrderItems([
           //   {
           //     name: "samyan steak",
@@ -322,8 +322,8 @@ export default function Search() {
           //     amount: 1,
           //   }])
           //setOrderName("ข้าวไข่เจียวหมูสับ")
-          setOrderCommand("rate")
-          setOrderRating(5)
+          // setOrderCommand("rate")
+          // setOrderRating(5)
         }
 
         //if (message.)
@@ -384,7 +384,7 @@ export default function Search() {
     )
     
     getTable(setTableItems)
-    getOrder()
+    //getOrder()
     setMessage("Push to speak")
     
     setMenuItems([
