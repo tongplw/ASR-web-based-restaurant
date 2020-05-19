@@ -20,7 +20,7 @@ const useStyles = makeStyles((theme) => ({
       justifyContent: "center",
     },
     backdrop: {
-      zIndex: theme.zIndex.drawer + 1,
+      zIndex: theme.zIndex.drawer + 2,
       color: "#fff",
       margin: 0,
     },

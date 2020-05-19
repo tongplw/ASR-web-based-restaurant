@@ -297,15 +297,25 @@ export default function Search() {
           setMenuCommand("order")
         }
 
-        if (message.key === "ask") {
+        if (message.key === "asking") {
           setValue(1)
           setMenuName(message.name)
           setMenuNo(parseInt(message.amount))
           setMenuCommand("more")
         }
 
-        if (message.key === "bill")  {
+        if (message.key === "cancel") {
+          setOrderName(message.name)
+          setOrderCommand("cancel")
+        }
+
+        if (message.key === "star") {
           setValue(2)
+          setOrderCommand("rate")
+          setOrderRating(message.point)
+        }
+        if (message.key === "bill")  {
+          setValue(3)
           // setOrderItems([
           //   {
           //     name: "samyan steak",
@@ -318,8 +328,7 @@ export default function Search() {
           //     amount: 1,
           //   }])
           //setOrderName("ข้าวไข่เจียวหมูสับ")
-          setOrderCommand("rate")
-          setOrderRating(5)
+
         }
 
         //if (message.)
