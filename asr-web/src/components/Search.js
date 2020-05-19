@@ -289,6 +289,11 @@ export default function Search() {
           setTableNo(parseInt(message.tableNo))
           console.log(`tableNo_inAxios : ${tableNo}`)
         }
+
+        if (message.key === "order") {
+          setValue(1)
+          set
+        }
       });
     }
   }
@@ -303,6 +308,10 @@ export default function Search() {
       "https://use.fontawesome.com/releases/v5.12.0/css/all.css",
       document.querySelector("#font-awesome-css")
     )
+    axios.get(`http://localhost:8080/debug`).then((res) => {
+      console.log(`debug : ${res.data}`)
+      
+    })
     setMessage("Push to speak")
     setTableItems([
       {
