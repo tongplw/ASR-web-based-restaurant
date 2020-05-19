@@ -1,108 +1,116 @@
 import React, { useState } from "react";
-import { makeStyles } from '@material-ui/core/styles';
+import { makeStyles } from "@material-ui/core/styles";
 import Box from "@material-ui/core/Box";
-import Table from './Table'
+import Table from "../card/TableCard";
 import { loadCSS } from "fg-loadcss";
+import Backdrop from "@material-ui/core/Backdrop";
+import CardActionArea from "@material-ui/core/CardActionArea";
+import Card from "@material-ui/core/Card";
+import CardContent from "@material-ui/core/CardContent";
+import Typography from "@material-ui/core/Typography";
 
 const useStyles = makeStyles((theme) => ({
-    root: {
-        flexGrow: 1,
-    },
-    table: {
-        display: "flex",
-        alignItems: "center",
-        justifyContent: "center",
-      },
-    
-  }));
+  root: {
+    flexGrow: 1,
+  },
+  table: {
+    display: "flex",
+    alignItems: "center",
+    justifyContent: "center",
+  },
+  backdrop: {
+    zIndex: theme.zIndex.drawer + 1,
+    color: "#fff",
+    margin: 0,
+  },
+  boldFont: {
+    fontFamily: "Mitr, sans-serif",
+    fontWeight: "bold",
+  },
+  backdropCard: {
+    maxWidth: 600,
+    maxHeight: 600,
+  },
+}));
 
-  const showItem = (item) => {
-    return (
-      <Box p={1} css={{ wordWrap: "break-word" }}>
-        <Table item={item} />
-      </Box>
-    );
+export default function ReserveTable(props) {
+  const classes = useStyles();
+  const [items, setItems] = useState([]);
+  const [open, setOpen] = React.useState(false);
+  const handleClose = () => {
+    setOpen(false);
   };
-
-
-  export default function ReserveTable() {
-    const classes = useStyles();
-    const [items, setItems] = useState([]);
-    const [message, setMessage] = useState("");
-    React.useEffect(() => {
-        const node = loadCSS(
-          "https://use.fontawesome.com/releases/v5.12.0/css/all.css",
-          document.querySelector("#font-awesome-css")
-        );
-        
-        setItems([
-          {
-            tableNo: "1",
-            title: "Available",
-            name: "sweet Table",
-            status : true,
-            image:
-              "https://ezeesmarthotel.com/assets/images/cloudpos/quick_table_management.png",
-          },
-          {
-            tableNo: "2",
-            title: "Unavaiable",
-            name: "good steak",
-            status : false,
-            image:
-              "https://ezeesmarthotel.com/assets/images/cloudpos/quick_table_management.png",
-          },
-          {
-            tableNo: "3",
-            title: "Available",
-            name: "good steak",
-            status : true,
-            image:
-              "https://ezeesmarthotel.com/assets/images/cloudpos/quick_table_management.png",
-          },
-          {
-            tableNo: "4",
-            title: "Available",
-            name: "good steak",
-            status : true,
-            image:
-              "https://ezeesmarthotel.com/assets/images/cloudpos/quick_table_management.png",
-          },
-          {
-            tableNo: "5",
-            title: "Unavaiable",
-            name: "good steak",
-            status : false,
-            image:
-              "https://ezeesmarthotel.com/assets/images/cloudpos/quick_table_management.png",
-          },
-        ]);
-        setMessage("Push to speak");
-        return () => {
-          node.parentNode.removeChild(node);
-        };
-      }, []);
-    return (       
-      <div className={classes.root} style={{ width: "100%" }}>
-          <Box
-          display="flex"
-          flexWrap="wrap"
-          alignContent="flex-start"
-          alignItems="flex-start"
-          p={1}
-          m={1}
-          bgcolor="background.paper"
-          css={{
-            maxWidth: "100%",
-            height: "100%",
-            overflow: true,
-            justifyContent: "space-evenly",
-          }}
-        >
-          {items.map((item) => showItem(item))}
+  const handleToggle = () => {
+    setOpen(!open);
+  };
+  const showItem = (item) => {
+    if (item.tableNo === props.tableNo) {
+      return (
+        <Box p={1} css={{ wordWrap: "break-word" }}>
+          <Table item={item} openBackdrop={true} setTableNo={props.setTableNo}/>
         </Box>
-          
-      </div>
+      );
+    } else {
+      return (
+        <Box p={1} css={{ wordWrap: "break-word" }}>
+          <Table item={item} openBackdrop={false}/>
+        </Box>
+      );
+    }
+  };
+  React.useEffect(() => {
+    const node = loadCSS(
+      "https://use.fontawesome.com/releases/v5.12.0/css/all.css",
+      document.querySelector("#font-awesome-css")
     );
-  }
 
+    setItems(props.tableItems);
+    if(props.tableNo === 6 && !open) {
+      handleToggle()
+    }
+    return () => {
+      node.parentNode.removeChild(node);
+    };
+  });
+  return (
+    <div className={classes.root} style={{ width: "100%" }}>
+      <Box
+        display="flex"
+        flexWrap="wrap"
+        alignContent="flex-start"
+        alignItems="flex-start"
+        p={1}
+        m={1}
+        bgcolor="background.paper"
+        css={{
+          maxWidth: "100%",
+          height: "100%",
+          overflow: true,
+          justifyContent: "space-evenly",
+        }}
+      >
+        {items.map((item) => showItem(item))}
+      </Box>
+      <Backdrop
+          className={classes.backdrop}
+          open={open}
+          onClick={handleClose}
+        >
+          <Card className={classes.backdropCard}>
+            <CardActionArea>
+              <CardContent>
+                <Typography
+                  gutterBottom
+                  variant="h5"
+                  component="h2"
+                  className={classes.boldFont}
+                >
+                  ไม่มีโต๊ะนี้อยู่
+                </Typography>
+              </CardContent>
+            </CardActionArea>
+          </Card>
+        </Backdrop>
+    </div>
+  );
+}
