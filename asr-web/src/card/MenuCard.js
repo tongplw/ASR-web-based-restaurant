@@ -97,7 +97,7 @@ export default function MenuCard(props) {
     }
     console.log("order :",sendData.orders)
     axios.post("http://localhost:8080/textfield",sendData).then((res) =>{
-      console.log(res.sendData)
+      console.log(res.data)
       console.log("axios update order");
     })
     // window.location.assign("/");
