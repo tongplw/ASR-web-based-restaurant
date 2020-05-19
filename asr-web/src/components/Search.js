@@ -350,6 +350,7 @@ export default function Search() {
     }
     
   }
+  
   useEffect(() => {
     const node = loadCSS(
       "https://use.fontawesome.com/releases/v5.12.0/css/all.css",
