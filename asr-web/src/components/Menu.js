@@ -10,6 +10,7 @@ import CardActionArea from "@material-ui/core/CardActionArea";
 import Card from "@material-ui/core/Card";
 import CardContent from "@material-ui/core/CardContent";
 import Typography from "@material-ui/core/Typography";
+import ThankYouCard from "../card/ThankYouCard.js";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -38,6 +39,15 @@ export default function Menu(props) {
   const [menuItems, setMenuItems] = useState([]);
   const [orderItems, setOrderItems] = useState([]);
   const [open, setOpen] = React.useState(false);
+  const [openRate, setOpenRate] = React.useState(false);
+  const [value, setValue] = React.useState(0);
+
+  const handleCloseRate = () => {
+    setOpenRate(false);
+  };
+  const handleToggleRate = () => {
+    setOpenRate(!openRate);
+  };
   const handleClose = () => {
     setOpen(false);
   };
@@ -51,6 +61,7 @@ export default function Menu(props) {
           <MenuCard
             item={item}
             menuCommand={props.menuCommand}
+            menuNo={props.menuNo}
             setMenuName={props.setMenuName}
             setMenuCommand={props.setMenuCommand}
           />
@@ -96,8 +107,15 @@ export default function Menu(props) {
     setOrderItems(props.orderItems);
   }, []);
   React.useEffect(() => {
-    if((props.menuCommand === "No" && !open) || (props.orderCommand === "No" && !open)) {
-      handleToggle()
+    if (
+      (props.menuCommand === "No" && !open) ||
+      (props.orderCommand === "No" && !open)
+    ) {
+      handleToggle();
+    }
+    if (props.orderCommand === "rate" && !openRate) {
+      setValue(props.orderRating);
+      handleToggleRate();
     }
   });
   if (props.state === "menu") {
@@ -181,6 +199,13 @@ export default function Menu(props) {
               </CardContent>
             </CardActionArea>
           </Card>
+        </Backdrop>
+        <Backdrop
+          className={classes.backdrop}
+          open={openRate}
+          onClick={handleCloseRate}
+        >
+          <ThankYouCard rating={value} />
         </Backdrop>
       </div>
     );
