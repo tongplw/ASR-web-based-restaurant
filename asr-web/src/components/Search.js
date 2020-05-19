@@ -336,6 +336,28 @@ export default function Search() {
     }
     
   }
+  function getOrder(){
+    var itemSet = []
+    axios.get(`http://localhost:8080/order`).then((res) => {
+      let data = res.data.split("'")
+      console.log(data)
+      for (let i =1; i<data.length;i += 2){
+        console.log(data[i])
+        let e = JSON.parse(data[i])
+        itemSet.push({
+          name: e.name,
+          text: e.text,
+          image: e.image,
+          price: e.price,
+          addTime: e.addTime,
+          makeTime: e.makeTime,
+          amount: e.amount,
+        })
+      }
+      console.log("itemset :",itemSet)
+      return setOrderItems(itemSet) 
+    }) 
+  }
   
   useEffect(() => {
     const node = loadCSS(
@@ -344,6 +366,7 @@ export default function Search() {
     )
     
     getTable(setTableItems)
+    getOrder()
     setMessage("Push to speak")
     
     setMenuItems([
@@ -383,29 +406,29 @@ export default function Search() {
         price: 99,
       },
     ]);
-    setOrderItems([
-      {
-        name: "samyan steak",
-        text: "good steak",
-        image:
-          "https://img-global.cpcdn.com/recipes/8b8c8c4bd551a902/1200x630cq70/photo.jpg",
-        price: 99,
-        addTime: new Date(2020, 4, 17, 21, 31),
-        makeTime: 600000,
-        amount: 1,
-      },
-      {
-        name: "samyan joke",
-        text:
-          "good jokfffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff ffff ffffff fffff ffffffff fffff ffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffe",
-        image:
-          "https://img-global.cpcdn.com/recipes/8b8c8c4bd551a902/1200x630cq70/photo.jpg",
-        price: 99,
-        addTime: new Date(2020, 4, 17, 21, 31),
-        makeTime: 300000,
-        amount: 2,
-      },
-    ]);
+    // setOrderItems([
+    //   {
+    //     name: "samyan steak",
+    //     text: "good steak",
+    //     image:
+    //       "https://img-global.cpcdn.com/recipes/8b8c8c4bd551a902/1200x630cq70/photo.jpg",
+    //     price: 99,
+    //     addTime: new Date(2020, 4, 17, 21, 31),
+    //     makeTime: 600000,
+    //     amount: 1,
+    //   },
+    //   {
+    //     name: "samyan joke",
+    //     text:
+    //       "good jokfffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff ffff ffffff fffff ffffffff fffff ffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffe",
+    //     image:
+    //       "https://img-global.cpcdn.com/recipes/8b8c8c4bd551a902/1200x630cq70/photo.jpg",
+    //     price: 99,
+    //     addTime: new Date(2020, 4, 17, 21, 31),
+    //     makeTime: 300000,
+    //     amount: 2,
+    //   },
+    // ]);
     return () => {
       node.parentNode.removeChild(node);
     };
