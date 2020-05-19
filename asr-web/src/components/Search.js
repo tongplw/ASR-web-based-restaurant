@@ -307,40 +307,23 @@ export default function Search() {
     setTableItems([
       {
         tableNo: 1,
-        title: "Available",
         status : true,
       },
       {
         tableNo: 2,
-        title: "Unavaiable",
-        name: "good steak",
         status : false,
-        image:
-          "https://ezeesmarthotel.com/assets/images/cloudpos/quick_table_management.png",
       },
       {
         tableNo: 3,
-        title: "Available",
-        name: "good steak",
         status : true,
-        image:
-          "https://ezeesmarthotel.com/assets/images/cloudpos/quick_table_management.png",
       },
       {
         tableNo: 4,
-        title: "Available",
-        name: "good steak",
         status : true,
-        image:
-          "https://ezeesmarthotel.com/assets/images/cloudpos/quick_table_management.png",
       },
       {
         tableNo: 5,
-        title: "Unavaiable",
-        name: "good steak",
         status : false,
-        image:
-          "https://ezeesmarthotel.com/assets/images/cloudpos/quick_table_management.png",
       },
     ])
     setMenuItems([
