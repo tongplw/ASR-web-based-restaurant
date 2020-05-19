@@ -96,6 +96,7 @@ export default function MenuCard(props) {
   React.useEffect(() => {
     if (props.menuCommand === "order" && !openOrder) {
       handleToggleOrder()
+      setCurrency(props.menuNo)
     } else if (props.menuCommand === "more"&& !open) {
       handleToggle()
     }
