@@ -308,6 +308,12 @@ export default function Search() {
           setOrderName(message.name)
           setOrderCommand("cancel")
         }
+
+        if (message.key === "star") {
+          setValue(2)
+          setOrderCommand("rate")
+          setOrderRating(message.point)
+        }
         if (message.key === "bill")  {
           setValue(3)
           // setOrderItems([
@@ -322,8 +328,7 @@ export default function Search() {
           //     amount: 1,
           //   }])
           //setOrderName("ข้าวไข่เจียวหมูสับ")
-          // setOrderCommand("rate")
-          // setOrderRating(5)
+
         }
 
         //if (message.)
