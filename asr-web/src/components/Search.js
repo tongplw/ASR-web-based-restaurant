@@ -1,25 +1,25 @@
-import React, { useState, useEffect } from "react"
-import { makeStyles } from "@material-ui/core/styles"
-import { green, white } from "@material-ui/core/colors"
-import TextField from "@material-ui/core/TextField"
-import Icon from "@material-ui/core/Icon"
-import { loadCSS } from "fg-loadcss"
-import Fab from "@material-ui/core/Fab"
-import CircularProgress from "@material-ui/core/CircularProgress"
-import Button from "@material-ui/core/Button"
-import "./Search.css"
-import Menu from "./Menu"
-import Billing from "./Billing"
-import AppBar from "@material-ui/core/AppBar"
-import Tabs from "@material-ui/core/Tabs"
-import Tab from "@material-ui/core/Tab"
-import Typography from "@material-ui/core/Typography"
-import PropTypes from "prop-types"
-import ReserveTable from "./ReserveTable"
-import axios from "axios"
+import React, { useState, useEffect } from "react";
+import { makeStyles } from "@material-ui/core/styles";
+import { green, white } from "@material-ui/core/colors";
+import TextField from "@material-ui/core/TextField";
+import Icon from "@material-ui/core/Icon";
+import { loadCSS } from "fg-loadcss";
+import Fab from "@material-ui/core/Fab";
+import CircularProgress from "@material-ui/core/CircularProgress";
+import Button from "@material-ui/core/Button";
+import "./Search.css";
+import Menu from "./Menu";
+import Billing from "./Billing";
+import AppBar from "@material-ui/core/AppBar";
+import Tabs from "@material-ui/core/Tabs";
+import Tab from "@material-ui/core/Tab";
+import Typography from "@material-ui/core/Typography";
+import PropTypes from "prop-types";
+import ReserveTable from "./ReserveTable";
+import axios from "axios";
 
 function TabPanel(props) {
-  const { children, value, index, ...other } = props
+  const { children, value, index, ...other } = props;
 
   return (
     <div role="tabpanel" hidden={value !== index} {...other}>
@@ -29,20 +29,20 @@ function TabPanel(props) {
         </div>
       )}
     </div>
-  )
+  );
 }
 
 TabPanel.propTypes = {
   children: PropTypes.node,
   index: PropTypes.any.isRequired,
   value: PropTypes.any.isRequired,
-}
+};
 
 function a11yProps(index) {
   return {
     id: `scrollable-force-tab-${index}`,
     "aria-controls": `scrollable-force-tabpanel-${index}`,
-  }
+  };
 }
 
 const useStyles = makeStyles((theme) => ({
@@ -96,62 +96,62 @@ const useStyles = makeStyles((theme) => ({
     marginTop: -12,
     marginLeft: -12,
   },
-}))
+}));
 
-var pc = null
+var pc = null;
 var dc = null,
-  dcInterval = null
+  dcInterval = null;
 
 // negitiate
 
 export default function Search() {
-  const [message, setMessage] = useState("")
-  const [loading, setLoading] = useState(false)
-  const [textFiledInput, setTextFieldInput] = useState()
-  const [textField, setTextField] = useState()
-  const classes = useStyles()
-  const [value, setValue] = useState(0)
-  const [menuItems, setMenuItems] = useState([])
-  const [orderItems, setOrderItems] = useState([])
-  const [tableItems, setTableItems] = useState([])
-  const [tableNo, setTableNo] = useState(0)
-  const [menuName, setMenuName] = useState("")
-  const [menuCommand, setMenuCommand] = useState("")
-  const [orderName, setOrderName] = useState("")
-  const [orderCommand, setOrderCommand] = useState("")
-  const [orderRating, setOrderRating] = useState(0)
-
+  const [message, setMessage] = useState("");
+  const [loading, setLoading] = useState(false);
+  const [textFiledInput, setTextFieldInput] = useState();
+  const [textField, setTextField] = useState();
+  const classes = useStyles();
+  const [value, setValue] = useState(0);
+  const [menuItems, setMenuItems] = useState([]);
+  const [orderItems, setOrderItems] = useState([]);
+  const [tableItems, setTableItems] = useState([]);
+  const [tableNo, setTableNo] = useState(0);
+  const [menuName, setMenuName] = useState("");
+  const [menuCommand, setMenuCommand] = useState("");
+  const [menuNo, setMenuNo] = useState(0);
+  const [orderName, setOrderName] = useState("");
+  const [orderCommand, setOrderCommand] = useState("");
+  const [orderRating, setOrderRating] = useState(0);
 
   const handleChange = (event, newValue) => {
-    setValue(newValue)
-  }
+    setValue(newValue);
+  };
 
   //negotiate
   function negotiate() {
     return pc
       .createOffer()
       .then((offer) => {
-        return pc.setLocalDescription(offer)
+        return pc.setLocalDescription(offer);
       })
       .then(() => {
         return new Promise((resolve) => {
           if (pc.iceGatheringState === "complete") {
-            resolve()
+            resolve();
           } else {
             function checkState() {
               if (pc.iceGatheringState === "complete") {
-                pc.removeEventListener("icegatheringstatechange", checkState)
-                resolve()
+                pc.removeEventListener("icegatheringstatechange", checkState);
+                resolve();
               }
             }
 
-            pc.addEventListener("icegatheringstatechange", checkState)
+            pc.addEventListener("icegatheringstatechange", checkState);
           }
-        })
+        });
       })
       .then(async () => {
-        var offer = pc.localDescription
-        console.log(offer.sdp)
+        var offer = pc.localDescription;
+        console.log(offer.sdp);
         return await fetch("http://localhost:8080/offer", {
           body: JSON.stringify({
             sdp: offer.sdp,
@@ -161,133 +161,133 @@ export default function Search() {
             "Content-Type": "application/json",
           },
           method: "POST",
-        })
+        });
       })
       .then((response) => {
-        return response.json()
+        return response.json();
       })
       .then((answer) => {
-        console.log(answer.sdp)
-        return pc.setRemoteDescription(answer)
+        console.log(answer.sdp);
+        return pc.setRemoteDescription(answer);
       })
       .catch((e) => {
-        stop()
-        console.log(e)
-      })
+        stop();
+        console.log(e);
+      });
   }
 
   // start connection
   function start() {
-    console.log("start")
+    console.log("start");
     var config = {
       sdpSemantics: "unified-plan",
-    }
+    };
 
-    pc = new RTCPeerConnection(config)
+    pc = new RTCPeerConnection(config);
 
-    var parameters = { id: 69 }
+    var parameters = { id: 69 };
 
-    dc = pc.createDataChannel("chat_asr", parameters)
+    dc = pc.createDataChannel("chat_asr", parameters);
     dc.onclose = function () {
-      clearInterval(dcInterval)
-      console.log("Closed data channel")
-    }
+      clearInterval(dcInterval);
+      console.log("Closed data channel");
+    };
     dc.onopen = function () {
-      console.log("Opened data channel")
-      setMessage("Listening")
-    }
+      console.log("Opened data channel");
+      setMessage("Listening");
+    };
     dc.onmessage = function (evt) {
-      var msg = evt.data
-      console.log("received:" + msg)
+      var msg = evt.data;
+      console.log("received:" + msg);
       if (msg.length > 1) {
-        setTextFieldInput(msg)
-        setTextField(msg)
+        setTextFieldInput(msg);
+        setTextField(msg);
       }
       if (msg.endsWith("\n")) {
-        console.log("asd")
+        console.log("asd");
       } else if (msg.endsWith("\r")) {
-        console.log("endline")
+        console.log("endline");
       } else {
-        console.log("asd")
+        console.log("asd");
       }
-    }
+    };
 
     pc.oniceconnectionstatechange = function () {
       if (pc.iceConnectionState == "disconnected") {
-        console.log("Disconnected")
+        console.log("Disconnected");
       }
-    }
+    };
 
     var constraints = {
       audio: true,
       video: false,
-    }
+    };
 
     navigator.mediaDevices.getUserMedia(constraints).then(
       (stream) => {
         stream.getTracks().forEach(function (track) {
-          pc.addTrack(track, stream)
-        })
-        return negotiate()
+          pc.addTrack(track, stream);
+        });
+        return negotiate();
       },
       function (err) {
-        console.log("Could not acquire media: " + err)
+        console.log("Could not acquire media: " + err);
       }
-    )
+    );
   }
 
   // stop connection
   function stop() {
     // close data channel
     if (dc) {
-      dc.close()
+      dc.close();
     }
 
     // close transceivers
     if (pc.getTransceivers) {
       pc.getTransceivers().forEach(function (transceiver) {
         if (transceiver.stop) {
-          transceiver.stop()
+          transceiver.stop();
         }
-      })
+      });
     }
 
     // close local audio / video
     pc.getSenders().forEach(function (sender) {
-      sender.track.stop()
-    })
+      sender.track.stop();
+    });
 
     // close peer connection
     setTimeout(function () {
-      pc.close()
-    }, 500)
+      pc.close();
+    }, 500);
   }
   const handleListenClick = () => {
-    console.log(`tableNo_outAxios : ${tableNo}`)
+    console.log(`tableNo_outAxios : ${tableNo}`);
     //setValue(0)
     //setTableNo(4)
     if (!loading) {
-      setMessage("Please wait")
-      setLoading(true)
-      start()
+      setMessage("Please wait");
+      setLoading(true);
+      start();
     } else if (loading) {
-      setMessage("Push to speak")
-      setLoading(false)
-      stop()
-      setTextFieldInput(textFiledInput)
-      console.log(`textField : ${textField}`)
+      setMessage("Push to speak");
+      setLoading(false);
+      stop();
+      setTextFieldInput(textFiledInput);
+      console.log(`textField : ${textField}`);
       let sendData = {
         orders: textField,
-      }
+      };
       axios.post(`http://localhost:8080/textfield`, sendData).then((res) => {
         //console.log(res)
         console.log(res.data);
-        let message =res.data
+        let message = res.data;
         if (message.key === "table") {
           //console.log("table command",message.tableNo)
-          setValue(0)
-          setTableNo(parseInt(message.tableNo))
-          console.log(`tableNo_inAxios : ${tableNo}`)
+          setValue(0);
+          setTableNo(parseInt(message.tableNo));
+          console.log(`tableNo_inAxios : ${tableNo}`);
         }
 
         if (message.key === "order") {
@@ -297,12 +297,12 @@ export default function Search() {
         }
       });
     }
-  }
+  };
 
   const onTextFieldChange = (e) => {
-    console.log(e)
-    setTextField(e)
-  }
+    console.log(e);
+    setTextField(e);
+  };
 
   useEffect(() => {
     const node = loadCSS(
@@ -314,28 +314,30 @@ export default function Search() {
       
     })
     setMessage("Push to speak")
+    
+    
     setTableItems([
       {
         tableNo: 1,
-        status : true,
+        status: true,
       },
       {
         tableNo: 2,
-        status : false,
+        status: false,
       },
       {
         tableNo: 3,
-        status : true,
+        status: true,
       },
       {
         tableNo: 4,
-        status : true,
+        status: true,
       },
       {
         tableNo: 5,
-        status : false,
+        status: false,
       },
-    ])
+    ]);
     setMenuItems([
       {
         name: "กะเพราหมูสับ",
@@ -372,7 +374,7 @@ export default function Search() {
           "https://lh3.googleusercontent.com/proxy/82npm7nCiq0E8bHx-JAqZaVeNCJBL-_urPw4easjzAYpIO1PZvLQ0MmNhCbqZXqqS3pPwBCDKZdJaJsDzcagd_WtNmGDvjg9n6jJerj2ptfOEgtbbBST",
         price: 99,
       },
-    ])
+    ]);
     setOrderItems([
       {
         name: "samyan steak",
@@ -395,11 +397,11 @@ export default function Search() {
         makeTime: 300000,
         amount: 2,
       },
-    ])
+    ]);
     return () => {
-      node.parentNode.removeChild(node)
-    }
-  }, [])
+      node.parentNode.removeChild(node);
+    };
+  }, []);
 
   return (
     <div>
@@ -471,16 +473,28 @@ export default function Search() {
           </Tabs>
         </AppBar>
         <TabPanel value={value} index={0}>
-          <ReserveTable tableItems={tableItems} tableNo={tableNo} setTableNo={setTableNo}/>
+          <ReserveTable
+            tableItems={tableItems}
+            tableNo={tableNo}
+            setTableNo={setTableNo}
+          />
         </TabPanel>
         <TabPanel value={value} index={1}>
-        <Menu
+          <Menu
             state="menu"
             menuItems={menuItems}
             menuName={menuName}
             menuCommand={menuCommand}
+            menuNo={menuNo}
             setMenuName={setMenuName}
             setMenuCommand={setMenuCommand}
+            setMenuNo={setMenuNo}
+          />
+        </TabPanel>
+        <TabPanel value={value} index={2}>
+          <Menu
+            state="order"
+            orderItems={orderItems}
             orderName={orderName}
             orderCommand={orderCommand}
             orderRating={orderRating}
@@ -489,13 +503,10 @@ export default function Search() {
             setOrderRating={setOrderRating}
           />
         </TabPanel>
-        <TabPanel value={value} index={2}>
-          <Menu state="order" orderItems={orderItems} />
-        </TabPanel>
         <TabPanel value={value} index={3}>
           <Billing orderItems={orderItems} />
         </TabPanel>
       </div>
     </div>
-  )
+  );
 }
