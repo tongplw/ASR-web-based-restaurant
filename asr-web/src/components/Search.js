@@ -349,7 +349,7 @@ export default function Search() {
       callback(order)
   }
   function getTable(callback){
-    var itemSet = []
+    let itemSet = []
     for (let i = 1; i <=5; i++) {
       console.log(i)
       axios.get(`http://localhost:8080/table/${i}`).then((res) => {
@@ -364,10 +364,11 @@ export default function Search() {
     
   }
   function getOrder(){
+    let itemSet = []
     axios.get(`http://localhost:8080/order`).then((res) => {
-      var itemSet = []
+      
       console.log(res.data)
-      if (res.data + '' == "") return
+      if (res.data + '' == "") return setOrderItems([])
       else{
         let data = res.data.split("'")
       console.log(data)
@@ -386,13 +387,9 @@ export default function Search() {
         })
         //orderCallback(i,data.length,setOrderItems,orderSet)
       }
-      return itemSet
+      return setOrderItems(itemSet)
       }
-    }).then((e)=>{
-      setOrderItems(e)
-      console.log(e)
-      console.log(orderItems)
-    }) 
+    })
   }
   
   useEffect(() => {
