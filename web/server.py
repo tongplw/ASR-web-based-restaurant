@@ -277,6 +277,23 @@ async def textfield(request) :
     return web.Response(content_type='text/html', text=str(jsonStr))
     #return web.json_response(jsonStr)
 
+async def table(request):
+    tbNo = request.match_info.get('name')
+    if (tbNo == "1"):
+        jsonStr = json.dumps(table1.__dict__)
+        return web.Response(content_type='text/html', text=str(jsonStr))
+    if (tbNo == "2"):
+        jsonStr = json.dumps(table2.__dict__)
+        return web.Response(content_type='text/html', text=str(jsonStr))
+    if (tbNo == "3"):
+        jsonStr = json.dumps(table3.__dict__)
+        return web.Response(content_type='text/html', text=str(jsonStr))
+    if (tbNo == "4"):
+        jsonStr = json.dumps(table4.__dict__)
+        return web.Response(content_type='text/html', text=str(jsonStr))
+    if (tbNo == "5"):
+        jsonStr = json.dumps(table5.__dict__)
+        return web.Response(content_type='text/html', text=str(jsonStr))
 
 async def debug(request) :
     print("debugging")
@@ -305,6 +322,8 @@ if __name__ == '__main__':
 
     app.router.add_post('/textfield',textfield)
     app.router.add_get('/debug',debug)
+    app.add_routes([web.get('/table', table),
+                web.get('/table/{name}', table)])
 
     app.router.add_static('/static/', path=ROOT / 'static', name='static')
 
