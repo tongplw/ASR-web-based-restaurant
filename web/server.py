@@ -310,6 +310,9 @@ async def textfield(request) :
             res.price = "99.-"
             res.addTime = str(x)
             res.makeTime = 300000
+    if ("คิด" in orders) or ("จ่าย" in orders) or ("เก็บ" in orders) :
+        if ("ตัง" in orders) or ("เงิน" in orders) :
+            res.key = "bill"
     jsonStr = json.dumps(res.__dict__,ensure_ascii=False)
     return web.Response(content_type='text/html', text=str(jsonStr))
     #return web.json_response(jsonStr)

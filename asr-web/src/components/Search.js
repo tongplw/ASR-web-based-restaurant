@@ -303,6 +303,10 @@ export default function Search() {
           setMenuNo(parseInt(message.amount))
           setMenuCommand("more")
         }
+
+        if (message.key === "bill")  {
+          setValue(3)
+        }
       });
     }
   };
