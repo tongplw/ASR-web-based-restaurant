@@ -351,25 +351,33 @@ export default function Search() {
     
   }
   function getOrder(){
-    var itemSet = []
     axios.get(`http://localhost:8080/order`).then((res) => {
-      let data = res.data.split("'")
+      var itemSet = []
+      console.log(res.data)
+      if (res.data + '' == "") return
+      else{
+        let data = res.data.split("'")
       console.log(data)
       for (let i =1; i<data.length;i += 2){
         console.log(data[i])
         let e = JSON.parse(data[i])
+
         itemSet.push({
           name: e.name,
           text: e.text,
           image: e.image,
-          price: e.price,
+          price:  e.price,
           addTime: e.addTime,
           makeTime: e.makeTime,
           amount: e.amount,
         })
       }
-      console.log("itemset :",itemSet)
-      return setOrderItems(itemSet) 
+      return itemSet
+      }
+    }).then((e)=>{
+      setOrderItems(e)
+      console.log(e)
+      console.log(orderItems)
     }) 
   }
   
@@ -381,6 +389,7 @@ export default function Search() {
     
     getTable(setTableItems)
     getOrder()
+    console.log(orderItems)
     setMessage("Push to speak")
     
     setMenuItems([
