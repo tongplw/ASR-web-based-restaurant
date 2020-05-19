@@ -291,10 +291,10 @@ export default function Search() {
         }
 
         if (message.key === "order") {
-          setValue(1)
-          setMenuName(message.name)
-          setMenuNo(parseInt(message.amount))
-          setMenuCommand("order")
+          setValue(1);
+          setMenuName(message.name);
+          setMenuNo(parseInt(message.amount));
+          setMenuCommand("order");
         }
       });
     }
@@ -305,69 +305,63 @@ export default function Search() {
     setTextField(e);
   };
 
-  function tableCallback(i,callback,item) {
-    if (i === 5) callback(item)
+  function tableCallback(i, callback, item) {
+    if (i === 5) callback(item);
   }
-  function getTable(callback){
-    var itemSet = []
-    for (let i = 1; i <=5; i++) {
-      console.log(i)
+  function getTable(callback) {
+    var itemSet = [];
+    for (let i = 1; i <= 5; i++) {
+      console.log(i);
       axios.get(`http://localhost:8080/table/${i}`).then((res) => {
-        console.log(`debug : ${res.data.name}`)
+        console.log(`debug : ${res.data.name}`);
         itemSet.push({
-          tableNo : i,
-          status : !(res.data.isOccupied)
-        })
-        tableCallback(i,callback,itemSet)
-      })
+          tableNo: i,
+          status: !res.data.isOccupied,
+        });
+        tableCallback(i, callback, itemSet);
+      });
     }
-    
   }
   useEffect(() => {
     const node = loadCSS(
       "https://use.fontawesome.com/releases/v5.12.0/css/all.css",
       document.querySelector("#font-awesome-css")
-    )
-    
-    getTable(setTableItems)
-    setMessage("Push to speak")
-    
-    
-    
+    );
+
+    getTable(setTableItems);
+    setMessage("Push to speak");
+
     setMenuItems([
       {
         name: "กะเพราหมูสับ",
         text:
           " หมูสับร่วนผัดกับใบกะเพราหอมติดจมูก ราดบนข้าวสวยร้อน ๆ พร้อมไข่ดาว",
-        image: "https://img.pptvhd36.com/contents/H/y/cd32a0364b7a.jpg",
+        image: "กะเพราหมูสับ.jpg",
         price: 79,
       },
       {
         name: "ข้าวไข่เจียวหมูสับ",
         text:
           "good jokfffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff ffff ffffff fffff ffffffff fffff ffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffe",
-        image: "https://upic.me/i/dz/img-0671.jpg",
+        image: "ข้าวไข่เจียวหมูสับ.jpg",
         price: 59,
       },
       {
         name: "ข้าวผัดหมู",
         text: "good noodles",
-        image:
-          "https://lh3.googleusercontent.com/proxy/vW6hGNnGC3SUpxy2ZtQiJG2DvCLNxrPQ0nixM42FptStZTrhPuBttcylguB8VLihi0W7Mqzm954MrPUvQdwCRTGhLOS_J4X-IF-9N9mylJN13cLWlg",
+        image: "ข้าวผัดหมู.png",
         price: 79,
       },
       {
         name: "ข้าวหมูกรอบ",
         text: "good steak",
-        image:
-          "https://lh3.googleusercontent.com/proxy/xpOemdxrVPdwKo8vHDyBFV1MYgLkTf1GoMRyE5zQOBKPffqFSkgUrqpEWCzykBfc-jb-7cBy6BcYcmAZwu26ux6Bo6TR9KJvq90P8ci1ePEKkLRHucz9VbMRagL6OJAnyOnMoZya",
+        image: "ข้าวหมูกรอบ.jpg",
         price: 99,
       },
       {
         name: "ก๋วยเตี๋ยว",
         text: "good steak",
-        image:
-          "https://lh3.googleusercontent.com/proxy/82npm7nCiq0E8bHx-JAqZaVeNCJBL-_urPw4easjzAYpIO1PZvLQ0MmNhCbqZXqqS3pPwBCDKZdJaJsDzcagd_WtNmGDvjg9n6jJerj2ptfOEgtbbBST",
+        image: "ก๋วยเตี๋ยว.jpg",
         price: 99,
       },
     ]);
