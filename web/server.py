@@ -226,6 +226,7 @@ async def textfield(request) :
         if "สาม" in orders : res.amount = 3
         if "สี่" in orders : res.amount = 4
         if "ห้า" in orders : res.amount = 5
+    
         
     if "เมนู" in orders :
         res.key = "menu"
@@ -272,6 +273,15 @@ async def textfield(request) :
             res.tableNo = 5
             table5.setOccupied(True)
             res.occupied = table5.isOccupied
+    if ("ให้" in orders) and (("ดาว" in orders ) or ("คะแนน"in orders)) :
+        res.key = "review"
+        res.status = True
+        if "หนึ่ง" in orders : res.point = 1
+        if "สอง" in orders : res.point = 2
+        if "สาม" in orders : res.point = 3
+        if "สี่" in orders : res.point = 4
+        if "ห้า" in orders : res.point = 5
+
 
     jsonStr = json.dumps(res.__dict__,ensure_ascii=False)
     return web.Response(content_type='text/html', text=str(jsonStr))
