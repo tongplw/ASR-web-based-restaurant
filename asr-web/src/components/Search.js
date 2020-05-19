@@ -307,6 +307,8 @@ export default function Search() {
         if (message.key === "bill")  {
           setValue(3)
         }
+
+        //if (message.)
       });
     }
   };
