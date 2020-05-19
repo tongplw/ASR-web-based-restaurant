@@ -387,7 +387,8 @@ export default function Search() {
         })
         //orderCallback(i,data.length,setOrderItems,orderSet)
       }
-      return setOrderItems(itemSet)
+      setOrderItems(itemSet)
+      return 
       }
     })
   }

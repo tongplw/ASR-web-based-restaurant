@@ -100,7 +100,7 @@ export default function MenuCard(props) {
       console.log(res.data)
       console.log("axios update order");
     })
-    // window.location.assign("/");
+    window.location.assign("/");
   };
   React.useEffect(() => {
     if (props.menuCommand === "order" && !openOrder) {
