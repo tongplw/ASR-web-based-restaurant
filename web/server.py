@@ -373,7 +373,7 @@ async def textfield(request) :
     
 
     jsonStr = json.dumps(res.__dict__,ensure_ascii=False)
-    return web.Response(content_type='text/html', text=str(jsonStr))
+    return web.Response(content_type='text/html', text=jsonStr)
     #return web.json_response(jsonStr)
 
 async def table(request):
