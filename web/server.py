@@ -142,8 +142,9 @@ async def textfield(request) :
                 res.tableNo = "1"
                 res.title = "Available"
                 res.status = True
-            # else :
-            #     res.status = False
+            else :
+                res.tableNo = "1"
+                res.status = False
         if "สอง" in orders :
             res.value = "table2"
             if (not table2.isOccupied) :
@@ -151,8 +152,9 @@ async def textfield(request) :
                 res.tableNo = "2"
                 res.title = "Available"
                 res.status = True
-            # else :
-            #     res.status = False
+            else :
+                res.tableNo = "2"
+                res.status = False
         if "สาม" in orders :
             res.value = "table3"
             if (not table3.isOccupied) :
@@ -160,8 +162,9 @@ async def textfield(request) :
                 res.tableNo = "3"
                 res.title = "Available"
                 res.status = True
-            # else :
-            #     res.status = False
+            else :
+                res.tableNo = "3"
+                res.status = False
         if "สี่" in orders :
             res.value = "table4"
             if (not table4.isOccupied) :
@@ -169,8 +172,9 @@ async def textfield(request) :
                 res.tableNo = "4"
                 res.title = "Available"
                 res.status = True
-            # else :
-            #     res.status = False
+            else :
+                res.tableNo = "4"
+                res.status = False
         if "ห้า" in orders :
             res.value = "table5"
             if (not table5.isOccupied) :
@@ -178,8 +182,9 @@ async def textfield(request) :
                 res.tableNo = "5"
                 res.title = "Available"
                 res.status = True
-            # else :
-            #     res.status = False
+            else :
+                res.tableNo = "5"
+                res.status = False
     if ("กี่" in orders) and ("บาท" in orders) or ("เท่าไร" in orders):
         res.key = "asking"
         res.status = True
