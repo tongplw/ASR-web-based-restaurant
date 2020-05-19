@@ -292,7 +292,8 @@ export default function Search() {
 
         if (message.key === "order") {
           setValue(1)
-          set
+          setMenuName("กะเพราหมูสับ")
+          setMenuCommand("order")
         }
       });
     }
