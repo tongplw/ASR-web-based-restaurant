@@ -245,7 +245,7 @@ async def textfield(request) :
             res.key = "bill"
             res.status = True
             res.value = ["bill"]
-    if ("ยืนยัน" in orders) or ("จอง" in orders) :
+    if ("ยืนยัน" in orders) and ("จอง" in orders) :
         res.key = "confirm"
         if "1" in orders : 
             res.status = True
@@ -276,6 +276,7 @@ async def textfield(request) :
     jsonStr = json.dumps(res.__dict__,ensure_ascii=False)
     return web.Response(content_type='text/html', text=str(jsonStr))
     #return web.json_response(jsonStr)
+
 
 async def debug(request) :
     print("debugging")
