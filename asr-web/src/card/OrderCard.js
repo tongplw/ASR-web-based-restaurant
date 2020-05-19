@@ -76,7 +76,6 @@ export default function OrderCard(props) {
   const [openCancel, setOpenCancel] = React.useState(false);
   const [openNotCancel, setOpenNotCancel] = React.useState(false);
   const [timeLeft, setTimeLeft] = useState(calculateTimeLeft());
-  const [isShowCard, setShowCard] = useState(false);
   const [value, setValue] = React.useState(0);
 
   const handleExpandClick = () => {
@@ -84,6 +83,9 @@ export default function OrderCard(props) {
   };
   const handleClose = () => {
     setOpen(false);
+    if (props.setOrderName) props.setOrderName("");
+    if (props.setOrderCommand) props.setOrderCommand("");
+    if (props.setOrderRating) props.setOrderRating("");
   };
   const handleToggle = () => {
     if (value !== 1) console.log(value);
@@ -91,9 +93,15 @@ export default function OrderCard(props) {
   };
   const handleCloseCancel = () => {
     setOpenCancel(false);
+    if (props.setOrderName) props.setOrderName("");
+    if (props.setOrderCommand) props.setOrderCommand("");
+    if (props.setOrderRating) props.setOrderRating("");
   };
   const handleCloseNotCancel = () => {
     setOpenNotCancel(false);
+    if (props.setOrderName) props.setOrderName("");
+    if (props.setOrderCommand) props.setOrderCommand("");
+    if (props.setOrderRating) props.setOrderRating("");
   };
   const setOpenCheckCancel = () => {
     if (!timerComponents.length) {
@@ -107,6 +115,12 @@ export default function OrderCard(props) {
     window.location.assign("/");
   };
   useEffect(() => {
+    if (props.orderCommand === "rate") {
+      setOpen(true);
+      setValue(props.orderRating);
+    } else if (props.orderCommand === "cancel") {
+      setOpenCheckCancel();
+    }
     setTimeout(() => {
       setTimeLeft(calculateTimeLeft());
     }, 1000);

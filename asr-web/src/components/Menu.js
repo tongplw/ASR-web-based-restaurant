@@ -23,23 +23,44 @@ export default function Menu(props) {
     if (props.menuName === item.name) {
       return (
         <Box p={1} css={{ wordWrap: "break-word" }}>
-          <Card item={item} menuCommand={props.menuCommand}/>
+          <Card
+            item={item}
+            menuCommand={props.menuCommand}
+            setMenuName={props.setMenuName}
+            setMenuCommand={props.setMenuCommand}
+          />
         </Box>
       );
     } else {
       return (
         <Box p={1} css={{ wordWrap: "break-word" }}>
-          <Card item={item} menuCommand={""}/>
+          <Card item={item} menuCommand={""} />
         </Box>
       );
     }
   };
   const showOrderItem = (item) => {
-    return (
-      <Box p={1} css={{ wordWrap: "break-word" }}>
-        <OrderCard item={item} />
-      </Box>
-    );
+    if (props.orderName === item.name) {
+      return (
+        <Box p={1} css={{ wordWrap: "break-word" }}>
+          <OrderCard
+            item={item}
+            orderName={props.orderName}
+            orderCommand={props.orderCommand}
+            orderRating={props.orderRating}
+            setOrderName={props.setOrderName}
+            setOrderCommand={props.setOrderCommand}
+            setOrderRating={props.setOrderRating}
+          />
+        </Box>
+      );
+    } else {
+      return (
+        <Box p={1} css={{ wordWrap: "break-word" }}>
+          <OrderCard item={item} />
+        </Box>
+      );
+    }
   };
   React.useEffect(() => {
     const node = loadCSS(

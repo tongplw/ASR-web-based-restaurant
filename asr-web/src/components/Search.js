@@ -117,6 +117,10 @@ export default function Search() {
   const [tableNo, setTableNo] = useState(0)
   const [menuName, setMenuName] = useState("")
   const [menuCommand, setMenuCommand] = useState("")
+  const [orderName, setOrderName] = useState("")
+  const [orderCommand, setOrderCommand] = useState("")
+  const [orderRating, setOrderRating] = useState(0)
+
 
   const handleChange = (event, newValue) => {
     setValue(newValue)
@@ -282,7 +286,7 @@ export default function Search() {
         if (message.key === "table") {
           //console.log("table command",message.tableNo)
           setValue(0)
-          setTableNo(4)
+          setTableNo(parseInt(message.tableNo))
           console.log(`tableNo_inAxios : ${tableNo}`)
         }
       });
@@ -477,7 +481,20 @@ export default function Search() {
           <ReserveTable tableItems={tableItems} tableNo={tableNo} setTableNo={setTableNo}/>
         </TabPanel>
         <TabPanel value={value} index={1}>
-          <Menu state="menu" menuItems={menuItems} menuName={menuName} menuCommand={menuCommand}/>
+        <Menu
+            state="menu"
+            menuItems={menuItems}
+            menuName={menuName}
+            menuCommand={menuCommand}
+            setMenuName={setMenuName}
+            setMenuCommand={setMenuCommand}
+            orderName={orderName}
+            orderCommand={orderCommand}
+            orderRating={orderRating}
+            setOrderName={setOrderName}
+            setOrderCommand={setOrderCommand}
+            setOrderRating={setOrderRating}
+          />
         </TabPanel>
         <TabPanel value={value} index={2}>
           <Menu state="order" orderItems={orderItems} />

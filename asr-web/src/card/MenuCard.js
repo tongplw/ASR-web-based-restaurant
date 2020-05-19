@@ -71,6 +71,10 @@ export default function MenuCard(props) {
   };
   const handleClose = () => {
     setOpen(false);
+    if (props.setMenuName && props.setMenuCommand) {
+      props.setMenuName("");
+      props.setMenuCommand("");
+    }
   };
   const handleToggle = () => {
     setOpen(!open);
@@ -80,19 +84,22 @@ export default function MenuCard(props) {
   };
   const handleCloseOrder = () => {
     setOpenOrder(false);
+    if (props.setMenuName && props.setMenuCommand) {
+      props.setMenuName("");
+      props.setMenuCommand("");
+    }
   };
   const handleOrder = () => {
     console.log("axios update table");
     window.location.assign("/");
   };
   React.useEffect(() => {
-    if(props.command === "order") {
-      setOpenOrder(true)
+    if (props.menuCommand === "order") {
+      setOpenOrder(true);
+    } else if (props.menuCommand === "more") {
+      setOpen(true);
     }
-    else if(props.command === "more") {
-      setOpen(true)
-    }
-  },[]);
+  });
   return (
     <Card className={classes.root}>
       <CardActionArea>

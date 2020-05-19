@@ -83,7 +83,9 @@ export default function RecipeReviewCard(props) {
     window.location.assign("/");
   };
   React.useEffect(() => {
-    setOpen(props.openBackdrop);
+    if(props.openBackdrop && !open) {
+      handleToggle()
+    }
   });
   if (props.item.status) {
     return (
