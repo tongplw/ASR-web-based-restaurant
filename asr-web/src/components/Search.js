@@ -370,30 +370,26 @@ export default function Search() {
       },
       {
         name: "ข้าวไข่เจียวหมูสับ",
-        text:
-          "good jokfffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff ffff ffffff fffff ffffffff fffff ffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffe",
-        image: "https://upic.me/i/dz/img-0671.jpg",
+        text:"อิเลียดซาตานเทรดป๊อป บร็อกโคลีแฟร์วอล์กสุนทรีย์ ตื้บมายาคติ บ็อกซ์ปิกอัพ แอสเตอร์ธุรกรรม แบล็กสเตเดียมโปรเจ็ค เบลอ เยอบีราพรีเมียร์ซิตี้โกลด์เจ็ต เหมยม็อบ กิฟท์อันเดอร์พอเพียงคีตปฏิภาณ เจี๊ยว หลวงปู่ไคลแมกซ์โก๊ะปาสคาลแอนด์ สตรอเบอร์รีโอยัวะตู้เซฟ กษัตริยาธิราชซาร์เด้อครัวซอง เคลมวิดีโอฟินิกซ์ดีลเลอร์ ตนเองอพาร์ทเมนท์เซ็กซี่เซ็นเตอร์ไฮเทค",
+        image: "ข้าวไข่เจียวหมูสับ.jpg",
         price: 59,
       },
       {
         name: "ข้าวผัดหมู",
-        text: "good noodles",
-        image:
-          "https://lh3.googleusercontent.com/proxy/vW6hGNnGC3SUpxy2ZtQiJG2DvCLNxrPQ0nixM42FptStZTrhPuBttcylguB8VLihi0W7Mqzm954MrPUvQdwCRTGhLOS_J4X-IF-9N9mylJN13cLWlg",
+        text: "สันทนาการลีเมอร์เพทนาการวิวหยวน สตรอว์เบอร์รีพ่อค้าชินบัญชรโมจิออเดอร์ ครัวซองต์ตรวจทาน เมจิคโหงว บ็อกซ์เฟรชชี่ฮิตศิลปวัฒนธรรมแอ็กชั่น เซลส์แมนแมชีน เบนโลมะกันเรตอีแต๋นแตงโม จึ๊กวาฟเฟิลรอยัลตี้ครัวซอง มาร์จิน นพมาศโชห่วยกรีนออกแบบเซ็กส์ โครนาวิลล์ชีสมาร์ชวีน ดัมพ์ เปียโนสปายซี้ไดเอ็ตน้องใหม่ ตี๋ครัวซอง แบ็กโฮ ซีนสปอร์ต",
+        image: "ข้าวผัดหมู.png",
         price: 79,
       },
       {
         name: "ข้าวหมูกรอบ",
-        text: "good steak",
-        image:
-          "https://lh3.googleusercontent.com/proxy/xpOemdxrVPdwKo8vHDyBFV1MYgLkTf1GoMRyE5zQOBKPffqFSkgUrqpEWCzykBfc-jb-7cBy6BcYcmAZwu26ux6Bo6TR9KJvq90P8ci1ePEKkLRHucz9VbMRagL6OJAnyOnMoZya",
+        text: "แอ็กชั่นเปราะบาง ตื้บเวณิกาปิโตรเคมี อิสรชนโบ้ย เห่ย แฮนด์วอเตอร์ มิวสิคเบิร์ดซานตาคลอสแอคทีฟ แฟล็ตเวสต์ อีแต๋นฟีดเซรามิก อินดอร์มินต์พฤหัส ทัวริสต์ น็อค ชะโนดผู้นำ ตัวตนคอนเทนเนอร์รีเสิร์ช อุตสาหการปาร์ตี้แอร์บริกร แคมเปญแหววไฮไลต์ อุตสาหการแมคเคอเรล",
+        image: "ข้าวหมูกรอบ.jpg",
         price: 99,
       },
       {
         name: "ก๋วยเตี๋ยว",
-        text: "good steak",
-        image:
-          "https://lh3.googleusercontent.com/proxy/82npm7nCiq0E8bHx-JAqZaVeNCJBL-_urPw4easjzAYpIO1PZvLQ0MmNhCbqZXqqS3pPwBCDKZdJaJsDzcagd_WtNmGDvjg9n6jJerj2ptfOEgtbbBST",
+        text: "เวสต์เทควันโดเซลส์แมนไวอากร้า จิตเภทกลาสวอลล์ แจ๊กพ็อตบึมพาร์ทเนอร์ ตรวจสอบโปรเจกต์นิวขั้นตอน ซานตาคลอสซาฟารีรีทัชคาปูชิโน เอ๋วอลซ์สหัสวรรษพุทโธ ไฟต์ เทเลกราฟ แคร็กเกอร์นรีแพทย์ แชมปิยองซัมเมอร์หงวน จิ๊กฮิปโป สปอตคอมเมนท์เต๊ะ พฤหัส ต้าอ่วย เอาท์หลินจือ ศากยบุตร",
+        image: "ก๋วยเตี๋ยว.jpg",
         price: 99,
       },
     ]);
