@@ -241,11 +241,17 @@ async def textfield(request) :
             res.key = "star"
             res.status = True
             res.value = ["star"]
+            if "หนึ่ง" in orders : res.point = 1
+            if "สอง" in orders : res.point = 2
+            if "สาม" in orders : res.point = 3
+            if "สี่" in orders : res.point = 4
+            if "ห้า" in orders : res.point = 5
     if ("คิด" in orders) or ("จ่าย" in orders) or ("เก็บ" in orders) :
         if ( "ตัง" in orders ) or ( "เงิน" in orders ) :   
             res.key = "bill"
             res.status = True
             res.value = ["bill"]
+    ###### confirm #######
     if ("ยืนยัน" in orders) and ("จอง" in orders) :
         res.key = "confirm"
         if "1" in orders : 
@@ -273,14 +279,7 @@ async def textfield(request) :
             res.tableNo = 5
             table5.setOccupied(True)
             res.occupied = table5.isOccupied
-    if ("ให้" in orders) and (("ดาว" in orders ) or ("คะแนน"in orders)) :
-        res.key = "review"
-        res.status = True
-        if "หนึ่ง" in orders : res.point = 1
-        if "สอง" in orders : res.point = 2
-        if "สาม" in orders : res.point = 3
-        if "สี่" in orders : res.point = 4
-        if "ห้า" in orders : res.point = 5
+        
 
 
     jsonStr = json.dumps(res.__dict__,ensure_ascii=False)
