@@ -305,40 +305,35 @@ export default function Search() {
     setTextField(e);
   };
 
+  function tableCallback(i,callback,item) {
+    if (i === 5) callback(item)
+  }
+  function getTable(callback){
+    var itemSet = []
+    for (let i = 1; i <=5; i++) {
+      console.log(i)
+      axios.get(`http://localhost:8080/table/${i}`).then((res) => {
+        console.log(`debug : ${res.data.name}`)
+        itemSet.push({
+          tableNo : i,
+          status : !(res.data.isOccupied)
+        })
+        tableCallback(i,callback,itemSet)
+      })
+    }
+    
+  }
   useEffect(() => {
     const node = loadCSS(
       "https://use.fontawesome.com/releases/v5.12.0/css/all.css",
       document.querySelector("#font-awesome-css")
     )
-    axios.get(`http://localhost:8080/debug`).then((res) => {
-      console.log(`debug : ${res.data}`)
-      
-    })
+    
+    getTable(setTableItems)
     setMessage("Push to speak")
     
     
-    setTableItems([
-      {
-        tableNo: 1,
-        status: true,
-      },
-      {
-        tableNo: 2,
-        status: false,
-      },
-      {
-        tableNo: 3,
-        status: true,
-      },
-      {
-        tableNo: 4,
-        status: true,
-      },
-      {
-        tableNo: 5,
-        status: false,
-      },
-    ]);
+    
     setMenuItems([
       {
         name: "กะเพราหมูสับ",
