@@ -83,6 +83,21 @@ export default function Menu(props) {
     }
   };
   const showOrderItem = (item) => {
+    //console.log("Show x",props.orderName,1)
+    if (props.state === "order") {
+      return (
+      <Box p={1} css={{ wordWrap: "break-word" }}>
+        <OrderCard
+          item={item}
+          orderName={props.orderName}
+          orderCommand={props.orderCommand}
+          orderRating={props.orderRating}
+          setOrderName={props.setOrderName}
+          setOrderCommand={props.setOrderCommand}
+          setOrderRating={props.setOrderRating}
+        />
+      </Box>);
+    } 
     if (props.orderCommand === "rate") {
       return (
       <Box p={1} css={{ wordWrap: "break-word" }}>
@@ -129,6 +144,7 @@ export default function Menu(props) {
     setOrderItems(props.orderItems);
   }, []);
   React.useEffect(() => {
+    
     if (
       (props.menuCommand === "No" && !open) ||
       (props.orderCommand === "No" && !open)

@@ -312,7 +312,7 @@ export default function Search() {
         if (message.key === "star") {
           setValue(2)
           setOrderCommand("rate")
-          setOrderRating(message.point)
+          setOrderRating(parseInt(message.point))
         }
         if (message.key === "bill")  {
           setValue(3)
@@ -344,6 +344,10 @@ export default function Search() {
   function tableCallback(i,callback,item) {
     if (i === 5) callback(item)
   }
+  function orderCallback(i,len,callback,order) {
+
+      callback(order)
+  }
   function getTable(callback){
     var itemSet = []
     for (let i = 1; i <=5; i++) {
@@ -360,14 +364,14 @@ export default function Search() {
     
   }
   function getOrder(){
-    var itemSet = []
+    var orderSet = []
     axios.get(`http://localhost:8080/order`).then((res) => {
       let data = res.data.split("'")
       console.log(data)
       for (let i =1; i<data.length;i += 2){
         console.log(data[i])
         let e = JSON.parse(data[i])
-        itemSet.push({
+        orderSet.push({
           name: e.name,
           text: e.text,
           image: e.image,
@@ -376,9 +380,10 @@ export default function Search() {
           makeTime: e.makeTime,
           amount: e.amount,
         })
+        orderCallback(i,data.length,setOrderItems,orderSet)
       }
-      console.log("itemset :",itemSet)
-      return setOrderItems(itemSet) 
+      console.log("itemset :",orderSet)
+      return setOrderItems(orderSet) 
     }) 
   }
   
@@ -389,7 +394,7 @@ export default function Search() {
     )
     
     getTable(setTableItems)
-    //getOrder()
+    getOrder()
     setMessage("Push to speak")
     
     setMenuItems([
