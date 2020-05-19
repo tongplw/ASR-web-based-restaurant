@@ -402,7 +402,7 @@ export default function Search() {
     )
     
     getTable(setTableItems)
-    //getOrder()
+    getOrder()
     setMessage("Push to speak")
     
     setMenuItems([
