@@ -85,32 +85,35 @@ export default function Menu(props) {
   const showOrderItem = (item) => {
     //console.log("Show x",props.orderName,1)
     if (props.state === "order") {
+      console.log(props.orderRating);
       return (
-      <Box p={1} css={{ wordWrap: "break-word" }}>
-        <OrderCard
-          item={item}
-          orderName={props.orderName}
-          orderCommand={props.orderCommand}
-          orderRating={props.orderRating}
-          setOrderName={props.setOrderName}
-          setOrderCommand={props.setOrderCommand}
-          setOrderRating={props.setOrderRating}
-        />
-      </Box>);
-    } 
+        <Box p={1} css={{ wordWrap: "break-word" }}>
+          <OrderCard
+            item={item}
+            orderName={props.orderName}
+            orderCommand={props.orderCommand}
+            orderRating={props.orderRating}
+            setOrderName={props.setOrderName}
+            setOrderCommand={props.setOrderCommand}
+            setOrderRating={props.setOrderRating}
+          />
+        </Box>
+      );
+    }
     if (props.orderCommand === "rate") {
       return (
-      <Box p={1} css={{ wordWrap: "break-word" }}>
-        <OrderCard
-          item={item}
-          orderName={props.orderName}
-          orderCommand={props.orderCommand}
-          orderRating={props.orderRating}
-          setOrderName={props.setOrderName}
-          setOrderCommand={props.setOrderCommand}
-          setOrderRating={props.setOrderRating}
-        />
-      </Box>);
+        <Box p={1} css={{ wordWrap: "break-word" }}>
+          <OrderCard
+            item={item}
+            orderName={props.orderName}
+            orderCommand={props.orderCommand}
+            orderRating={props.orderRating}
+            setOrderName={props.setOrderName}
+            setOrderCommand={props.setOrderCommand}
+            setOrderRating={props.setOrderRating}
+          />
+        </Box>
+      );
     } else if (props.orderCommand === "cancel") {
       if (props.orderName === item.name) {
         return (
@@ -144,17 +147,12 @@ export default function Menu(props) {
     setOrderItems(props.orderItems);
   }, []);
   React.useEffect(() => {
-    
     if (
       (props.menuCommand === "No" && !open) ||
       (props.orderCommand === "No" && !open)
     ) {
       handleToggle();
     }
-    // if (props.orderCommand === "rate" && !openRate) {
-    //   setValue(props.orderRating);
-    //   handleToggleRate();
-    // }
   });
   if (props.state === "menu") {
     return (
@@ -201,13 +199,6 @@ export default function Menu(props) {
   } else if (props.state === "order") {
     return (
       <div>
-        <Backdrop
-          className={classes.myBackdrop}
-          open={openRate}
-          onClick={handleCloseRate}
-        >
-          <ThankYouCard rating={value} />
-        </Backdrop>
         <Box
           display="flex"
           flexWrap="wrap"

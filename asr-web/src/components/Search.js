@@ -313,7 +313,7 @@ export default function Search() {
         if (message.key === "star") {
           setValue(2)
           setOrderCommand("rate")
-          setOrderRating(parseInt(5))
+          setOrderRating(parseInt(message.point))
         }
         if (message.key === "bill")  {
           setValue(3)
