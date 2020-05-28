@@ -71,20 +71,21 @@ export default function MenuCard(props) {
   };
 
   React.useEffect(() => {
-    if (props.rating === 5) {
+    console.log(props.rating)
+    if (parseInt(props.rating) === 5) {
       setText("เราดีใจที่คุณชอบอาหารของเรามาก หวังว่าครั้งหน้าเราจะได้พบกันอีก")
     } 
-    else if(props.rating === 4) {
+    else if(parseInt(props.rating) === 4) {
         setText("เราดีใจที่คุณชอบอาหารของเรา เราสัญญาว่าจะทำให้คุณชอบอาหารของเรายิ่งขึ้น")  
     }
-    else if(props.rating === 3) {
+    else if(parseInt(props.rating) === 3) {
         setText("เราดีใจที่คุณพอใจกับอาหารของเรา เราสัญญาว่าจะทำให้คุณชอบอาหารของเรายิ่งขึ้น")  
     }
-    else if(props.rating === 2) {
+    else if(parseInt(props.rating) === 2) {
         setText("เราเสียใจที่คุณไม่ชอบอาหารของเรา เราสัญญาว่าจะปรับปรุงให้ดีกว่านี้")  
     }
-    else if(props.rating === 1) {
-        setText("ควย")  
+    else if(parseInt(props.rating) === 1) {
+        setText(";P")  
     }
     else {
         setText("NaN") 

@@ -121,11 +121,23 @@ class respond :
         self.status = False
         self.value = "initValue"
 
+foodOrder = []
+
 table1 = table("table1")
 table2 = table("table2")
 table3 = table("table3")
 table4 = table("table4")
 table5 = table("table5")
+
+def findOrder(name) :
+    for i in range(0,len(foodOrder)) :
+        if name in foodOrder[i] :
+            return i
+    return -1
+
+def removeOrder(name) :
+    if findOrder(name) != -1 :
+        del foodOrder[findOrder(name)]
 
 async def textfield(request) :
     params = await request.json()
@@ -142,139 +154,243 @@ async def textfield(request) :
                 res.tableNo = "1"
                 res.title = "Available"
                 res.status = True
-            # else :
-            #     res.status = False
-        if "สอง" in orders :
+            else :
+                res.tableNo = "1"
+                res.status = False
+        elif "สอง" in orders :
             res.value = "table2"
             if (not table2.isOccupied) :
                 # table2.setOccupied(True)
                 res.tableNo = "2"
                 res.title = "Available"
                 res.status = True
-            # else :
-            #     res.status = False
-        if "สาม" in orders :
+            else :
+                res.tableNo = "2"
+                res.status = False
+        elif "สาม" in orders :
             res.value = "table3"
             if (not table3.isOccupied) :
                 # table3.setOccupied(True)
                 res.tableNo = "3"
                 res.title = "Available"
                 res.status = True
-            # else :
-            #     res.status = False
-        if "สี่" in orders :
+            else :
+                res.tableNo = "3"
+                res.status = False
+        elif "สี่" in orders :
             res.value = "table4"
             if (not table4.isOccupied) :
                 # table4.setOccupied(True)
                 res.tableNo = "4"
                 res.title = "Available"
                 res.status = True
-            # else :
-            #     res.status = False
-        if "ห้า" in orders :
+            else :
+                res.tableNo = "4"
+                res.status = False
+        elif "ห้า" in orders :
             res.value = "table5"
             if (not table5.isOccupied) :
                 # table5.setOccupied(True)
                 res.tableNo = "5"
                 res.title = "Available"
                 res.status = True
-            # else :
-            #     res.status = False
-    if ("กี่" in orders) and ("บาท" in orders) or ("เท่าไร" in orders):
+            else :
+                res.tableNo = "5"
+                res.status = False
+    elif ("กี่" in orders) and ("บาท" in orders) or ("เท่าไร" in orders):
         res.key = "asking"
         res.status = True
-    if ("ขอ" in orders) and ("จาน" in orders):
+        if ("ข้าว ไข่เจียว หมูสับ" in orders):
+            res.name = "ข้าวไข่เจียวหมูสับ"
+        elif ("กะเพรา หมูสับ" in orders):
+            res.name = "กะเพราหมูสับ"
+            res.makeTime = 600000
+        elif ("ข้าวผัด หมู" in orders):
+            res.name = "ข้าวผัดหมู"
+            res.makeTime = 600000
+        elif ("ข้าว หมูกรอบ" in orders):
+            res.name = "ข้าวหมูกรอบ"
+        elif ("ก๋วยเตี๋ยว" in orders):
+            res.name = "ก๋วยเตี๋ยว"
+        if "หนึ่ง" in orders : res.amount = 1
+        elif "สอง" in orders : res.amount = 2
+        elif "สาม" in orders : res.amount = 3
+        elif "สี่" in orders : res.amount = 4
+        elif "ห้า" in orders : res.amount = 5
+    elif ("ขอ" in orders) and ("จาน" in orders):
         res.key = "order"
         x = datetime.datetime.now()
         if ("ข้าว ไข่เจียว หมูสับ" in orders):
             res.name = "ข้าวไข่เจียวหมูสับ"
             res.text = "ไข่ที่ดีคือไข่ลาดยาง"
-            res.image = "https://img-global.cpcdn.com/recipes/8b8c8c4bd551a902/1200x630cq70/photo.jpg"
+            res.image = "ข้าวไข่เจียวหมูสับ.jpg"
             res.price = "99.-"
             res.addTime = str(x)
             res.makeTime = 600000
-        if ("กะเพรา หมูสับ" in orders):
+        elif ("กะเพรา หมูสับ" in orders):
             res.name = "กะเพราหมูสับ"
             res.text = "หมูที่ดีหรือหมู่กลม"
-            res.image = "https://img-global.cpcdn.com/recipes/8b8c8c4bd551a902/1200x630cq70/photo.jpg"
+            res.image = "กะเพราหมูสับ.jpg"
             res.price = "99.-"
             res.addTime = str(x)
             res.makeTime = 600000
-        if ("ข้าวผัด หมู" in orders):
+        elif ("ข้าวผัด หมู" in orders):
             res.name = "ข้าวผัดหมู"
             res.text = "ผัดที่ดีคือผัดใบเขียว"
-            res.image = "https://img-global.cpcdn.com/recipes/8b8c8c4bd551a902/1200x630cq70/photo.jpg"
+            res.image = "ข้าวผัดหมู.png"
             res.price = "99.-"
             res.addTime = str(x)
             res.makeTime = 600000
-        if ("ข้าว หมูกรอบ" in orders):
+        elif ("ข้าว หมูกรอบ" in orders):
             res.name = "ข้าวหมูกรอบ"
             res.text = "หมูกรอบบบบบบบบบบบ"
-            res.image = "https://img-global.cpcdn.com/recipes/8b8c8c4bd551a902/1200x630cq70/photo.jpg"
+            res.image = "ข้าวหมูกรอบ.jpg"
             res.price = "99.-"
             res.addTime = str(x)
             res.makeTime = 600000
-        if ("ก๋วยเตี๋ยว" in orders):
+        elif ("ก๋วยเตี๋ยว" in orders):
             res.name = "ก๋วยเตี๋ยว"
             res.text = "เส้นที่ดีคือเส้นใหญ่"
-            res.image = "https://img-global.cpcdn.com/recipes/8b8c8c4bd551a902/1200x630cq70/photo.jpg"
+            res.image = "ก๋วยเตี๋ยว.jpg"
             res.price = "99.-"
             res.addTime = str(x)
             res.makeTime = 300000
         if "หนึ่ง" in orders : res.amount = 1
-        if "สอง" in orders : res.amount = 2
-        if "สาม" in orders : res.amount = 3
-        if "สี่" in orders : res.amount = 4
-        if "ห้า" in orders : res.amount = 5
+        elif "สอง" in orders : res.amount = 2
+        elif "สาม" in orders : res.amount = 3
+        elif "สี่" in orders : res.amount = 4
+        elif "ห้า" in orders : res.amount = 5
+        # jsonStr = json.dumps(res.__dict__,ensure_ascii=False)
+        # foodOrder.append(jsonStr)
         
-    if "เมนู" in orders :
+    elif "เมนู" in orders :
         res.key = "menu"
         res.status = True
         res.value = ["menu"]
-    if "ราคา" in orders :
+    elif "ราคา" in orders :
         res.key = "price"
         res.status = True
         res.value = ["price"]
-    if "ให้" in orders :
+    elif "ให้" in orders :
         if ( "ดาว" in orders ) or ( "คะแนน" in orders ) :   
             res.key = "star"
             res.status = True
             res.value = ["star"]
-    if ("คิด" in orders) or ("จ่าย" in orders) or ("เก็บ" in orders) :
+            if "หนึ่ง" in orders : res.point = 1
+            elif "สอง" in orders : res.point = 2
+            elif "สาม" in orders : res.point = 3
+            elif "สี่" in orders : res.point = 4
+            elif "ห้า" in orders : res.point = 5
+    elif ("คิด" in orders) or ("จ่าย" in orders) or ("เก็บ" in orders) :
         if ( "ตัง" in orders ) or ( "เงิน" in orders ) :   
             res.key = "bill"
             res.status = True
             res.value = ["bill"]
-    if ("ยืนยัน" in orders) and ("จอง" in orders) :
+    ###### confirm #######
+    elif ("ยืนยัน" in orders) and ("จอง" in orders) :
         res.key = "confirm"
         if "1" in orders : 
             res.status = True
             res.tableNo = 1
             table1.setOccupied(True)
             res.occupied = table1.isOccupied
-        if "2" in orders :
+        elif "2" in orders :
             res.status = True
             res.tableNo = 2 
             table2.setOccupied(True)
             res.occupied = table2.isOccupied
-        if "3" in orders :
+        elif "3" in orders :
             res.status = True 
             res.tableNo = 3
             table3.setOccupied(True)
             res.occupied = table3.isOccupied
-        if "4" in orders :
+        elif "4" in orders :
             res.status = True 
             res.tableNo = 4
             table4.setOccupied(True)
             res.occupied = table4.isOccupied
-        if "5" in orders :
+        elif "5" in orders :
             res.status = True 
             res.tableNo = 5
             table5.setOccupied(True)
             res.occupied = table5.isOccupied
+        
+    elif ("ยืนยัน" in orders) and ("สั่ง" in orders) :
+            res.key = "Confirm"
+            x = datetime.datetime.now()
+            if ("ข้าวไข่เจียวหมูสับ" in orders):
+                res.name = "ข้าวไข่เจียวหมูสับ"
+                res.text = "ไข่ที่ดีคือไข่ลาดยาง"
+                res.image = "ข้าวไข่เจียวหมูสับ.jpg"
+                res.price = "99.-"
+                res.addTime = str(x)
+                res.makeTime = 600000
+            elif ("กะเพราหมูสับ" in orders):
+                res.name = "กะเพราหมูสับ"
+                res.text = "หมูที่ดีหรือหมู่กลม"
+                res.image = "กะเพราหมูสับ.jpg"
+                res.price = "99.-"
+                res.addTime = str(x)
+                res.makeTime = 600000
+            elif ("ข้าวผัดหมู" in orders):
+                res.name = "ข้าวผัดหมู"
+                res.text = "ผัดที่ดีคือผัดใบเขียว"
+                res.image = "ข้าวผัดหมู.png"
+                res.price = "99.-"
+                res.addTime = str(x)
+                res.makeTime = 600000
+            elif ("ข้าวหมูกรอบ" in orders):
+                res.name = "ข้าวหมูกรอบ"
+                res.text = "หมูกรอบบบบบบบบบบบ"
+                res.image = "ข้าวหมูกรอบ.jpg"
+                res.price = "99.-"
+                res.addTime = str(x)
+                res.makeTime = 600000
+            elif ("ก๋วยเตี๋ยว" in orders):
+                res.name = "ก๋วยเตี๋ยว"
+                res.text = "เส้นที่ดีคือเส้นใหญ่"
+                res.image = "ก๋วยเตี๋ยว.jpg"
+                res.price = "99.-"
+                res.addTime = str(x)
+                res.makeTime = 300000
+            if "1" in orders : res.amount = 1
+            elif "2" in orders : res.amount = 2
+            elif "3" in orders : res.amount = 3
+            elif "4" in orders : res.amount = 4
+            elif "5" in orders : res.amount = 5
+            
+            jsonStr = json.dumps(res.__dict__,ensure_ascii=False)
+            foodOrder.append(jsonStr)
+    elif ("ลบ") in orders :
+        res.key = "delete"
+        res.status = True
+        if ("ข้าว ไข่เจียว หมูสับ" in orders):
+            removeOrder("ข้าวไข่เจียวหมูสับ")
+        elif ("กะเพรา หมูสับ" in orders):
+            removeOrder("กะเพราหมูสับ")
+        elif ("ข้าวผัด หมู" in orders):
+            removeOrder("ข้าวผัดหมู")
+        elif ("ข้าว หมูกรอบ" in orders):
+            removeOrder("ข้าวหมูกรอบ")
+        elif ("ก๋วยเตี๋ยว" in orders):
+            removeOrder("ก๋วยเตี๋ยว")
+    elif ("ยกเลิก" in orders) and ("ขอ" not in orders):
+        res.key = "cancel"
+        res.status = True
+        if ("ข้าว ไข่เจียว หมูสับ" in orders):
+            removeOrder("ข้าวไข่เจียวหมูสับ")
+        elif ("กะเพรา หมูสับ" in orders):
+            removeOrder("กะเพราหมูสับ")
+        elif ("ข้าวผัด หมู" in orders):
+            removeOrder("ข้าวผัดหมู")
+        elif ("ข้าว หมูกรอบ" in orders):
+            removeOrder("ข้าวหมูกรอบ")
+        elif ("ก๋วยเตี๋ยว" in orders):
+            removeOrder("ก๋วยเตี๋ยว")
+    
 
     jsonStr = json.dumps(res.__dict__,ensure_ascii=False)
-    return web.Response(content_type='text/html', text=str(jsonStr))
+    return web.Response(content_type='text/html', text=jsonStr)
     #return web.json_response(jsonStr)
 
 async def table(request):
@@ -295,8 +411,12 @@ async def table(request):
         jsonStr = json.dumps(table5.__dict__)
         return web.Response(content_type='text/html', text=str(jsonStr))
 
+async def order(request) :
+    print("ordering")
+    return web.Response(content_type='text/html', text=str(foodOrder))
+
 async def debug(request) :
-    print("debugging")
+    print("order")
     jsonStr = json.dumps(table1.__dict__)
     return web.Response(content_type='text/html', text=str(jsonStr))
 
@@ -322,6 +442,7 @@ if __name__ == '__main__':
 
     app.router.add_post('/textfield',textfield)
     app.router.add_get('/debug',debug)
+    app.router.add_get('/order',order)
     app.add_routes([web.get('/table', table),
                 web.get('/table/{name}', table)])
 

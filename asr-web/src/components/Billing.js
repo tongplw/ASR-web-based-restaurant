@@ -77,7 +77,7 @@ export default function LayoutTextFields(props) {
   const calculateTotalPrice = () => {
     let sum = 0;
     for (let i = 0; i < orderItems.length; i++) {
-      sum += orderItems[i].price * orderItems[i].amount;
+      sum += parseInt(orderItems[i].price) * parseInt(orderItems[i].amount);
     }
     setTotalPrice(sum);
   };

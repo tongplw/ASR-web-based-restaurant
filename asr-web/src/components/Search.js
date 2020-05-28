@@ -291,11 +291,48 @@ export default function Search() {
         }
 
         if (message.key === "order") {
-          setValue(1);
-          setMenuName(message.name);
-          setMenuNo(parseInt(message.amount));
-          setMenuCommand("order");
+          setValue(1)
+          setMenuName(message.name)
+          setMenuNo(parseInt(message.amount))
+          setMenuCommand("order")
         }
+
+        if (message.key === "asking") {
+          setValue(1)
+          setMenuName(message.name)
+          setMenuNo(parseInt(message.amount))
+          setMenuCommand("more")
+        }
+        
+
+        if (message.key === "cancel") {
+          window.location.assign("/");
+          //setOrderCommand("cancel")
+        }
+
+        if (message.key === "star") {
+          setValue(2)
+          setOrderCommand("rate")
+          setOrderRating(parseInt(message.point))
+        }
+        if (message.key === "bill")  {
+          setValue(3)
+          // setOrderItems([
+          //   {
+          //     name: "samyan steak",
+          //     text: "good steak",
+          //     image:
+          //       "https://img-global.cpcdn.com/recipes/8b8c8c4bd551a902/1200x630cq70/photo.jpg",
+          //     price: 99,
+          //     addTime: new Date(2020, 4, 17, 21, 31),
+          //     makeTime: 600000,
+          //     amount: 1,
+          //   }])
+          //setOrderName("ข้าวไข่เจียวหมูสับ")
+
+        }
+
+        //if (message.)
       });
     }
   };
@@ -305,89 +342,124 @@ export default function Search() {
     setTextField(e);
   };
 
-  function tableCallback(i, callback, item) {
-    if (i === 5) callback(item);
+  function tableCallback(i,callback,item) {
+    if (i === 5) callback(item)
   }
-  function getTable(callback) {
-    var itemSet = [];
-    for (let i = 1; i <= 5; i++) {
-      console.log(i);
+  function orderCallback(i,len,callback,order) {
+
+      callback(order)
+  }
+  function getTable(callback){
+    let itemSet = []
+    for (let i = 1; i <=5; i++) {
+      console.log(i)
       axios.get(`http://localhost:8080/table/${i}`).then((res) => {
-        console.log(`debug : ${res.data.name}`);
+        console.log(`debug : ${res.data.name}`)
         itemSet.push({
-          tableNo: i,
-          status: !res.data.isOccupied,
-        });
-        tableCallback(i, callback, itemSet);
-      });
+          tableNo : i,
+          status : !(res.data.isOccupied)
+        })
+        tableCallback(i,callback,itemSet)
+      })
     }
+    
   }
+  function getOrder(){
+    let itemSet = []
+    axios.get(`http://localhost:8080/order`).then((res) => {
+      
+      console.log(res.data)
+      if (res.data + '' == "") return setOrderItems([])
+      else{
+        let data = res.data.split("'")
+      console.log(data)
+      for (let i =1; i<data.length;i += 2){
+        console.log(data[i])
+        let e = JSON.parse(data[i])
+
+        itemSet.push({
+          name: e.name,
+          text: e.text,
+          image: e.image,
+          price:  e.price,
+          addTime: e.addTime,
+          makeTime: e.makeTime,
+          amount: e.amount,
+        })
+        //orderCallback(i,data.length,setOrderItems,orderSet)
+      }
+      setOrderItems(itemSet)
+      return 
+      }
+    })
+  }
+  
   useEffect(() => {
     const node = loadCSS(
       "https://use.fontawesome.com/releases/v5.12.0/css/all.css",
       document.querySelector("#font-awesome-css")
-    );
-
-    getTable(setTableItems);
-    setMessage("Push to speak");
-
+    )
+    
+    getTable(setTableItems)
+    getOrder()
+    setMessage("Push to speak")
+    
     setMenuItems([
       {
         name: "กะเพราหมูสับ",
         text:
           " หมูสับร่วนผัดกับใบกะเพราหอมติดจมูก ราดบนข้าวสวยร้อน ๆ พร้อมไข่ดาว",
-        image: "กะเพราหมูสับ.jpg",
+        image: "https://img.pptvhd36.com/contents/H/y/cd32a0364b7a.jpg",
         price: 79,
       },
       {
         name: "ข้าวไข่เจียวหมูสับ",
-        text:
-          "good jokfffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff ffff ffffff fffff ffffffff fffff ffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffe",
+        text:"อิเลียดซาตานเทรดป๊อป บร็อกโคลีแฟร์วอล์กสุนทรีย์ ตื้บมายาคติ บ็อกซ์ปิกอัพ แอสเตอร์ธุรกรรม แบล็กสเตเดียมโปรเจ็ค เบลอ เยอบีราพรีเมียร์ซิตี้โกลด์เจ็ต เหมยม็อบ กิฟท์อันเดอร์พอเพียงคีตปฏิภาณ เจี๊ยว หลวงปู่ไคลแมกซ์โก๊ะปาสคาลแอนด์ สตรอเบอร์รีโอยัวะตู้เซฟ กษัตริยาธิราชซาร์เด้อครัวซอง เคลมวิดีโอฟินิกซ์ดีลเลอร์ ตนเองอพาร์ทเมนท์เซ็กซี่เซ็นเตอร์ไฮเทค",
         image: "ข้าวไข่เจียวหมูสับ.jpg",
         price: 59,
       },
       {
         name: "ข้าวผัดหมู",
-        text: "good noodles",
+        text: "สันทนาการลีเมอร์เพทนาการวิวหยวน สตรอว์เบอร์รีพ่อค้าชินบัญชรโมจิออเดอร์ ครัวซองต์ตรวจทาน เมจิคโหงว บ็อกซ์เฟรชชี่ฮิตศิลปวัฒนธรรมแอ็กชั่น เซลส์แมนแมชีน เบนโลมะกันเรตอีแต๋นแตงโม จึ๊กวาฟเฟิลรอยัลตี้ครัวซอง มาร์จิน นพมาศโชห่วยกรีนออกแบบเซ็กส์ โครนาวิลล์ชีสมาร์ชวีน ดัมพ์ เปียโนสปายซี้ไดเอ็ตน้องใหม่ ตี๋ครัวซอง แบ็กโฮ ซีนสปอร์ต",
         image: "ข้าวผัดหมู.png",
         price: 79,
       },
       {
         name: "ข้าวหมูกรอบ",
-        text: "good steak",
+        text: "แอ็กชั่นเปราะบาง ตื้บเวณิกาปิโตรเคมี อิสรชนโบ้ย เห่ย แฮนด์วอเตอร์ มิวสิคเบิร์ดซานตาคลอสแอคทีฟ แฟล็ตเวสต์ อีแต๋นฟีดเซรามิก อินดอร์มินต์พฤหัส ทัวริสต์ น็อค ชะโนดผู้นำ ตัวตนคอนเทนเนอร์รีเสิร์ช อุตสาหการปาร์ตี้แอร์บริกร แคมเปญแหววไฮไลต์ อุตสาหการแมคเคอเรล",
         image: "ข้าวหมูกรอบ.jpg",
         price: 99,
       },
       {
         name: "ก๋วยเตี๋ยว",
-        text: "good steak",
+        text: "เวสต์เทควันโดเซลส์แมนไวอากร้า จิตเภทกลาสวอลล์ แจ๊กพ็อตบึมพาร์ทเนอร์ ตรวจสอบโปรเจกต์นิวขั้นตอน ซานตาคลอสซาฟารีรีทัชคาปูชิโน เอ๋วอลซ์สหัสวรรษพุทโธ ไฟต์ เทเลกราฟ แคร็กเกอร์นรีแพทย์ แชมปิยองซัมเมอร์หงวน จิ๊กฮิปโป สปอตคอมเมนท์เต๊ะ พฤหัส ต้าอ่วย เอาท์หลินจือ ศากยบุตร",
         image: "ก๋วยเตี๋ยว.jpg",
         price: 99,
       },
     ]);
-    setOrderItems([
-      {
-        name: "samyan steak",
-        text: "good steak",
-        image:
-          "https://img-global.cpcdn.com/recipes/8b8c8c4bd551a902/1200x630cq70/photo.jpg",
-        price: 99,
-        addTime: new Date(2020, 4, 17, 21, 31),
-        makeTime: 600000,
-        amount: 1,
-      },
-      {
-        name: "samyan joke",
-        text:
-          "good jokfffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff ffff ffffff fffff ffffffff fffff ffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffe",
-        image:
-          "https://img-global.cpcdn.com/recipes/8b8c8c4bd551a902/1200x630cq70/photo.jpg",
-        price: 99,
-        addTime: new Date(2020, 4, 17, 21, 31),
-        makeTime: 300000,
-        amount: 2,
-      },
-    ]);
+    // setOrderItems([
+    //   {
+    //     name: "samyan steak",
+    //     text: "good steak",
+    //     image:
+    //       "https://img-global.cpcdn.com/recipes/8b8c8c4bd551a902/1200x630cq70/photo.jpg",
+    //     price: 99,
+    //     addTime: new Date(2020, 4, 17, 21, 31),
+    //     makeTime: 600000,
+    //     amount: 1,
+    //   },
+    //   {
+    //     name: "samyan joke",
+    //     text:
+    //       "good jokfffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff ffff ffffff fffff ffffffff fffff ffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffe",
+    //     image:
+    //       "https://img-global.cpcdn.com/recipes/8b8c8c4bd551a902/1200x630cq70/photo.jpg",
+    //     price: 99,
+    //     addTime: new Date(2020, 4, 17, 21, 31),
+    //     makeTime: 300000,
+    //     amount: 2,
+    //   },
+    // ]);
     return () => {
       node.parentNode.removeChild(node);
     };

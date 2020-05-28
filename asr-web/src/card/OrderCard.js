@@ -46,7 +46,7 @@ const useStyles = makeStyles((theme) => ({
   backdrop: {
     zIndex: theme.zIndex.drawer + 1,
     color: "#fff",
-    margin: 0,
+    margin: "0 !important",
   },
   backdropCard: {
     maxWidth: 600,
@@ -114,10 +114,13 @@ export default function OrderCard(props) {
     console.log("axios update table");
     window.location.assign("/");
   };
+
+
   useEffect(() => {
     if (props.orderCommand === "rate" && !open) {
-      handleToggle();
+      
       setValue(props.orderRating);
+      handleToggle();
     } else if (
       props.orderCommand === "cancel" &&
       !(openCancel || openNotCancel)
@@ -208,7 +211,7 @@ export default function OrderCard(props) {
         </CardContent>
       </Collapse>
       <Backdrop className={classes.backdrop} open={open} onClick={handleClose}>
-        <ThankYouCard rating={value} />
+        <ThankYouCard rating={props.orderRating} />
       </Backdrop>
       <Backdrop
         className={classes.backdrop}

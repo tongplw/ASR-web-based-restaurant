@@ -20,9 +20,15 @@ const useStyles = makeStyles((theme) => ({
       justifyContent: "center",
     },
     backdrop: {
-      zIndex: theme.zIndex.drawer + 1,
+      zIndex: theme.zIndex.drawer + 2,
       color: "#fff",
       margin: 0,
+    },
+    myBackdrop: {
+      zIndex: theme.zIndex.drawer - 10,
+      color: "#fff",
+      margin: 0,
+      position: "relative",
     },
     boldFont: {
       fontFamily: "Mitr, sans-serif",
@@ -77,7 +83,9 @@ export default function Menu(props) {
     }
   };
   const showOrderItem = (item) => {
-    if (props.orderName === item.name) {
+    //console.log("Show x",props.orderName,1)
+    if (props.state === "order") {
+      console.log(props.orderRating);
       return (
         <Box p={1} css={{ wordWrap: "break-word" }}>
           <OrderCard
@@ -91,12 +99,43 @@ export default function Menu(props) {
           />
         </Box>
       );
-    } else {
+    }
+    if (props.orderCommand === "rate") {
       return (
         <Box p={1} css={{ wordWrap: "break-word" }}>
-          <OrderCard item={item} />
+          <OrderCard
+            item={item}
+            orderName={props.orderName}
+            orderCommand={props.orderCommand}
+            orderRating={props.orderRating}
+            setOrderName={props.setOrderName}
+            setOrderCommand={props.setOrderCommand}
+            setOrderRating={props.setOrderRating}
+          />
         </Box>
       );
+    } else if (props.orderCommand === "cancel") {
+      if (props.orderName === item.name) {
+        return (
+          <Box p={1} css={{ wordWrap: "break-word" }}>
+            <OrderCard
+              item={item}
+              orderName={props.orderName}
+              orderCommand={props.orderCommand}
+              orderRating={props.orderRating}
+              setOrderName={props.setOrderName}
+              setOrderCommand={props.setOrderCommand}
+              setOrderRating={props.setOrderRating}
+            />
+          </Box>
+        );
+      } else {
+        return (
+          <Box p={1} css={{ wordWrap: "break-word" }}>
+            <OrderCard item={item} />
+          </Box>
+        );
+      }
     }
   };
   React.useEffect(() => {
@@ -113,10 +152,6 @@ export default function Menu(props) {
       (props.orderCommand === "No" && !open)
     ) {
       handleToggle();
-    }
-    if (props.orderCommand === "rate" && !openRate) {
-      setValue(props.orderRating);
-      handleToggleRate();
     }
   });
   if (props.state === "menu") {
@@ -200,13 +235,6 @@ export default function Menu(props) {
               </CardContent>
             </CardActionArea>
           </Card>
-        </Backdrop>
-        <Backdrop
-          className={classes.backdrop}
-          open={openRate}
-          onClick={handleCloseRate}
-        >
-          <ThankYouCard rating={value} />
         </Backdrop>
       </div>
     );
