@@ -1,4 +1,4 @@
 aiortc==0.9.28
-aiohttp==3.6.2
+aiohttp==3.8.5
 numpy==1.22.0
 aiohttp_cors==0.7.0
